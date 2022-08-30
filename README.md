@@ -22,7 +22,7 @@ Written by _TBali_ in the 1990s
 
 * __STEFI v1.0c__ - _a Graph Editor and Analyser Program_
     * where you can edit mathemathical graphs and analyse them in detail:
-    * matrices, components, Prufer code, minimal cost path and tree, excentricity, center, 
+    * matrices, components, Prufer code, minimal cost path and tree, excentricity, center,
     topologic order, strong components & more. (FREEWARE)
 
 * __DOSINFO v1.3__ - _Information about dos, disks and more_ (FREEWARE)
@@ -30,7 +30,7 @@ Written by _TBali_ in the 1990s
 * __PRIMES__ - _List of prime numbers and prime factorization_ (FREEWARE)
 
 * __ASCII TEXTFILE MASTER__ (ATM) - _A commandline-driven ascii textfile processor_
-    * with margins, automatic page breaks, header & footer, justify, include files, 
+    * with margins, automatic page breaks, header & footer, justify, include files,
     * symbolic defines, print merge and more. Manual only in Hungarian. (FREEWARE)
 
 ATM was written in `C++`, the rest in `Turbo Pascal`.
