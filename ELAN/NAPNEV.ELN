@@ -1,0 +1,20 @@
+
+program:
+  bevitel;
+  SELECT szam OF
+    CASE 1: put ("Hetfo")
+    CASE 2: put ("Kedd")
+    CASE 3: put ("Szerda")
+    CASE 4: put ("Csutortok")
+    CASE 5: put ("Pentek")
+    CASE 6: put ("Szombat")
+    CASE 7: put ("Vasarnap")
+    OTHERWISE put ("Nincs ilyen nap.")
+  ENDSELECT.
+
+  bevitel:
+    INT VAR szam;
+    put ("Kerem a szamot: ");
+    get (szam).
+  
+

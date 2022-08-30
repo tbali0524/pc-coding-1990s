@@ -1,0 +1,41 @@
+
+program:
+  bevitel;
+  rafektet;
+  szamolegyezest;
+  kiireredmenyt.
+
+  bevitel:
+    TEXT VAR r, s;
+    put ("Kerem R-et: ");
+    get (r);
+    line;
+    put ("Kerem S-et: ");
+    get (s).
+  
+  rafektet:
+    TEXT VAR r2 :: "";
+    INT VAR i;
+    FOR i FROM 1 UPTO LENGTH s DIV LENGTH r + 1
+    REP r2 CAT r
+    ENDREP.
+  
+  szamolegyezest:
+    INT VAR egyezes :: 0;
+    FOR i FROM 1 UPTO LENGTH s
+    REP
+      IF (s SUB i) = (r2 SUB i)
+      THEN egyezes INCR 1
+      FI
+    ENDREP.
+  
+  kiireredmenyt:
+    line;
+    put ("Az egyezesek szama: ");
+    put (egyezes).
+  
+length s:.
+
+kiirvegeredmenyt:.
+
+

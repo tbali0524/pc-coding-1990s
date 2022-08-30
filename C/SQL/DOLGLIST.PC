@@ -1,0 +1,107 @@
+/* ADATBAZIS LABOR HAZI FELADAT
+    Sipos Tamas
+    Toth Balint
+    Toth Laszlo
+    Vass Gabor
+ Informatika Szak
+ III. evfolyam, 3.tankor
+ 
+  KICSI-KOCSI
+
+  1)  Dolgozok listaja
+*/
+
+#include <stdio.h>
+
+#define TRUE 1
+
+EXEC SQL INCLUDE sqlca;
+EXEC SQL BEGIN DECLARE SECTION;
+    char *username = "HALLG28";
+    char *password = "HALLG28";
+    VARCHAR dnev[31];
+    VARCHAR dcim[31];
+    VARCHAR dtel[8];
+    int tazon;
+    int bazon;
+    VARCHAR tcim[31];
+    VARCHAR bnev[31];
+EXEC SQL END DECLARE SECTION;
+
+main()
+{
+    int ptazon = -1;      /* elozo telephely azonositoja */
+    int pbazon = -1;      /* elozo beosztas azonositoja */
+    char *filename = "EMPLOYEE.LST";
+    FILE *listfile;       /* eredmeny file */
+/*    
+    if ((listfile = fopen(filename, "wt")) == NULL)
+    {
+	puts("Cannot create output file!\n");
+	exit(2);
+    };
+*/
+/*  Nem kepes fajlt megnyitni, ezert a kepernyore irjuk az eredmenyt */
+    listfile = stdout;
+
+    EXEC SQL WHENEVER SQLERROR GOTO sqlerror;
+    EXEC SQL CONNECT :username IDENTIFIED BY :password;
+    puts("\nConnected to Oracle.\n");
+    /* kurzor a kovetkezo dolgozo adatainak kivetelehez
+       (a sorrens ORDER resz miatt megfelelo) */
+    EXEC SQL DECLARE dolg_cursor CURSOR FOR
+	SELECT dnev, dcim, dtel, tazon, bazon FROM dolgozo
+	ORDER BY tazon, bazon;
+    EXEC SQL OPEN dolg_cursor;
+    EXEC SQL WHENEVER NOT FOUND GOTO notfound;
+    fputs("List of employees: (Name, Address, Phone)\n", listfile);
+    fputs("-----------------------------------------\n\n", listfile);
+    while (TRUE)
+    {
+        /* kovetkezo dolgozo */
+	EXEC SQL FETCH dolg_cursor INTO :dnev, :dcim, :dtel, :tazon, :bazon;
+	dnev.arr[dnev.len] = '\0';
+	dcim.arr[dcim.len] = '\0';
+	dtel.arr[dtel.len] = '\0';
+	if (tazon != ptazon)
+	{   /* mashol dolgozik, mint az elozo => kiirjuk a telephely nevet is */
+	    /* az erintett telephely cimenek meghatarozasa */
+	    EXEC SQL SELECT tcim INTO :tcim FROM telephely
+	      WHERE tazon = :tazon;
+	    tcim.arr[tcim.len] = '\0';
+	    fprintf(listfile, "\nUnit address: %s\n", tcim.arr);
+	    ptazon = tazon; /* a kovetkezo szamara a mostani lesz az "elozo" */
+	    pbazon = -1; /* a beosztasnevet igy mindenkepp ki fogjuk irni */
+	};
+	if (bazon != pbazon)
+	{
+	    /* a beosztas nevenek meghatarozasa */
+	    EXEC SQL SELECT bnev INTO :bnev FROM beosztas
+	      WHERE bazon = :bazon;
+	    bnev.arr[bnev.len] = '\0';
+	    fprintf(listfile, "\n  Duty: %s\n", bnev.arr);
+	    pbazon = bazon; /* a kovetkezo szamara a mostani lesz az "elozo" */
+	};
+	/* dolgozo adatainak kiirasa */
+	fprintf(listfile, "    %30s  %30s  %7s\n", dnev.arr, dcim.arr,
+	     dtel.arr);
+    }; /* while */
+
+notfound:
+    /* kilepes normalis befelyezeskor */
+    EXEC SQL CLOSE dolg_cursor;
+    EXEC SQL COMMIT RELEASE;
+    fclose(listfile);
+    printf("\nOk. (%s created.)\n", filename);
+    exit(0);
+
+sqlerror:
+    /* kilepes hiba eseten */
+    sqlca.sqlerrm.sqlerrmc[sqlca.sqlerrm.sqlerrml] = '\0';
+    printf("\n%s\n", sqlca.sqlerrm.sqlerrmc);
+    EXEC SQL WHENEVER SQLERROR CONTINUE;
+    EXEC SQL CLOSE dolg_cursor;
+    EXEC SQL ROLLBACK RELEASE;
+    fclose(listfile);
+    exit(1);
+};

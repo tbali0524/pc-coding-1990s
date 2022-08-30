@@ -1,0 +1,24 @@
+#REM  Ascii Textfile Master - demo input file (LEVEL.TXT)
+#REM  LevÇl (LEVEL.DAT-b¢l veszi az adatokat)
+#REM
+#REM include f†jlok:
+ #INCLUDE SAJAT.INC
+ #INCLUDE LEVEL.INC
+#REM l†blÇc:
+ #DEFINE FOOTER - @PAGE@. oldal -
+
+	@nÇv@ rÇszÇre
+
+ @c°m@
+@CR8@
+Felad¢:
+@sNÇv@, @sC°M@ (Tel.: @sTEL@)
+@NEWPAGE@
+ @ÅdvîzlÇs@
+@BOCS1@@kifog†s@ Ugye azÇrt nem haragszol? °gÇrem, ezent£l gyakrabban °rok.
+(Hm, ezt tal†n nem kellett volna...) @EGYEDI1@@EGYEDI2@
+ @V†LASZ1@
+ @elkîszîn@
+			B†lint
+
+@sV†ROS@, @DATE@ (@TIME@)

@@ -1,0 +1,77 @@
+
+program:
+  matrixmegadas;
+  sormaxvektorkeszites;
+  sormaxvektorrendezes;
+  matrixrendezes;
+  eredmenykiiras.
+
+  matrixmegadas:
+    LET m = 7;
+    LET n = 6;
+    ROW m ROW n INT VAR a;
+    INT VAR i, j;
+    put ("A matrix:");
+    FOR i FROM 1 UPTO m
+    REP
+      line;
+      FOR j FROM 1 UPTO n
+      REP
+        a [i] [j] := choose128;
+        put (a [i] [j]);
+        put (",")
+      ENDREP
+    ENDREP.
+  
+  sormaxvektorkeszites:
+    ROW m INT VAR sormax;
+    FOR i FROM 1 UPTO m
+    REP
+      sormax [i] := a [i] [1];
+      FOR j FROM 2 UPTO n
+      REP
+        IF sormax [i] < a [i] [j]
+        THEN sormax [i] := a [i] [j]
+        FI
+      ENDREP
+    ENDREP.
+  
+  sormaxvektorrendezes:
+    ROW m INT VAR sormaxsorszam;
+    FOR i FROM 1 UPTO m
+    REP sormaxsorszam [i] := 1
+    ENDREP;
+    FOR i FROM m DOWNTO 2
+    REP
+      FOR j FROM i - 1 DOWNTO 1
+      REP
+        IF sormax [j] > sormax [i]
+        THEN sormaxsorszam [j] INCR 1
+        ELSE sormaxsorszam [i] INCR 1
+        FI
+      ENDREP
+    ENDREP.
+  
+  matrixrendezes:
+    ROW m ROW n INT VAR eredmeny;
+    FOR i FROM 1 UPTO m
+    REP
+      FOR j FROM 1 UPTO n
+      REP eredmeny [sormaxsorszam [i]] [j] := a [i] [j]
+      ENDREP
+    ENDREP.
+  
+  eredmenykiiras:
+    line;
+    put ("A rendezett matrix:");
+    FOR i FROM 1 UPTO m
+    REP
+      line;
+      FOR j FROM 1 UPTO n
+      REP
+        put (eredmeny [i] [j]);
+        put (",")
+      ENDREP
+    ENDREP.
+  
+

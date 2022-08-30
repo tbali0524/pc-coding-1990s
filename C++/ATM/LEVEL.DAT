@@ -1,0 +1,43 @@
+#REM  Ascii Textfile Master - dem¢ adatf jl (LEVEL.DAT)
+#REM  Adatok a c¡mzettekr“l k”rlevelez‚s(print merge)-hez
+
+#REM referencianevek:
+
+n‚v
+c¡m
+szemsz¡n
+dv”zl‚s
+kifog s
+egyedi1
+egyedi2
+elk”sz”n
+ #REM egyedi fejl‚c:
+HEADER
+
+#INCLUDE LEVEL.INC
+#DEFINE C¡MZETT @n‚v@
+
+#REM Adatok:
+#ITEM
+#REM els“ rekord
+Matild
+1234 Budapest, Harap utca 3.
+barna
+@NYIT3@
+rengeteget kellett tanulnom az ut¢bbi hetekben.
+Hogy tetszett a rajz, amit m£ltkor kldtem?
+
+#REM az res sor is sz m¡t!
+Szia!
+lev‚l @n‚v@nak
+#ITEM
+#REM m sodik rekord
+Anna
+9999 Kerepestarcsa, F“ t‚r 1.
+k‚k
+Szerbusz @n‚v@!
+elt”rt a kezem, ez‚rt nem tudtam ¡rni.
+Mikor j”ssz @sV ROS@re?
+Ird meg, mikor ‚rsz r  a ny ron!
+šdv:
+lev‚l @sN‚v@t¢l @n‚v@nak

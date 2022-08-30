@@ -1,0 +1,71 @@
+# S T E F I   (c) 1995,96 by T¢th B lint
+# MAKEFILE for Borland's MAKE.EXE utility (3.6 or later)
+
+# Borland Pascal Compiler (BPC) Version 7.0 and Turbo Vision 2.0 are needed.
+# The pre-compiled HELPFILE.TPU and the standard units (RTL & Turbo Vision)
+# must be available in the unit directories and the BINOBJ.EXE utility
+# and the Turbo Vision Help Compiler (TVHC.EXE) V1.1 in the search-path.
+
+# Use MAKE from the source directory to bring all targets up-to-date.
+# Use MAKE -DOPT=options to pass options to the compiler (BPC.EXE)
+# Use MAKE -DBGI=path if the path to the EGAVGA.BGI driver is not default.
+# Use MAKE -DDEBUG to build all targets with debug info & max. checking code.
+# Use MAKE -DSINGLEEXE to include resources in exe file
+
+!if $d(BGI)
+
+!else
+BGI=C:\BP\BGI
+!endif
+
+!if $d(DEBUG)
+DEBOPT=-V -GD -$D+ -$L+ -$R+ -$Q+ -$S+
+!undef SINGLEEXE
+!endif
+
+# compiler macros
+TPC=bpc.exe
+TVHC=tvhc.exe
+BINOBJ=binobj.exe
+
+# implicit rules
+.pas.exe:
+  $(TPC) /m -DENGLISH $(DEBOPT) $(OPT) $<
+.pas.tpu:
+  $(TPC) /m -DENGLISH $(DEBOPT) $(OPT) $<
+
+# explicit rules
+all: stefi.exe stefi.tvr stefi.tvh
+
+stefi.tvh stefihc.pas: stefihlp.txt
+  $(TVHC) stefihlp.txt stefi.tvh stefihc.pas
+
+stefi.tvr: stefires.exe
+  stefires.exe
+
+stefires.exe: stefires.pas stefihc.pas sttvglob.pas
+
+!ifdef SINGLEEXE
+stefi.exe: stefi.pas stefi.tvr egavga.obj \
+	stefitv.pas sttvglob.pas stefihc.pas \
+	grstrukt.pas grszerk.pas grafalg.pas
+  $(TPC) /m -DENGLISH $(DEBOPT) $(OPT) stefi.pas
+  copy /b stefi.exe+stefi.tvr temp.exe
+  copy temp.exe stefi.exe
+  del temp.exe
+!else
+stefi.exe: stefi.pas egavga.obj \
+	stefitv.pas sttvglob.pas stefihc.pas \
+	grstrukt.pas grszerk.pas grafalg.pas
+!endif
+
+egavga.obj: $(BGI)\EGAVGA.BGI
+  $(BINOBJ) $(BGI)\EGAVGA.BGI egavga EgaVgaDriverProc
+
+clean:
+  del *.tpu
+  del *.obj
+  del *.map
+  del *.exe
+  del *.tvr
+  del *.hlp

@@ -1,0 +1,21 @@
+clear
+place square
+place triangle
+place square
+put square on square
+put square on square
+put square on square
+put square on square
+put square on square
+put square on square
+put square on square
+put square on square
+put square on square
+place circle
+put triangle on square
+place square
+put square on square
+place square
+put square on square
+put triangle on square
+print

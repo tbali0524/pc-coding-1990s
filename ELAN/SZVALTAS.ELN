@@ -1,0 +1,50 @@
+
+program:
+  szambekeres;
+  tizesre;
+  REP ujjabb jegy
+  UNTIL hanyados = 0
+  ENDREP;
+  eredmeny kiirasa.
+
+  szambekeres:
+    INT VAR mirol, mire;
+    INT VAR szam :: 0;
+    INT VAR hanyados :: 0;
+    TEXT VAR eredmeny :: "";
+    TEXT VAR atvaltando;
+    REP
+      line;
+      put ("Milyen szamrendszerrol valtsak at? (2-10) ");
+      get (mirol)
+    UNTIL mirol > 1 AND mirol < 11
+    ENDREP;
+    REP
+      line;
+      put ("Milyen szamrendszerre? (2-10) ");
+      get (mire)
+    UNTIL mire > 1 AND mire < 11
+    ENDREP;
+    line;
+    put ("Kerem az atvaltando szamot: ");
+    get (atvaltando).
+  
+  tizesre:
+    INT VAR i;
+    FOR i FROM 1 UPTO LENGTH atvaltando
+    REP szam INCR mirol ** (LENGTH atvaltando - i) * int (atvaltando SUB i)
+    ENDREP.
+  
+  ujjabb jegy:
+    hanyados := szam DIV mire;
+    eredmeny := text (szam MOD mire) + eredmeny;
+    szam := hanyados.
+  
+  eredmeny kiirasa:
+    line;
+    put ("Ez ");
+    put (mire);
+    put ("-es szamrendszerben: ");
+    put (eredmeny).
+  
+

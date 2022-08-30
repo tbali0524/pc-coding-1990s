@@ -1,0 +1,17 @@
+; KêPLET 2.0 defin°ci¢sf†jl
+
+[Konstansok:]
+E       = 2.7182818285E+00
+
+[FÅggvÇnyek:]
+FRAC    (1)=X - INT X
+ROUND   (1)=INT(X + 0.5)
+ROUNDN  (2)=INT(X1 * 10^X2 + 0.5) / 10^X2
+RAD     (1)=X / 180 * PI
+DEG     (1)=X / PI * 180
+DMSDEG  (3)=X1 + X2 / 60 + X3 / 3600
+TAN     (1)=SIN X / COS X
+ARCSIN  (1)=ARCTAN(X / SQRT(1 - X X))
+ARCCOS  (1)=PI / 2 - ARCTAN(X / SQRT(1 - X X))
+GYOK1   (3)=(-X2 + SQRT(X2 X2 - 4 X1 X3)) / 2 / X1
+GYOK2   (3)=(-X2 - SQRT(X2 X2 - 4 X1 X3)) / 2 / X1

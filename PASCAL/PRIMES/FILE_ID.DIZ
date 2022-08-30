@@ -1,0 +1,9 @@
+PRIMES - Prime List & Prime Factorization
+Generator Program
+It generates the list of the prime numbers
+in a textfile. It can generate the prime
+factorization (e.g. 644 = 2 * 2 * 7 * 23 )
+of the numbers in another textfile.
+The upper limit of the lists can be given.
+(Maximum is 60000)
+FREEWARE by Balint Toth

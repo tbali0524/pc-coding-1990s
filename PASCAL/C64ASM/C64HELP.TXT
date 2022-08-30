@@ -1,0 +1,1114 @@
+;{************************************************}
+;{                                                }
+;{ C64ASM - Commodore 64 (6510) Assembler Package }
+;{                                                }
+;{     Copyright (c) 1991,95 by T¢th B lint       }
+;{                                                }
+;{************************************************}
+;
+; Help Text - English
+;
+
+.topic NoContext=0
+  No help available...Ü
+   ßßßßßßßßßßßßßßßßßßßß
+
+.topic HelpContents=1000
+ ÉÍÍÍÍÍÍÍÍÍÍÍÍİ HELP CONTENTS ŞÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+ º How to Use Help                          ºÛ
+ º Menus and Hot Keys                       ºÛ
+ º Editor Commands                          ºÛ
+ ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶Û
+ º Assembler                                ºÛ
+ º Error Messages                           ºÛ
+ º Glossary                                 ºÛ
+ ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼Û
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+.topic HelpIndex
+Help index:
+  NONE
+
+.topic HelpUsingHelp
+ Ü Welcome to Online Help
+ ßßßßßßßßßßßßßßßßßßßßßßßßß
+You can learn about the program through this
+online Help system.
+
+ ş What you're reading right now is a "Help
+   screen."
+ ş Most Help screens have some highlighted
+   items ("Help keywords") on them that lead
+   to another Help screen.
+
+ ÚÄÄÄÄÄ¿ You can use the arrow keys to move
+ ³ Tab ³ the cursor from one Help keyword to
+ ÀÄÄÄÄÄÙ another, then press Enter to choose
+         that item.
+
+ ÚÄ[ğ)Ä¿ With the mouse, you can click a Help
+ ³Mouse³ keyword to choose that item.
+ ÀÄÄÄÄÄÙ
+
+Try it now; choose one of these Help keywords
+to get started:
+
+  {How to Use Help:HowToUseHelp}
+  {Get help on using Help:UsingHelp}
+  {Help Contents:Contents}
+
+.topic HowToUseHelp
+ Ü How to Use Online Help
+ ßßßßßßßßßßßßßßßßßßßßßßßßß
+(To read all of this screen, scroll down.)
+
+You can use the online Help from
+the Help menu or via hot keys.
+
+ ÚÄÄÄÄÄÄÄÄ¿  Wherever you are in the program,
+ ³   F1   ³  you can press F1 to see a Help
+ ÀÄÄÄÄÄÄÄÄÙ  screen about the menu command
+             or dialog-box item that's
+             currently active.
+
+This context-sensitive Help comes up
+in a Help window:
+
+ ÚÄÄÄÄÄ¿  In many cases the help text doesn't
+ ³Arrow³  fit in the Help window. You can use
+ ÀÄÄÄÄÄÙ  the arrow keys to scroll through the
+          text.
+
+ ÚÄÄÄÄÄ¿  You can use Tab to select the next
+ ³ Tab ³  Help keywords, then press Enter.
+ ÀÄÄÄÄÄÙ  (Shift-Tab jumps backwards.)
+
+ ÚÄ[ğ)Ä¿  If you're using a mouse, just
+ ³Mouse³  double-click the Help keyword
+ ÀÄÄÄÄÄÙ  you're interested in.
+
+Choose one of these Help keywords to find out
+how to:
+
+  {Get help on using Help:UsingHelp}
+  Go to the Help Index:Index
+  {Go to the Help Contents screen:Contents}
+
+; ************************************************************************
+;                           MENUPONTOK
+;
+.topic File=1100
+ File  (Alt-F) Ü
+  ßßßßßßßßßßßßßß
+The File menu offers choices for opening files, creating new files,
+changing directories, shelling to DOS, saving files, and exiting the program.
+
+ {New}           {Open}
+ {Save}          {Save As:SaveAs}
+ {Save All:SaveAll}      {Change Dir:ChangeDir}
+ {DOS Shell:DosShell}     {Exit}
+
+.topic New
+ File³New Ü
+  ßßßßßßßßß
+The New command creates a new editor window.  The window's name is
+"Untitled", and is empty.
+
+.topic Open
+ File³Open  (F3) Ü
+  ßßßßßßßßßßßßßßßß
+The Open command displays the {Open a File:FOFileOpenDBox} dialog box. In
+this dialog box you select the text file you want to open in an Edit window.
+
+The Open a File dialog box contains:
+
+ ş an input box with a history list
+ ş a list box to browse the directory
+ ş the standard Cancel and Help action buttons
+ ş the Open action button
+ ş an information panel that describes the
+   selected file
+
+.topic Save
+ File³Save (F2) Ü
+  ßßßßßßßßßßßßßßß
+The Save command saves the file that's in the active Edit window to disk.
+
+If the window's name is 'Untitled', the {Save File As:FSFileSaveAsDBox}
+dialog box appears so you can give a name to the file and save it under that
+name.
+
+.topic SaveAs
+ File³Save As... Ü
+  ßßßßßßßßßßßßßßßß
+Save As opens up the {Save File As:FSFileSaveAsDBox} dialog box,
+where you can save the file in the active Edit window under a different name, in a different
+directory, or on a different drive.
+
+You can enter the new file name, including the drive and directory, and click or choose OK.
+
+.topic SaveAll
+ File³Save All Ü
+  ßßßßßßßßßßßßßß
+Save All saves all files in open Edit windows.
+
+.topic ChangeDir
+ File³Change Dir... Ü
+  ßßßßßßßßßßßßßßßßßßß
+File³Change Dir brings up the {Change Directory:FCChDirDBox}
+dialog box, in which you can change the current directory.
+
+.topic DosShell
+ File³DOS Shell Ü
+  ßßßßßßßßßßßßßßß
+With the DOS Shell command, you can leave the program temporarily
+to perform a DOS command or run another program.
+
+To return to this program, type EXIT at the DOS prompt.
+
+.topic Exit
+ File³Exit  (Alt-X) Ü
+  ßßßßßßßßßßßßßßßßßßß
+The Exit command terminates this program.
+
+.topic Edit
+ Edit  (Alt-E) Ü
+  ßßßßßßßßßßßßßß
+The Edit menu provides commands to cut, copy, and paste text in Edit windows.
+
+You can also open a Clipboard window to view or edit its contents.
+
+You can choose from these Edit menu commands:
+
+ {Undo}          {Cut}
+ {Copy}          {Paste}
+ {Clear}         {Show Clipboard:ShowClip}
+
+.topic Undo
+ Edit³Undo Ü
+  ßßßßßßßßßß
+The Undo command takes back the last editing command you performed on a line.
+
+It can also take back a Ctrl-Y, or text typed on a blank line.
+
+Note that changes which can be undone are grouped into similar actions,
+such as typing, or deleting characters.  Any action type you perform that is
+different than the last action type will cause the Undo information to be
+lost.
+
+.topic Cut
+ Edit³Cut  (Shift-Del) Ü
+  ßßßßßßßßßßßßßßßßßßßßßß
+The Cut command removes the selected text and places it on the
+Clipboard.  Any information previously on the clipboard is lost.
+You can then choose {Paste} to paste the cut text into any other
+Edit window (or somewhere else in the same document).
+
+The text remains selected in the Clipboard so you can paste it as many
+times as you want.
+
+Text cut from the editor may be immediately replaced by selecting the
+{Undo} command before moving the cursor.
+
+.topic Copy
+ Edit³Copy  (Ctrl-Ins) Ü
+  ßßßßßßßßßßßßßßßßßßßßßß
+The Copy command places a copy of the selected text on the
+Clipboard.  The selected information is left unchanged, but any
+information previously on the clipboard is lost.
+
+To paste the copied text into any other document, choose {Edit³Paste:Paste}.
+
+.topic Paste
+ Edit³Paste  (Shift-Ins) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßß
+The Paste command inserts the contents of the clipboard into the
+current editor window at the cursor position.  The contents of the
+clipboard remain unchanged.  If any text is selected in the current
+editor window, the highlighted text is replaced by the text coming from
+the clipboard.  Information pasted into an editor may be removed
+immediately by using the {Undo} command before moving the cursor.
+
+.topic Clear
+ Edit³Clear  (Ctrl-Del) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßß
+The Clear command removes any selected text from the current editor
+without placing a copy of the text on the clipboard.
+
+This means you can't paste the text as you could if you had chosen
+{Cut} or {Copy}.
+
+The effects of this command may be reversed by selecting {Undo}
+before moving the cursor.
+
+.topic ShowClip
+ Edit³Show Clipboard Ü
+  ßßßßßßßßßßßßßßßßßßßß
+The Show Clipboard command displays the Clipboard contents in an
+ordinary editor window.  Note that {Cut} and {Paste} commands are not
+enabled while the clipboard is the focused window.
+
+.topic Search
+ Search  (Alt-S) Ü
+  ßßßßßßßßßßßßßßßß
+The Search menu provides commands to search for text in the current
+Edit window.
+
+These are the available commands:
+
+ {Find}
+ {Replace}
+ {Search Again:SearchAgain}
+
+.topic Find
+ Search³Find... Ü
+  ßßßßßßßßßßßßßßß
+The Find command displays the {Find dialog box:SFFindDBox},
+where you type in the text you want to search for.
+
+You can set several options in this dialog box that affect the search.
+
+.topic Replace
+ Search³Replace... Ü
+  ßßßßßßßßßßßßßßßßßß
+The Replace command displays the {Replace dialog box:SRReplaceDBox},
+where you type in the text you want to search for and text you want to
+replace it with.
+
+.topic SearchAgain
+ Search³Search Again Ü
+  ßßßßßßßßßßßßßßßßßßßß
+The Search Again command repeats the last {Find} or {Replace}
+command.
+
+All settings you made in the Find dialog box remain in effect when you
+choose Search Again.
+
+.topic Run
+fdf
+.topic Compile
+gf
+.topic Assemble
+fg
+.topic MakePRG
+d
+.topic MakeT64
+e
+.topic Options
+ Options  (Alt-O) Ü
+  ßßßßßßßßßßßßßßßßß
+The Options menu contains commands that let you change various default
+settings. You can also save and reload the desktop information, that
+contains the state of all open windows.
+
+The available commands are:
+
+ {Report...:Report}
+ {Mouse...:Mouse}
+ {Colors...:Colors}
+ {Toggle video mode:ToggleVideo}
+ {Load DeskTop:LoadDesktop}
+ {Save Desktop:SaveDesktop}
+
+.topic Report
+sdf
+.topic Mouse
+ Options³Mouse... Ü
+  ßßßßßßßßßßßßßßßßß
+The Mouse command brings up the {Mouse Options:OMMouseDBox}
+dialog box, where you can set various options that control how your
+mouse works, including:
+
+ ş how fast a double-click is
+ ş which mouse button (right or left) is
+   active
+
+.topic Colors
+ Options³Colors... Ü
+  ßßßßßßßßßßßßßßßßßß
+The Colors item brings up the {Colors dialog:OCColorsDBox} box,
+where you can customize the colors of the display.
+
+.topic ToggleVideo
+ Options³Toggle video mode Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßß
+Toggles between 25 and 43/50 line video mode on EGA/VGA adapters.
+
+.topic LoadDesktop
+ Options³Load Desktop Ü
+  ßßßßßßßßßßßßßßßßßßßßß
+Restore a previously-saved state of all open windows from a file.
+This file is saved via the {Options³Save Desktop:SaveDesktop}
+menu command.
+
+.topic SaveDesktop
+ Options³Save Desktop Ü
+  ßßßßßßßßßßßßßßßßßßßßß
+Save the state of all open windows to a file. This
+file can be reloaded by selecting {Options³Load Desktop:LoadDesktop}.
+
+.topic Window
+ Window  (Alt-W) Ü
+  ßßßßßßßßßßßßßßßß
+The Window menu contains commands for manipulating windows.
+
+Most of the windows in this program have all the standard window
+elements, like scroll bars, a close box, and zoom icons.
+
+For more about windows and their elements, see the
+{Window Basics:WindowBasics} Help screen.
+
+ Window-management commands
+ ßßßßßßßßßßßßßßßßßßßßßßßßßß
+ {Tile}          {Cascade}
+ {Close All:CloseAll}     {Close}
+ {Size/Move:Resize}     {Zoom}
+ {Next}          {Previous:Prev}
+
+ Special windows
+ ßßßßßßßßßßßßßßß
+ {DisAssembler}
+ {Hex Dump:Dump}
+ {Ascii viewer:AsciiViewer}
+ {Registers}
+ {Output}
+
+.topic Tile
+ Window³Tile Ü
+  ßßßßßßßßßßßß
+Choose Window³Tile to tile all open windows on the desktop.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ ÉÍÍÍÍÍÍÍÍÍÍÍÍ1ÍÍ»ÚÄÄÄÄÄÄÄÄÄÄÄÄ2ÄÄ¿ ³
+ ³ º               º³               ³ ³
+ ³ º               º³               ³ ³
+ ³ º               º³               ³ ³
+ ³ º               º³               ³ ³
+ ³ ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ ³
+ ³ ÚÄÄÄÄÄÄÄÄÄÄÄÄ3ÄÄ¿ÚÄÄÄÄÄÄÄÄÄÄÄÄ4ÄÄ¿ ³
+ ³ ³               ³³               ³ ³
+ ³ ³               ³³               ³ ³
+ ³ ³               ³³               ³ ³
+ ³ ³               ³³               ³ ³
+ ³ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+             Tiled Windows
+
+.topic Cascade
+ Window³Cascade Ü
+  ßßßßßßßßßßßßßßß
+Choose Window³Cascade to stack all open windows on the desktop.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ1Ä¿
+ ³ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ2Ä¿
+ ³³ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ3Ä¿
+ ³³³ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ4Í»
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ÀÀÀÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+        Cascaded Windows
+
+.topic CloseAll
+ Window³Close All Ü
+  ßßßßßßßßßßßßßßßßß
+
+Choose this command to close all open windows.
+
+If a file has been changed after the last save, a dialog box appears, where
+you can choose wheter to save or not to save the file, or cancel the
+operation.
+
+.topic Resize
+ Window³Size/Move  (Ctrl-F5) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+Choose this command to change the size or position of the active
+window.
+
+ ÜÜÜÜÜÜ
+  Size
+ ßßßßßß
+If you press Shift while you use the arrow keys, you can change
+the size of the active window. When it's at the size you want, press Enter.
+
+If a window has a Resize corner, you can drag that corner to
+resize the window.
+
+ ÜÜÜÜÜÜ
+  Move
+ ßßßßßß
+When you choose Window³Size/Move, the active window moves in
+response to the arrow keys. Once you've moved the window to where
+you want it, press Enter.
+
+You can also move a window by dragging its title bar with the
+mouse.
+
+.topic Zoom
+ Window³Zoom  (F5) Ü
+  ßßßßßßßßßßßßßßßßßß
+Choose Zoom to resize the active window to the maximum size.
+
+If the window is already zoomed, you can choose this command to
+restore it to its previous size.
+
+You can also double-click anywhere on the window's title bar
+(except where an icon appears), or on the Zoom box in the window's
+upper right corner, to zoom or unzoom the window.
+
+.topic Next
+ Window³Next  (F6) Ü
+  ßßßßßßßßßßßßßßßßßß
+Choose Next to make the next window active, which makes it the topmost
+open window.
+
+.topic Prev
+ Window³Previous  (Shift-F6) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+Choose Previous to make the most-recently active window be active again.
+
+.topic Close
+ Window³Close  (Alt-F3) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßß
+Choose Close to close the active window.
+
+You can also click the Close box in the upper left corner to close a window.
+
+Choose Close All to close all windows.
+
+.topic DisAssembler
+hg
+.topic Dump
+fhh
+.topic AsciiViewer
+fg
+.topic Registers
+fg
+.topic Output
+fg
+.topic Memory
+g
+.topic MemFill
+d
+.topic MemFind
+s
+.topic MemLoad
+f
+.topic MemSave
+rg
+.topic Help
+ Help  (Alt-H) Ü
+  ßßßßßßßßßßßßßß
+The Help menu provides access to on-line Help, which comes up in a
+special Help window. The text in the Help window is a help screen.
+
+(Also, don't forget that one-line menu and dialog-box hints appear
+on the status line whenever you select a menu command or dialog box item.)
+
+These are the available Help system commands:
+
+ {Contents}
+ {Index}
+ {Using Help:UsingHelp}
+ {About...:About}
+
+.topic Contents
+ Help³Contents Ü
+  ßßßßßßßßßßßßßß
+The Help Contents screen provides a summary of
+several Help topics you can choose from.
+
+To get to the Help Contents screen,
+choose Contents from the Help menu.
+
+See also
+  {Welcome to On-line Help:HelpUsingHelp}
+
+.topic Index
+kdjf
+
+.topic UsingHelp
+ Help³Using Help Ü
+  ßßßßßßßßßßßßßßßß
+ ÚÄÄÄ¿ÚÄÄÄ¿  Once you're in the Help system,
+ ³ F1³³ F1³  press F1 again to pop up the How
+ ÀÄÄÄÙÀÄÄÄÙ  to Use Help screen.
+
+If you're not in the Help system,
+you can also choose Using Help from the Help menu.
+
+See also:
+
+  {Welcome to On-line Help:HelpUsingHelp}
+  {Help Contents:HelpContents}
+
+.topic About
+ Help³About... Ü
+  ßßßßßßßßßßßßßß
+When you choose the About command from the Help menu, a
+dialog box appears, showing copyright and version information.
+
+To close the box, press Esc, Space, or Enter, or click the OK button.
+
+; ************************************************************************
+;                           DIALOG BOX-ok
+;
+.topic FOFileOpenDBox=2000
+ Help on Open a File Dialog Box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Open a File dialog box contains an input box, a file list,
+a file information panel, the standard {Cancel:CancelBtn} button,
+one other action button (Open), plus a {history list:History}
+that's attached to the Name inputbox.
+
+ ÚÄ {Name:FOName} ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Name input box is where you enter the name of the file to
+load, or the file-name mask to use as a filter for the Files list
+box (for example, *.*).
+
+ Ú {Files:FOFiles} ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ³  FILENM01.ASM  ³  FILENM09.ASM  ³
+ ³  FILENM02.ASM  ³  FILENM10.ASM  ³
+ ³  FILENM03.ASM  ³  FILENM11.ASM  ³
+ ³  FILENM04.ASM  ³  FILENM12.ASM  ³
+ ³  FILENM05.ASM  ³  ..            ³
+ ³  FILENM06.ASM  ³  \DOC          ³
+ ³  FILENM07.ASM  ³  \EXAMPLES     ³
+ ³  FILENM08.ASM  ³  \DEMOS        ³
+ ³  ±±±ş±±±±±±±±±±±±±±±±±±±±±±   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Files list box lists the names of files in the current
+directory that match the file-name mask in the Name input box,
+plus the parent directory and all subdirectories.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ C:\C64\EXAMPLES\*.ASM                    ³
+ ³ HELLO.ASM      145  Jan 30,1993  12:00pm ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The File information panel shows the path name, file name, date, time,
+and size of the selected file.
+
+None of the items on this information panel are selectable.
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [ {Open:FOOpenBtn} ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+The Open button opens a new Edit window and
+places the selected file in that window.
+
+.topic FOName=10100
+
+ ÚÄ Name ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+The Name input box is where you enter the name of the file to
+load, or the file-name mask to use as a filter for the Files list
+box (for example, *.*).
+
+This input box has a {history list:History} attached to it.
+
+.topic FOFiles=10101
+
+ Ú Files ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ³  FILENM01.ASM  ³  FILENM09.ASM  ³
+ ³  FILENM02.ASM  ³  FILENM10.ASM  ³
+ ³  FILENM03.ASM  ³  FILENM11.ASM  ³
+ ³  FILENM04.ASM  ³  FILENM12.ASM  ³
+ ³  FILENM05.ASM  ³  ..            ³
+ ³  FILENM06.ASM  ³  \DOC          ³
+ ³  FILENM07.ASM  ³  \DEMOS        ³
+ ³  FILENM08.ASM  ³  \TEMP         ³
+ ³  ±±±ş±±±±±±±±±±±±±±±±±±±±±±   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Files list box lists the names of files in the current
+directory that match the file-name mask in the Name input box,
+plus the parent directory and all subdirectories.
+
+To open a file, click the file name (or move the cursor to it),
+then choose Open.
+
+If you are using the keyboard, press Enter to open the selected file.
+
+.topic FOOpenBtn=10102
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [ Open ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+
+In the Open a File dialog box, if you choose the Open button,
+the program opens a new Edit window and places the selected file
+in that window.
+
+Once you've typed in or selected the file you want, choose the Open button
+(choose Cancel if you change your mind).
+
+You can also just press Enter once the file is selected,
+or you can double-click the file name.
+
+.topic FSFileSaveAsDBox=2010
+ Help on the Save File As dialog boxÜ
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Save File As dialog box contains an input box, a file list,
+a file information panel, and the standard {OK:OkBtn}, {Cancel:CancelBtn}
+and Help buttons, plus a {history list:History}.
+
+ ÚÄ {Save File As:FSName} ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Save File As input box is where you enter the new name you want
+to save the file under, or the file-name mask for the Files list box.
+
+ Ú {Files:FSFiles} ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ³  FILENM01.ASM  ³  FILENM09.ASM  ³
+ ³  FILENM02.ASM  ³  FILENM10.ASM  ³
+ ³  FILENM03.ASM  ³  FILENM11.ASM  ³
+ ³  FILENM04.ASM  ³  FILENM12.ASM  ³
+ ³  FILENM05.ASM  ³  ..            ³
+ ³  FILENM06.ASM  ³  \DOC          ³
+ ³  FILENM07.ASM  ³  \EXAMPLES     ³
+ ³  FILENM08.ASM  ³  \DEMOS        ³
+ ³  ±±±ş±±±±±±±±±±±±±±±±±±±±±±   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Files list box lists the names of files in the current directory
+that match the file-name mask in the Save File As input box, plus the
+parent directory and all subdirectories.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ C:\C64\EXAMPLES\*.ASM                    ³
+ ³ HELLO.ASM      145  Jan 30,1993  12:00pm ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The File information panel shows the path name, file name, date, time,
+and size of the selected file.
+
+.topic FSName=10105
+
+ ÚÄ Save File As ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+The Save File As input box is where you enter the new name you want
+to save the file under, or the file-name mask for the Files list box.
+
+This input box has a {history list:History} attached to it.
+
+.topic FSFiles=10106
+
+ Ú Files ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ³  FILENM01.ASM  ³  FILENM09.ASM  ³
+ ³  FILENM02.ASM  ³  FILENM10.ASM  ³
+ ³  FILENM03.ASM  ³  FILENM11.ASM  ³
+ ³  FILENM04.ASM  ³  FILENM12.ASM  ³
+ ³  FILENM05.ASM  ³  ..            ³
+ ³  FILENM06.ASM  ³  \DOC          ³
+ ³  FILENM07.ASM  ³  \DEMOS        ³
+ ³  FILENM08.ASM  ³  \TEMP         ³
+ ³  ±±±ş±±±±±±±±±±±±±±±±±±±±±±   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+The Files list box lists the names of files in the current directory
+that match the file-name mask in the Save File As input box, plus the
+parent directory and all subdirectories.
+
+To save a file under a new name, select the file name
+(click it or move the cursor to it), then choose OK.
+
+.topic FCChDirDBox=2020
+ Help on the Change Directory dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Change Directory dialog box consists of an input box, a list
+box, the standard OK and Help buttons, and two other buttons
+(Chdir and Revert).
+
+ Ú {Directory Name:FCDirName} ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                     ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Directory Name input box is where you type in the path of the
+new directory.
+
+ Ú {Directory Tree:FCDirTree} ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³   Drives                            ³
+ ³   ÀÄÂC:\                            ³
+ ³     ÀÄÂC64                          ³
+ ³       ÀÄÄEXAMPLES                   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Directory Tree list box is where you point to (or move the cursor to)
+a directory name and choose the directory you want.
+
+If you're using the keyboard, press Enter to make the selected
+directory be the current directory, then choose OK or press Esc
+to exit the dialog box.
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [{Chdir:FCChDirBtn} ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+The Chdir button changes the current directory once you've
+selected or typed in a directory name.
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [{Revert:FCRevertBtn}] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+The Revert button goes back to the previous directory, as long as
+you haven't yet exited the dialog box.
+
+.topic FCDirName=10107
+
+ Ú Directory name ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                     ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+The Directory Name input box is where you type in the path of the
+new directory you want to change to.
+
+This input box has a {history list:History} attached to it.
+
+.topic FCDirTree=10108
+
+ Ú Directory Tree ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³   Drives                            ³
+ ³   ÀÄÂC:\                            ³
+ ³     ÀÄÂC64                          ³
+ ³       ÀÄÄEXAMPLES                   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+The Directory Tree list box is where you select the directory you want
+to move to.
+
+From the keyboard, press Enter to make the selected directory be
+the current directory, then choose OK.
+
+As soon as you change directories, the new current directory tree
+appears in the Directory Tree list box.
+
+.topic FCChDirBtn=10109
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [Chdir ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+
+Once you've typed a directory name in the input box, or selected one
+in the Directory Tree list box, choose the Chdir button.
+
+Choose Cancel if you change your mind.
+
+You can also just press Enter once the file is selected,
+or you can double-click the file name.
+
+.topic FCRevertBtn=10110
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [Revert] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+
+If you change your mind about the directory you've picked
+and you want to go back to the previous one (and you haven't yet exited
+the dialog box), choose the Revert button.
+
+.topic SFFindDBox
+f
+
+.topic SRReplaceDBox
+f
+
+.topic OMMouseDBox
+ Help on the Mouse Options dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+This dialog box consists of one check box, one slider bar, and
+the standard buttons OK and Cancel.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ Mouse Double Click       ³
+ ³ Slow     Medium     Fast ³
+ ³ ±±±±±±±±±±±ş±±±±±±±±±± ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Mouse Double Click slider bar adjusts the double-click speed of
+your mouse.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [X] Reverse Mouse Buttons ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Reverse Mouse Buttons makes the right mouse button take on the
+normal functions of the left--and vice versa.
+
+ See also:
+ ÍÍÍÍÍÍÍÍÍ
+ {Options³Mouse... menu command:Mouse}
+
+.topic OCColorsDBox
+ Help on the Colors dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Colors dialog box consists of two list boxes, a text display
+area, the standard OK, Cancel, and Help buttons, and one of the
+following:
+
+ ş On color and black-and-white systems, it
+   also contains two color palettes.
+ ş On monochrome systems, it contains a set
+   of radio buttons instead of the palettes.
+
+This dialog box is where you can change the colors of different
+parts of this program.
+
+ ÚÄ Group ÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³   Desktop          ³
+ ³   Menus            ş³
+ ³   Dialogs/Calc     ±³
+ ³   Puzzle           ±³
+ ³   Calendar         ±³
+ ³   Ascii table      ±³
+ ³                    ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Group list box contains the names of the different regions of
+the program that you can customize.
+
+ ÚÄ Item ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³   Color            ³
+ ³                    ş³
+
+When you select a group from the Group list, the Item list box
+displays the names of the different views in that region.
+
+ Ú Foreground ¿   Ú Background ¿
+ ³ °±²°±²°±²° ³   ³ ²°±²°±²°±² ³
+ ³ ²°±²°±²°±² ³   ³ °±²°±²°±²° ³
+ ³ ±²°±²°±²°± ³   ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+On color and black-and-white systems, you use the Foreground and
+Background palettes to modify colors.
+
+ Ú Colors ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³  (ù) Mono low        ³
+ ³  ( ) Mono high       ³
+ ³  ( ) Mono underscore ³
+ ³  ( ) Mono inverse    ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+On monochrome systems, you use the Colors set of radio buttons
+systems to modify the character attributes.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ Text Text Text ³
+ ³ Text Text Text ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+On all systems, the display text (above the Help button) shows
+the current color or attribute settings.
+
+Changes do not take effect on the desktop until you close the
+Colors dialog box by choosing OK.
+
+.topic DMemFill
+dsf
+.topic DMemFind
+fddfg
+.topic DMemLoad
+gh
+.topic DMemSave
+gh
+.topic DAbout
+cv
+
+; ************************************************************************
+;                              EGYB
+;
+.topic OkBtn=10000
+
+ ÚÄÄÄÄÄÄÄÄ¿
+ ³ [ OK ] ³
+ ÀÄÄÄÄÄÄÄÄÙ
+
+If you choose this button, the settings you've made in the dialog box
+are recorded.
+
+If this is the default button, you only need to press Enter to choose it.
+
+.topic CancelBtn=10001
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [ Cancel ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+If you choose Cancel, nothing changes and no action occurs, and
+the dialog box is put away.
+
+Esc always cancels a dialog box, even if a Cancel button does
+not appear.
+
+
+.topic History=2500
+  history list
+ ßßßßßßßßßßßßßß
+The history list attached to an input box lists whatever text you typed
+the last few times you used the dialog box.
+
+You can get to the history list whenever you see a down-arrow icon
+to the right of an input box.
+
+You can use the history list to re-enter text that you've already entered.
+You can also edit an entry in the history list directly.
+
+Press Esc to exit from the history list without making a selection.
+
+.topic WindowBasics
+  Windows
+ ßßßßßßßßß
+
+A window is a bordered screen area that you can move, resize, zoom,
+rearrange, close, and open.
+
+It easy to spot the active window; it always has a double-lined border
+around it, and it always has these elements:
+
+     {Close:CloseBox}                   {Zoom:ZoomBox}
+      {box:CloseBox}                    {box:ZoomBox}
+       ³                      ³
+       V                      V
+    {ÉÍ[ş]ÍÍÍÍÍ Title Bar ÍÍÍÍ[ ]Í»:TitleBar}
+    º                            ±
+    º                            ±
+    º                            ±
+    º                            ş
+    º                            ±
+    º                            ±<ÄÄÄÄ¿
+    º                            ±     ³
+    ÈÍ±±ş±±±±±±±±±±±±±±±±±±±±±±ÍÍ¼     ³
+                     ^                 ³
+                     ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+                                       ³
+                                 {Scroll Bars:ScrollBars}
+
+You can have any number of windows open (memory allowing), but only one
+window can be active at any time. The active
+window is the one that you're currently working in.
+
+Generally, any command you choose or text you type applies only to
+the active window.
+
+If your windows overlap, the active window is always the topmost one
+(the one on top of all the others).
+
+The first nine windows you open display a window number in the title bar.
+
+To make a window active (topmost), press Alt and the window number.
+
+Edit windows also show the cursor's position
+(the current line and column number) as YY:XX
+in the bottom of the Edit window frame, where
+YY is the line number and XX is the column number.
+
+.topic CloseBox
+  Close box
+ ßßßßßßßßßßßß
+You can click the Close box to quickly close the window.
+(You can also choose {Window³Close:Close} or press Alt-F3.)
+
+.topic ZoomBox
+  Zoom box
+ ßßßßßßßßßßß
+The Zoom box appears in the window's upper right corner.
+
+If the icon in the Zoom box is an up arrow, you can click the arrow
+to enlarge the window to the largest size possible.
+
+If the icon is a double-headed arrow, the window is already at its
+maximum size; click the arrow to return the window to its previous size.
+
+(You can also choose {Window³Zoom:Zoom} or press F5.)
+
+.topic TitleBar
+  title bar
+ ßßßßßßßßßßßß
+You can double-click the title bar to zoom the window.
+You can also drag the title bar to move the window around.
+
+.topic ScrollBars
+  scroll bars
+ ßßßßßßßßßßßßß
+
+Scroll bars are horizontal or vertical bars that show both mouse
+and keyboard users how far into the file they've gone. You use these
+bars with a mouse to scroll the contents of the window.
+
+  - Click the arrow at either end to scroll
+    one line at a time. (Keep the mouse button
+    pressed to scroll continuously.)
+  - You can click the shaded area at either
+    end of the scroll box to scroll the window
+    one page (windowful) at a time.
+  - You can drag the scroll box to any spot
+    on the scroll bar to quickly move to a
+    spot in the window relative to the
+    position of the scroll box.
+
+.topic EditWindow
+ The Edit Window Ü
+  ßßßßßßßßßßßßßßßß
+Edit windows are where you type in and edit your assembly code.
+You can also do the following in an Edit window:
+
+ ş compile your programs
+ ş read them from disk files
+ ş save them to disk files
+
+You can open as many Edit windows as you want, but only the first
+nine windows (of any kind) you open have a window number.
+
+ ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+  Closing and Opening Edit Windows
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+To close an active Edit window, click the window's {close box:CloseBox}
+or choose {Window³Close:Close}.
+
+To open an Edit window, choose {File³Open:Open}.
+
+ ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+  For More Information
+ ßßßßßßßßßßßßßßßßßßßßßß
+Choose one of these for more information:
+
+ {Using windows:WindowBasics}
+ {Using the editor:Editor}
+ Find dialog box (text search)
+ Replace dialog box
+ {Edit menu:Edit}
+ {File³Save command:Save}
+ {File³Save As command:SaveAs}
+
+.topic Editor
+  The Built-in Text Editor
+ ßßßßßßßßßßßßßßßßßßßßßßßßßß
+There are many ways to get into an open Edit window (make it active):
+
+ 1)  Click it.
+ 2)  Press Alt+# (where # is that Edit
+     window's number).
+ 3)  Press (or click) F6 to cycle through the
+     open windows.
+
+To close the active Edit window, choose {Window³Close:Close}.
+
+Once in the Edit window, you enter text just
+as if you were using a typewriter.
+
+ ş When you want to end a line, press Enter.
+ ş To exit the editor, press F10.
+
+ See Also:
+  Cursor Movement Commands
+  Insert & Delete Commands
+  Block Commands
+  Miscellaneous Commands
+
+.topic DumpWindow
+hexdump
+.topic AsciiWindow
+ascii
+.topic RegsWindow
+dsfd

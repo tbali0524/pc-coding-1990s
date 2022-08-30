@@ -1,0 +1,5 @@
+**/*.DOC binary
+**/*.GRF binary
+**/*.ROM binary
+**/*.PRJ binary
+**/*.TVH binary

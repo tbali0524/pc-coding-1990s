@@ -1,0 +1,363 @@
+; KPLET 2.0 seg¡ts‚gf jl  (c) T¢th B lint, 1992.
+[16 k‚perny“]
+; A m sodik sor 2-3. karaktere a k‚perny“k sz ma.
+;  (Egyjegy– sz mot 0-val kell kieg‚sz¡teni: pl. 05)
+; A pontosvessz“vel kezd“d“ sorok nem kerlnek ki¡r sra.
+; A seg¡ts‚gf jl v‚g‚re felvehetjk saj t £j defin¡ci¢ink le¡r s t.
+; £j k‚perny“ kezd‚se: [K‚perny“ XX:] sorral (XX a k‚perny“ sorsz ma)
+
+[K‚perny“ 01:]
+ltal nos billenty– funkci¢k
+----------------------------
+ F1 . . . . . .  Ez a seg¡ts‚g k‚perny“ (lapoz s: Page Up / Down)
+ Alt F1 . . . .  Be‚p¡tett fggv‚nyek list ja
+ F2 . . . . . .  Defin¡ci¢k kiment‚se f jlba
+ F3 . . . . . .  Defin¡ci¢k bet”lt‚se f jlb¢l
+ F4 . . . . . .  Defin¡ci¢k hozz f–z‚se f jlb¢l a t bl zathoz
+                  (A program nem ellen“rzi a t”bbsz”r”s defin¡ci¢kat.)
+ Tab, Shift Tab  Ugr l s a t bl zatok k”z”tt sorban
+ Alt X, Esc . .  Kil‚p‚s a programb¢l
+
+( A szerkeszt“billeny–k list j hoz nyomja le a Page Down billenty–t! )
+
+A program indul skor bet”lti az ALAPERT.DEF defin¡ci¢sf jlt (ha l‚tezik), teh t
+ilyen n‚ven mentsk ki azokat a defin¡ci¢kat, amelyeket mindig haszn lunk. (Ha
+parancssor-param‚terben megadunk egy defin¡ci¢sf jlt, akkor az t”lt“dik be.)
+
+Ha ki akarjuk nyomtatni a defin¡ci¢kat, akkor F2 ut n PRN-t adjunk meg
+f jln‚vnek.
+[K‚perny“ 02:]
+Szerkeszt‚s
+-----------
+ Nyilak  . . . . . .  Kurzor mozgat s
+ Ctrl Bal / Jobb . .  Ugr s a el“z“ / k”vetkez“ rublik ra
+ Enter . . . . . . .  Kifejez‚s ki‚rt‚kel‚se / Ugr s k”vetkez“ rublik ra
+ Page Up / Down  . .  Lapoz s el“re, h tra
+ Home / End  . . . .  Ugr s a rublika elej‚re, v‚g‚re
+ Ctrl Home / End . .  Ugr s els“ / utols¢ rublik ra a sorban
+ Ctrl Page Up / Down  Ugr s a t bl zat elej‚re, v‚g‚re
+ BackSpace . . . . .  El“z“ karakter t”rl‚se
+ Del . . . . . . . .  Kurzor alatti karakter t”rl‚se
+ Ins . . . . . . . .  Besz£r s / Fell¡r s zemm¢d v lt sa
+ Alt R . . . . . . .  Rublika t”rl‚se
+ Alt S . . . . . . .  Sor t”rl‚se
+ Alt Y . . . . . . .  Sor eltntet‚se a t bl zatb¢l
+ Alt T . . . . . . .  T bl zat t”rl‚se
+ Alt N . . . . . . .  šres sor besz£r sa
+ Alt M . . . . . . .  Macskak”r”m (aktu lis feletti rublika m sol sa)
+ Alt W . . . . . . .  Sor m sol sa - a m soland¢ sor kijel”l‚se
+ Alt V . . . . . . .  Sor m sol sa - a c‚l kijel”l‚se
+ Alt K . . . . . . .  Kifejez‚s eredm‚ny‚nek bem sol sa a konstanslist ba
+[K‚perny“ 03:]
+Kifejez‚s megad sa
+------------------
+ A kifejez‚seket karaktersorozat form j ban kell beadni, hasonl¢an ahhoz,
+ ahogy pap¡rra ¡rn nk. (Csak a t”rtvonal ‚s a hatv nykitev“ jel”l‚se m s.)
+
+ Haszn lhatunk:
+   - Sz mokat ( tudom nyos alakban, pl. -3.45E+18, vagy r”viden, pl. -3 )
+   - Alapm–veleteket ( + , - , * , / )  ( A szorz sjel elhagyhat¢. )
+   - Hatv nyoz st ( pl. 45^3 ) ( Az alapnak nemnegat¡vnak kell lennie! )
+   - Z r¢jeleket tetsz“leges m‚lys‚gig egym sba  gyazva
+   - Konstansneveket (be‚p¡tett vagy defini lt konstansok)
+   - Fggv‚nyh¡v sokat (be‚p¡tett vagy defini lt fggv‚nyek)
+       Param‚ter tad s:
+         - A fggv‚nyn‚v ut n z r¢jelben a param‚terek, vessz“vel elv lasztva.
+         - Param‚ter is lehet tetsz“leges bonyolults g£ kifejez‚s.
+         - Egyv ltoz¢s fggv‚nyekn‚l a z r¢jel elmaradhat, ha a param‚terben
+             nincs m–veleti jel. ( pl. sin pi )
+ A m–veletek sorrendje a matematikai precedencia-szab lyokat k”veti:
+   - z r¢jelek, fggv‚nyh¡v s, hatv nyoz s, szorz s/oszt s, ”sszead s/kivon s
+ Sz¢k”z”k n‚h ny kiv‚telt“l eltekintve szabadon kitehet“k, illetve elhagyhat¢k.
+
+ P‚lda kifejez‚sre: 2 PI SIN E + 2(ABS(GYOK2(1,  2*2,INT(1.3)))^2 - 2.1E-2)
+[K‚perny“ 04:]
+Felhaszn l¢i konstansok megad sa
+--------------------------------
+ - Az els“ oszlopba ¡rjuk be a konstans nev‚t, a m sodikba az ‚rt‚k‚t
+ - Ha az ‚rt‚k sz mol s eredm‚nye:
+     - ¡rjuk be a megfelel“ kifejez‚st a Kifejez‚s mez“be
+     - Nyomjuk meg az Alt K billenty–t
+         (Az eredm‚ny megjelenik a konstanst bl zat legv‚g‚n)
+     - Adjunk nevet az £j konstansnak
+
+Felhaszn l¢i fggv‚nyek megad sa
+--------------------------------
+ - Az els“ oszlopba ¡rjuk be a fggv‚ny nev‚t.
+ - A m sodikba a param‚terek sz m t (1-9)  (Az 1 elhagyhat¢.)
+ - A harmadik oszlopba ¡rjuk a k‚pletet, ugyan£gy, mintha kifejez‚s lenne.
+     - Hivatkoz s a param‚terekre: X1, X2, ... X9
+         (Egyv ltoz¢s fggv‚nyn‚l X is ¡rhat¢.)
+     - Megh¡vhatunk tetsz“leges be‚p¡tett illetve defini lt felhaszn l¢i
+         fggv‚nyt, de vigy zzunk a rekurzi¢ elkerl‚s‚re! (v‚gtelen ciklus)
+     - Tetsz‚s szerint haszn lhatunk defini lt konstansokat is.
+
+A konstansok illetve fggv‚nyek neveinek betvel kell kezd“dnik.
+A program nem ellen“rzi a t”bbsz”r haszn lt neveket.
+[K‚perny“ 05:]
+M–veletek
+---------
+ +   -   *   /   ^   (Hatv nyoz s csak pozit¡v alapra)
+ Ellentettk‚pz‚s: pl. -x (ltal ban z r¢jelbe kell rakni: pl. (-x)^2
+
+Be‚p¡tett fggv‚nyek (mind egyv ltoz¢s)
+--------------------
+ ABS       abszol£t‚rt‚k
+ ARCTAN    arkusztangens (radi nban)
+ COS       koszinusz (a sz”g radi nban!)
+ EXP       e az x-ediken (e = 2.718281...)
+ FAKT      faktori lis (0 <= x <= 33; x eg‚sz)
+ LN        term‚szetes alap£ logaritmus (x > 0)
+ INT       eg‚szr‚sz
+ SIN       szinusz (a sz”g radi nban!)
+ SGN       szignum (1 ha x > 0; 0 ha x = 0; -1 ha x < 0)
+ SQRT      n‚gyzetgy”k (x >= 0)
+
+Be‚p¡tett konstans
+------------------
+ PI ( 3.1415926535 )
+[K‚perny“ 06:]
+Sok konstans ‚s fggv‚ny defin¡ci¢k”nyvt rban tal lhat¢. Ezek a k”nyvt rak
+szabadon  tszerkeszthet“k. A standard k”nyvt rakban szerepl“ defin¡ci¢k:
+
+MATEK.DEF DEFIN¡CI¢K™NYVTR
+---------------------------
+KONSTANSOK:
+ E             term‚szeti  lland¢
+ M             lg e
+ FI            (-1 + û5) / 2
+ NFI           nagy f¡: (1 + û5) / 2
+
+FšGGVNYEK:
+ FRAC          t”rtr‚sz
+ ROUND         eg‚szre kerek¡t‚s
+ ROUNDN(x, n)  kerek¡t‚s n tizedes jegy pontoss g£ra (0 <= n <= 10; n eg‚sz)
+ LG            10 alap£ logaritmus (x > 0)
+ LOG(x, n)     n alap£ logaritmus (x > 0; n > 0; n <> 1)
+ RAD            tv lt s fokr¢l radi nra
+ DEG            tv lt s radi nr¢l fokra
+ DMSDEG(fok, perc, mperc) -   tv lt s fok, ¡vperc, ¡vm sodpercr“l fokra
+[K‚perny“ 07:]
+MATEK.DEF DEFIN¡CI¢K™NYVTR FšGGVNYEI - FOLYTATS (Sz”gfggv‚nyek)
+ TAN       tangens (x <> Pi/2 + k Pi)  (Minden sz”g radi nban ‚rtend“!)
+ COT       kotangens (x <> k Pi)
+ SEC       szek ns (x <> Pi/2 + k Pi)
+ CSC       koszek ns (x <> k Pi)
+ ARCSIN    arkuszszinusz (-1 <= x <= 1)
+ ARCCOS    arkuszkoszinusz (-1 <= x <= 1)
+ ARCCOT    arkuszkotangens
+ ARCSEC    arkuszszek ns (x <= -1 vagy x >= 1)
+ ARCCSC    arkuszkoszek ns (x <= -1 vagy x >= 1)
+ SINH      szinusz hiperb¢likusz
+ COSH      koszinusz hiperb¢likusz
+ TANH      tangens hiperb¢likusz
+ COTH      kotangens hiperb¢likusz (x <> 0)
+ SECH      szek ns hiperb¢likusz
+ CSCH      koszek ns hiperb¢likusz (x <> 0)
+ ARSINH    area szinusz hiperb¢likusz
+ ARCOSH    area koszinusz hiperb¢likusz (x >= 1)
+ ARTANH    area tangens hiperb¢likusz (-1 < x < 1)
+ ARCOTH    area kotangens hiperb¢likusz (x < -1 vagy x > 1)
+ ARSECH    area szek ns hiperb¢likusz (0 < x <= 1)
+ ARCSCH    area koszek ns hiperb¢likusz (x <> 0)
+[K‚perny“ 08:]
+MATEK.DEF DEFIN¡CI¢K™NYVTR FšGGVNYEI - FOLYTATS (Algebra)
+ ARITKOZ(x1, x2)   k‚t sz m sz mtani k”zepe
+ GEOMKOZ(x1, x2)   k‚t sz m m‚rtani k”zepe (x1 * x2 >= 0)
+ HARMKOZ(x1, x2)   k‚t sz m harm¢nikus k”zepe
+ NEGYZKOZ(x1, x2)  k‚t sz m n‚gyzetes k”zepe
+ ARITN(a1, d, n)   sz mtani sorozat n. eleme
+ ARITSUM(a1, d, n) sz mtani sorozat els“ n elem‚nek ”sszege
+ GEOMN(a1, q, n)   m‚rtani sorozat n. eleme
+ GEOMSUM(a1, q, n) m‚rtani sorozat els“ n elem‚nek ”sszege
+ GEOMSOR(a1, q)    m‚rtani sor ”sszege (-1 < q < 1)
+ DISZKR(a, b, c)   m sodfok£ egyenlet diszkrimin nsa
+ GYOK1(a, b, c)    m sodfok£ egyenlet nagyobb gy”ke (ha a diszkr. nemnegat¡v)
+ GYOK2(a, b, c)    m sodfok£ egyenlet kisebb gy”ke (ha a diszkr. nemnegat¡v)
+ DET2(a11, a12, a21, a22)  2x2-es m trix determin nsa
+ DET3(a11, a12, ...  a33)  3x3-as m trix determin nsa
+ PERM(n)           permut ci¢
+ KOMB(n, k)        kombin ci¢ ("n alatt a k")  (0 <= k <= n)
+ ISMKOMB(n, k)     ism‚tl‚ses kombin ci¢
+ VAR(n, k)         vari ci¢
+ ISMVAR(n, k)      ism‚tl‚ses vari ci¢
+[K‚perny“ 09:]
+MATEK.DEF DEFIN¡CI¢K™NYVTR FšGGVNYEI - FOLYTATS (Val¢sz¡n–s‚gsz m¡t s)
+ PBERNOUL(n, p, k) Bernoulli-eloszl s s£lyfggv‚nye (0<=p<=1; k: 1-esek sz ma)
+ PBINOM(n, p, x)   binomi lis eloszl s s£lyfggv‚nye (0<=p<=1)
+ PPOISSON(l, x)    Poisson-eloszl s s£lyfggv‚nye (l>0; x>=0,eg‚sz)
+ PGEOM(p, x)       geometriai eloszl s s£lyfggv‚nye (0<=p<=1; x>0,eg‚sz)
+ PEGYENL(a, b)     egyenletes eloszl s s–rs‚gfggv‚nye
+ PEXPON(l, x)      exponenci lis eloszl s s–rs‚gfggv‚nye (l>0; x>=0)
+ PCAUCHY(x)        Cauchy-eloszl s s–rs‚gfggv‚nye
+ PSTDNORM(x)       standard norm lis eloszl s s–rs‚gfggv‚nye
+ FEGYENL(a, b, x)  egyenletes eloszl s eloszl sfggv‚nye
+ FEXPON(l, x)      exponenci lis eloszl s eloszl sfggv‚nye
+ FCAUCHY(x)        Cauchy-eloszl s eloszl sfggv‚nye
+ MBINOM(n, p)      binomi lis eloszl s v rhat¢ ‚rt‚ke
+ MPOISSON(l)       Poisson-eloszl s v rhat¢ ‚rt‚ke
+ MGEOM(p)          geometriai eloszl s v rhat¢ ‚rt‚ke
+ MEGYENL(a, b)     egyenletes eloszl s v rhat¢ ‚rt‚ke
+ MEXPON(l)         exponenci lis eloszl s v rhat¢ ‚rt‚ke
+ S2BINOM(n, p)     binomi lis eloszl s sz¢r sn‚gyzete
+ S2POISS(l)        Poisson-eloszl s sz¢r sn‚gyzete
+ S2GEOM(p)         geometriai eloszl s sz¢r sn‚gyzete
+ S2EGYENL(a, b)    egyenletes eloszl s sz¢r sn‚gyzete
+ S2EXPON(l)        exponenci lis eloszl s sz¢r sn‚gyzete
+[K‚perny“ 10:]
+MATEK.DEF DEFIN¡CI¢K™NYVTR FšGGVNYEI - FOLYTATS (Geometria)
+ SOXATLO(n)      n oldal£ soksz”g  tl¢inak sz ma
+ SOXBELSO(n)     n oldal£ soksz”g bels“ sz”geinek ”sszege
+ HERONA          (seg‚dfggv‚ny)
+ HERONB          (seg‚dfggv‚ny)
+ HERON(a, b, c)  h romsz”g terlete (Heron-k‚plet)
+ T3(a, b, gamma) h romsz”g terlete (gamma radi nban)
+ PITAGORC(a, b)  der‚ksz”g– h romsz”g  tfog¢ja (Pitagorasz-t‚tel)
+ PITAGORA(c, b)  der‚ksz”g– h romsz”g befog¢ja (Pitagorasz-t‚tel)
+ COSTETEL(a, b, gamma)  h romsz”g oldala (koszinusz-t‚tel) (gamma radi nban)
+ KORK(r)         k”r kerlete
+ KORT(r)         k”r terlete
+ CSONKAGV(m, t1, t2) csonka g£la t‚rfogata
+ TETRAM(a)       szab lyos tetra‚der testmagass ga
+ TETRARK(a)      szab lyos tetra‚der k”r‚¡rhat¢ k”r‚nek sugara
+ TETRARB(a)      szab lyos tetra‚der be¡rhat¢ k”r‚nek sugara
+ TETRAA(a)       szab lyos tetra‚der felsz¡ne
+ TETRAV(a)       szab lyos tetra‚der t‚rfogata
+ HEXARK(a)       kocka k”r‚¡rhat¢ k”r‚nek sugara
+ HEXARB(a)       kocka be¡rhat¢ k”r‚nek sugara
+ HEXAA(a)        kocka felsz¡ne
+ HEXAV(a)        kocka t‚rfogata
+[K‚perny“ 11:]
+MATEK.DEF DEFIN¡CI¢K™NYVTR FšGGVNYEI - FOLYTATS (T‚rgeometria)
+ OKTARK(a)      okta‚der k”r‚¡rhat¢ k”r‚nek sugara
+ OKTARB(a)      okta‚der be¡rhat¢ k”r‚nek sugara
+ OKTAA(a)       okta‚der felsz¡ne
+ OKTAV(a)       okta‚der t‚rfogata
+ DODEKARK(a)    dodeka‚der k”r‚¡rhat¢ k”r‚nek sugara
+ DODEKARB(a)    dodeka‚der be¡rhat¢ k”r‚nek sugara
+ DODEKAA(a)     dodeka‚der felsz¡ne
+ DODEKAV(a)     dodeka‚der t‚rfogata
+ IKOZARK(a)     ikoza‚der k”r‚¡rhat¢ k”r‚nek sugara
+ IKOZARB(a)     ikoza‚der be¡rhat¢ k”r‚nek sugara
+ IKOZAA(a)      ikoza‚der felsz¡ne
+ IKOZAV(a)      ikoza‚der t‚rfogata
+ HENGERA(r, m)  henger felsz¡ne
+ HENGERV(r, m)  henger t‚rfogata
+ KUPA(r, a)     k£p felsz¡ne
+ KUPV(r, m)     k£p t‚rfogata
+ CSONKAKA(r1, r2, m) csonka k£p felsz¡ne
+ CSONKAKV(r1, r2, m) csonka k£p t‚rfogata
+ GOMBA(r)       g”mb felsz¡ne
+ GOMBV(r)       g”mb t‚rfogata
+[K‚perny“ 12:]
+FIZIKA.DEF DEFIN¡CI¢K™NYVTR
+----------------------------
+KONSTANSOK:
+ GAMMA     gravit ci¢s  lland¢ [Nmı/kgı]
+ KELEKTR   elektromos  lland¢ [Vm/As]
+ E0        v kuum dielektromos  lland¢ja [As/Vm]
+ KMAGNES   m gneses  lland¢ [Vs/Am]
+ MU0       v kuum permeabilit sa [Vs/Am]
+ FARAD     Faraday- lland¢ [C/mol]
+ C         f‚nysebess‚g [m/s]
+ NA        Avogadro-sz m [1/mol]
+ NL        Loschmidt-sz m norm l  llapotban [1/m^3]
+ VM        mol ris t‚rfogat norm l  llapotban [m^3/mol]
+ VM0       mol ris t‚rfogat 0 øC-on 101323 Pa nyom son [m^3/mol]
+ R         mol ris g z lland¢ [J/mol K]
+ K         Boltzmann- lland¢ [J/K]
+ BETA      t‚rfogati h“t gul si egytthat¢ [1/K]
+ H         Planck- lland¢ [Js]
+ HV        "h von s" (h/ 2 pi) [Js]
+ U         atomi t”megegys‚g [kg]
+ MUB       Bohr-magneton [Amı]
+ MUM       magmagneton [Amı]
+[K‚perny“ 13:]
+FIZIKA.DEF DEFIN¡CI¢K™NYVTR KONSTANSAI - FOLYTATS
+ QE        elektromos t”lt‚segys‚g (elektron t”lt‚se * -1) [C]
+ ME        elektron nyugalmi t”mege [kg]
+ QEFAJL    elektron fajlagos t”lt‚se [C/kg]
+ MUE       elektron m gneses momentuma [Amı]
+ RE        elektron sug r [m]
+ MP        proton nyugalmi t”mege [kg]
+ QPFAJL    proton fajlagos t”lt‚se [C/kg]
+ MUP       proton m gneses momentuma [Amı]
+ LAMBDACP  proton Coumpton-hull mhossza [m]
+ MN        neutron nyugalmi t”mege [kg]
+ MUN       nukle ris magneton [Amı]
+ LAMBDACN  neutron Coumpton-hull mhossz [m]
+ MD        deuteron nyugalmi t”mege [kg]
+ MUD       deuteron m gneses momentuma [Amı]
+ MALFA     alfa-r‚szecske nyugalmi t”mege [kg]
+ QAFAJL    alfa-r‚szecske fajlagos t”lt‚se [C/kg]
+ MH        hidrog‚natom nyugalmi t”mege [kg]
+ A0        Bohr-sug r [m]
+ MFOLD     a F”ld t”mege [kg]
+ RFOLD     a F”ld k”zepes sugara [m]
+[K‚perny“ 14:]
+FIZIKA.DEF DEFIN¡CI¢K™NYVTR KONSTANSAI - FOLYTATS
+ MHOLD     a Hold t”mege [kg]
+ RHOLD     a Hold sugara [m]
+ DFOHOLD   k”zepes F”ld-Hold t vols g [m]
+ G         neh‚zs‚gi gyorsul s norm l ‚rt‚ke (45ø sz‚less‚gen) [m/sı]
+ G0        neh‚zs‚gi gyorsul s a sarkokon [m/sı]
+ GBP       neh‚zs‚gi gyorsul s Budapesten [m/sı]
+ G90       neh‚zs‚gi gyorsul s az Egyenl¡t“n [m/sı]
+ KOZMV1    els“ kozmikus sebess‚g (k”rsebess‚g a F”ld felsz¡n‚n) [m/s]
+ KOZMV2    m sodik kozmikus sebess‚g (sz”k‚si sebess‚g a F”ldr“l) [m/s]
+ KOZMV3    harmadik kozmikus sebess‚g (sz”k‚si sebess‚g a Napt¢l) [m/s]
+ HGEOSTAC  geostacion ris p lya magass ga [m]
+ THUBBLE   Hubble- lland¢ [‚v]
+ GAMMAP    gyro-magnetikus egytthat¢ p [Amı/Js]
+ C1        els“ sug rz si  lland¢ [Wmı]
+ C2        m sodik sug rz si  lland¢ [mK]
+ SZIGMA    Stefan-Boltzmann  lland¢ [W m^-2 /K^-4]
+ FI0       fluxoid-kvantum [Wb]
+ RYDBERG   Rydberg- lland¢ [1/m]
+ ALFA      finomszerkezeti  lland¢
+ CVIZ      v¡z fajh“je [J/kg K]
+[K‚perny“ 15:]
+FIZIKA.DEF DEFIN¡CI¢K™NYVTR KONSTANSAI - FOLYTATS
+
+SI-el“t‚tszavak:
+
+ DEKA     [1E+1]    HEKTO    [1E+2]     KILO     [1E+3]     MEGA     [1E+6]
+ GIGA     [1E+9]    TERA     [1E+12]    PETA     [1E+15]    EXA      [1E+18]
+ DECI     [1E-1]    CENTI    [1E-2]     MILLI    [1E-3]     MIKRO    [1E-6]
+ NANO     [1E-9]    PIKO     [1E-12]    FEMTO    [1E-15]    ATTO     [1E-18]
+
+Az ismert nem SI-beli fizikai m‚rt‚kegys‚gek:
+(Z r¢jelben a megfelel“ SI m‚rt‚kegys‚g)
+
+ ANGSTROM [m]       FENYEV   [m]        PARSEC   [m]        LITER    [m^3]
+ MAZSA    [kg]      TONNA    [kg]       PERC     [s]        ORA      [s]
+ NAP      [s]       DYN      [N]        KPOND    [N]        TORR     [Pa]
+ ATM      [Pa]      BAR      [Pa]       POISE    [Pa s]     STOKES   [mı/s]
+ CAL      [J]       KCAL     [J]        ERG      [J]        WATTORA  [J]
+ KWH      [J]       EVOLT    [J]        LE       [W]        BIOT     [A]
+ FRANKLIN [C]       GAUSS    [T]        MAXWELL  [Wb]       OERSTED  [A/m]
+ CURIE    [Bq]      RD       [Gy]       RONTGEN  [C/kg]
+
+[K‚perny“ 16:]
+MERTEGYS.DEF DEFIN¡CI¢K™NYVTR (K”znapi, nem SI-beli m‚rt‚kegys‚gek)
+------------------------------
+S£lym‚rt‚kek: [kg]
+ DRAM               OUNCE [OZ]          POUND [LB]          STONE
+ QUARTERW           GBHWT               USHWT               TON
+šrm‚rt‚kek: [liter]
+ GILL               PINT                QUART               GALLON
+ PECK               BUSHEL              QUARTERC
+Hosszm‚rt‚kek: [m]
+ LINE               INCH                FOOT                YARD
+ FATHOM             POLE/PERCH/ROD      FURLONG             MILE
+ NAUTMILE           LEAGUE              NLEAGUE
+Terletm‚rt‚kek: [mı]
+ SQINCH             SQFOOT              SQYARD              SQUARE
+ ACRE               SQMILE              KATHOLD             HEKTAR
+ NSZOGOL
+K”bm‚rt‚kek: [m^3]
+ CUBINCH            CUBFOOT             CUBYARD             REGISTON
+P‚nzegys‚gek:
+ PENCE [GB font]    QUARTER [$]         DIME [$]            NICKEL [$]
+Konverzi¢s fggv‚nyek:
+ FAHRENH, CELSIUS    tv lt s øC-r¢l øF-ra ‚s vissza

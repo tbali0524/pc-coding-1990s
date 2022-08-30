@@ -1,0 +1,25 @@
+(* MODULA-2 Hazi feladat                                            *)
+(* (Termelo-fogyaszto problema n meretu pufferrel)                  *)
+(* T¢th B lint                                                      *)
+(* BME Informatika Szak, 3. evfolyam, 1. felev (1994-95), 3.tankor  *)
+(* E-mail: s4078tot@sun10.vsz.bme.hu                                *)
+(* 1994. november                                                   *)
+(* ================================================================ *)
+
+(* Termelo es fogyaszto folyamatot tartalmazo modul interfesz resze *)
+DEFINITION MODULE Procs;
+
+(* Folyamatok inicializalasa
+  IsDemoMode = TRUE eseten kepernyos megjelenites es statusz kijelzes is *)
+PROCEDURE InitProcs(IsDemoMode: BOOLEAN);
+
+(* Folyamatok lezarasa: statusz ablakok becsukasa *)
+PROCEDURE DoneProcs;
+
+(* Termelo folyamat *)
+PROCEDURE Producer;
+
+(* Fogyaszto folyamat *)
+PROCEDURE Consumer;
+
+END Procs.

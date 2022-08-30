@@ -1,0 +1,82 @@
+  ULINER  (Text Underliner Utility)  DOKUMENTCI¢
+
+  T¢th B lint
+  BME, Vill. ‚s Inf. kar, M. Informatika szak, II. ‚vf. 1. f‚l‚v, 3. tank”r
+  1993. november
+
+  Assembly h zi feladat (30.)
+  ULINER Sz”veg-al h£z¢ program
+  A parancssor param‚terk‚nt megadott bemen“ sz”vegf jlban l‚v“ mag nyos
+  ".ul" sor ut ni sorokat al h£zza "-" karakterekkel, az eredm‚nyt a
+  NEV.TXT f jlba teszi.
+
+-----------------------------------------------------------------------------
+
+Futtat si ‚s ford¡t si felt‚telek:
+==================================
+  A program egyetlen forr sf jlb¢l  ll (ULINER.ASM), mely a Turbo Assembler 3.2
+verzi¢ szerinti szintaxissal ¡r¢dott, ¡gy a sikeres leford¡t s ennek haszn lata
+eset‚n garant lt. A ford¡t s/linkel‚s megk”nny¡t‚s‚re a programhoz tartozik
+egy makefile, mely a Borland MAKE utility-j‚vel haszn lhat¢.
+  A leford¡tott programnak elind¡t sakor meg kell adni a bemeneti f jl nev‚t.
+A bemeneti f jlban maxim lisan 128 karakter hossz£ sorok lehetnek. B rmilyen
+hiba el“fordul sa eset‚n a program angol hibazenet ki¡r s val meg ll.
+
+A programk¢d l‚p‚sr“l l‚p‚sre:
+==============================
+
+Inicializ l s ‚s param‚ter-ki‚rt‚kel‚s:
+---------------------------------------
+  Az adatszegmens be ll¡t sa ut n a program c¡me ¡r¢dik ki egy DOS-h¡v ssal.
+A PSP c¡m‚nek lek‚r‚se ut n ellen“rizzk, hogy van-e parancssor param‚ter.
+Ha nincs, hibazenet ¡r¢dik ki ‚s a program meg ll. Ha volt param‚ter, akkor
+el“sz”r  tugorjuk az esetleg az elej‚n l‚v“ sz¢k”z”ket, majd az els“
+nem-sz¢k”z karaktert“l a k”vetkez“ sz¢k”zt megel“z“ karakterig (vagy a
+param‚terlista v‚g‚ig) terjed“ r‚szt  tm soljuk egy bels“ InFName nev–
+sztringpufferba, ‚s ezt lez rjuk 0-val. Ezut n megpr¢b ljuk megnyitni
+az InFName nev– f jlt olvas sra. Ha nem sikerl, akkor hibajelz‚s ‚s kil‚p‚s.
+Siker eset‚n a NEV.TXT nev– f jl l‚trehoz sa t”rt‚nik, hiba eset‚n szint‚n
+jelent‚s, a m r megnyitott bemeneti f jl lez r sa ‚s kil‚p‚s.
+
+F“ programciklus:
+-----------------
+  El“sz”r a ReadLine elj r ssal beolvassuk a bemeneti f jl k”vetkez“ sor t a
+Buffer nev– bels“ sztring-pufferbe. (Hiba eset‚n kil‚p‚s.) Ezut n
+”sszehasonl¡tjuk az res .ul sorral, mint sztringgel. Ha nem egyeznek,
+akkor a WriteLine elj r ssal ki¡rjuk a Buffer tartalm t a kimeneti f jlba,
+‚s ha m‚g nem ‚rtk el a bemeneti f jl v‚g‚t, akkor kezd“dik el”lr“l a ciklus
+a k”vetkez“ sor beolvas s val. Ha a vizsg lt sor egyezik a .ul + CR/LF
+sztringgel, akkor azt a sort nem kell ki¡rni, viszont speci lis kezel‚st
+ig‚nyel. Ha a bemeneti f jl v‚g‚n vagyunk, akkor kil‚pnk (a .ul direkt¡v t
+nem ¡rjuk ki, m s dolgunk pedig nincs), egy‚bk‚nt pedig a ReadLine elj r ssal
+beolvassuk a bemeneti f jl k”vetkez“ sor t (ezt kell majd al h£zni) £gy,
+hogy k”zben sz moljuk a karaktereket is, majd a sort egyb“l ki is ¡rjuk a
+kimenetre a WriteLine-nal. Ha a sor olvas sakor EOF-ot ‚rtnk el, akkor a
+sort kieg‚sz¡tjk CR/LF (soremel‚s) karakterekkel, hogy az al h£z s t‚nyleg
+a sor al  kerlj”n. Ezut n a Buffer-t felt”ltjk annyi sz¢k”zzel, ah ny nem
+soremel‚s karakter volt az el“z“ sorban, majd az ¡gy kapott sztringet
+(CR/LF-fel kieg‚sz¡tve) ki¡rjuk a kimenetre (ez adja az al h£z st) ‚s a
+ciklus kezd“dik el”lr“l.
+
+Lez r s:
+--------
+  El“sz”r a kimeneti f jlt z rjuk le, majd ha kor bban hiba l‚pett fel,
+t”r”ljk is. Ezut n a bemeneti f jl lez r sa k”vetkezik, majd kil‚pnk a
+programb¢l.
+  A program kl”nb”z“ r‚szeir“l a lez r¢ szakasz kl”nb”z“ pontjaiba ugrunk,
+aszerint, hogy mely f jlok megnyit sa t”rt‚nt meg m r kor bban.
+
+ReadLine elj r s:
+-----------------
+  Az elj r s beolvassa a Buffer valtozo teruletere a bemeneti f jl k”vetkez“
+sor t. Hiba eset‚n be ll¡tja az ExCode v ltoz¢t a hiba k¢dj ra ‚s visszat‚r‚s
+el“tt egyre  ll¡tja a Carry-t, ¡gy ezt a f“programban tesztelve a program
+fut sa hibazenettel le ll.
+  Ha a sort LF z rja, de a CR elmaradt, akkor ezt az elj r s a Bufferben
+kijav¡tja. Ha el‚rtk a f jl v‚g‚t, az EOFReached v ltoz¢ 1-re v lt.
+A BufLen v ltoz¢ a Buffer-ben l‚v“ karakterek sz m t mutatja.
+
+WriteLine elj r s:
+------------------
+  Az elj r s a Buffer tartalm t (karakterek sz ma a BufLen v ltoz¢ban) ki¡rja
+a kimeneti f jlba. A hibakezel‚s a ReadLine elj r shoz hasonl¢.

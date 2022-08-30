@@ -1,0 +1,780 @@
+
+ H C L
+ Hirdetotabla Command Language
+
+ magasszintu hirdetotabla musor-vezerlo nyelv leirasa
+
+=============================================================
+
+ GOOD-BYTE project
+ utolso modositas: 1994.V.10. (3.05 valtozat)
+
+ T.B. (es sokan masok)
+
+======================================================================
+TARTALOM:
+=========
+
+1. BEVEZETES
+2. A HCL NYELV
+2.1. Osszefoglalo
+2.2. Egy musorleiro forrasfile szerkezete
+2.3. Egy jelenet strukturaja
+2.4. Valtozo-deklaraciok
+2.5. Egesz-kifejezesek
+2.6. Ertekadas
+2.7. Vezerlo szerkezetek
+2.8. A #INCLUDE direktiva
+2.9. A beepitett eljarasok
+2.9.1. SPRITE kezelo eljarasok
+2.9.2. TEXT kezelo eljarasok
+2.9.3. FIELD kezelo eljarasok
+2.9.4. Egyeb eljarasok
+3. EGY PELDA HCL FORRASFILE
+4. A LEGFONTOSABB VALTOZASOK
+
+======================================================================
+1. BEVEZETES
+=============
+
+- HCL a "Hirdetotabla Command Language" angol-magyar kifejezes roviditese.
+    (Nem, semmi koze a sosavhoz.) Igy becezzuk a hirdetotbla musort leiro
+    magasszintu nyelvet, melyet az alabbiakban ismertetunk.
+- A hirdetotabla szimulator interpretere (HCLIP.EXE) ilyen HCL nyelvu
+    forrasfile-t ertelmez es futtat a "hirdetotablan".
+- A programcsomaghoz tartozik egy felhasznaloi felulet is, mellyel
+    kenyelmesen es interaktivan szerkeszthetunk musort.
+    Az a program egy HCL forrasfile-t allit elo, melyet ez az interpreter
+    ertelmez. Ez esetben a HCL nyelv reszletes ismeretere nincs is szukseg.
+    Ettol fuggetlenul termeszetesen kozvetlenul is irhatunk HCL forrasfile-t
+    egy szovegszerkesztovel.
+
+======================================================================
+2. A HCL NYELV
+===============
+
+2.1. Osszefoglalo
+-----------------
+
+- Egy HCL forrasfajl egy musor leirasara szolgal, melyben tobb, egymastol
+    fuggetlen jelenet (SKETCH) lehet.
+- Az utasitasok elvalasztasa az ujsor karakterrel, ebbol kovetkezoen
+    minden sor csak egy utasitast tartalmazhat.
+- Egy sor max. hossza 128 karakter
+- Megjegyzesek barmely sor vegere, vagy kulon sorba irhatok // kezdettel
+- Ures sor barhol allhat, nem szamit
+- Szokozok es TAB karakterek barhova rakhatok (kiveve kulcsszavak kozepebe)
+- A nyelv nem "case sensitive", mi a kulcsszavakat nagybetukkel, a tobbit
+    kicsikkel irjuk.
+- Alapveto szempont, hogy egy kulcsszot csak egy celra lehet hasznalni.
+- A kulcsszavak: (nem lehetnek ilyen nevu valtozok)
+    #INCLUDE              (l. 2.8. pont)
+    SKETCH, END_SKETCH,   (l. 2.2. pont)
+    BITMAPS, END_BITMAPS
+    FONTS, END_FONTS,
+    VARS, END_VARS        (l. 2.3. pont)
+  valtozotipusok: (l. 2.4. pont)
+    INTEGER, INT_ARRAY, STRING, SPRITE, TEXT, FIELD
+  vezerloszerkezetek: (l. 2.7. pont)
+    WHILE, END_WHILE
+    REPEAT, UNTIL
+    FOR, TO, STEP, END_FOR
+    IF, THEN, ELSE, END_IF
+  operatorok: (l. 2.5. pont)
+    AND, OR, NOT
+  beepitett valtozok: (l. 2.4. pont)
+    MAXX, MAXY, MAXCOLOR
+  beepitett utasitasok: (l. 2.9.pont)
+    (itt nem soroljuk oket fel)
+
+----------------------------------------------------------------------
+2.2. Egy musorleiro forrasfile szerkezete
+-----------------------------------------
+
+  SKETCH nev1
+     ...
+     ...
+  END_SKETCH
+
+  SKETCH nev2
+     ...
+     ...
+  END_SKETCH
+
+  ...
+
+- A musor jelenetekbol (SKETCH) all, melyek kozott atfedes, kapcsolat nincs.
+    "nev" egy szimbolikus nev (azonosito), amit a fejlesztoi kornyezetben
+    is megadhatunk.
+- Egy jelenet leirasa a SKETCH ... END_SKETCH utasitasparok kozott tortenik.
+    Ilyen parokon kivul csak megjegyzes es #INCLUDE utasitas szerepelhet.
+- Minden jelenet utan a kijelzomatrixot torli az interpreter.
+
+----------------------------------------------------------------------
+2.3. Egy jelenet strukturaja
+----------------------------
+
+  SKETCH nev
+
+    BITMAPS
+      0: "filenam1.bit"
+      1: "filenam2.bit"
+      ...
+    END_BITMAPS
+
+    FONTS
+      0: "filenam1.fnt"
+      1: "filenam2.fnt"
+      ...
+    END_FONTS
+
+    VARS
+      (valtozodeklaraciok)
+      ...
+    END_VARS
+
+    utasitasok
+    ...
+
+  END_SKETCH
+
+- Tehat eloszor felsoroljuk a jelenetben hasznalt bitmap es font file-okat.
+    Ezek ekkor betoltodnek es az egesz jelenet alatt elerhetok.
+    Hivatkozas rajuk avval az egesz szammal, ami a filenev elott all.
+    Ezeket a szamokat 0-tol kezdve, egyesevel novekedve adjuk meg.
+    (A bitmap file-okban a kepen kivul benne van a szinek szama es a kep
+    merete. A font file-okban egy karakter mereten es a szinek
+    szaman kivul az egyes "ascii" kodokhoz tartozo kepek vannak.)
+    A FONTS es BITMAPS deklaracio sorrendje felcserelheto.Egy jelenetben
+    csak egy lehet mindket fajtabol. Elvileg elmaradhatnak, de ekkor nem
+    hasznalhato bitmap es/vagy font igy SPRITE es/vagy TEXT objektum sem.
+- Egy jelenetben maximalisan 100 bitmap  es 20 font szerepelhet.
+- Minden hasznalt valtozot deklaralni kell egy VARS reszben.
+    Tobb ilyen VARS resz is lehet, a jeleneten belul barhol, akar az
+    utasitasok kozott vagy a BITMAPS resz elott is.
+    Egy valtozo a deklaraciotol a jelenet vegeig "el", tehat elore
+    hivatkozas nincs. Egy valtozot csak egyszer szabad deklaralni.
+    Egy jelenetben maximalisan 100 valtozo lehet.
+- Az utasitasok lehetnek:
+    - ertekado utasitasok
+    - vezerlo szerkezetek (ciklus, elagazas)
+    - #INCLUDE direktiva
+    - beepitett eljarasok hivasai
+
+----------------------------------------------------------------------
+2.4. Valtozo-deklaraciok
+------------------------
+
+A valtozo-deklaracios resz felepitese, pelda minden valtozotipusra:
+
+  VARS
+    nev1  : INTEGER
+    nev2  : STRING
+    nev3  : INT_ARRAY n
+    nev4  : SPRITE
+    nev5  : TEXT
+    nev6  : FIELD
+    ...
+
+  END_VARS
+
+- "nev" a valtozo azonositoja lesz (igy hivatkozunk ra kesobb). Tetszoleges
+    betubol, szamjegybol es alahuzas ( _ ) karakterbol allo max. 32
+    karakteres sztring, mely nem lehet kulcsszo vagy beepitett fuggveny neve.
+    Az elso karakter nem lehet szamjegy. Kis es nagybetu ugyanaz.
+    (A fenti megkotes mind a valtozonevekre, mind a jelenetnevekre vonatkozik.
+- A : utan a tipust kell megadni, mely az alabbiak valamelyike:
+   INTEGER:
+     egy 16 bites elojeles egesz. Veluk lehet osszetett matematikai
+     kifejezeseket csinalni.
+   INT_ARRAY:
+     egy INTEGER-ekbol allo egydimenzios tomb, melynek meretet a tipus
+     neve utan kell megadni egy szammal vagy egy tetszoleges
+     "egesz-kifejezessel" (l. 2.5. pont)
+     Egy tomb maximalis merete 32767,
+     Az index 0-tol (n-1) -ig fut. Hivatkozas egy elemre: nev[index]
+     (ahol nev a tomb azonositoja, index egy "egesz-kifejezes")
+   STRING:
+     max. 128 hosszu karakterlanc.
+   SPRITE:
+     Egy teglalap alaku objektum a kepernyon, melyet mozgathatunk,
+     atszinezhetunk, animalhatunk, stb. Egy pillanatban egy SPRITE kepe egy
+     BITMAP eroforras, de az idoben valtozhat a kep. (Animacio)
+   TEXT:
+     Hasonlo a SPRITE-hoz, de tartalma specialisan egy sztring, melyet
+     egy fontkeszlettel jelenitunk meg.
+   FIELD:
+     A kepernyo egy teglalap alaku mezoje. Bekapcsolaskor az eppen belelogo
+     SPRITE es TEXT objektumoknak a beleeso resze bemasolodik a FIELD
+     objektumba. Ezutan ezzel a kepernyoresszel specialis dolgokat vegezhetunk
+     az "alatta" levo SPRITE-oktol, TEXT-ektol fuggetlenul. Kikapcsolaskor
+     az eredeti kepernyotartalom all vissza, tehat helyreallnak az esetleg
+     szetkuszalt SPRITE-ok, TEXT-ek.
+     Megjeleniteskor tehat a FIELD prioritasa nagyobb a masik ket objektumnal.
+     Lehetoleg ne definialjunk egymasba logo FIELD-eket.
+
+- Minden SPRITE-es TEXT objektumhoz tartozik egy prioritas, mely atfedes
+    eseten maghatarozza, melyik van folul. (A nagyobb prioritasu, azonos
+    szamnal az elobb deklaralt.) Ha nem akarunk prioritassal foglalkozni,
+    adjunk meg 0-t alapertelmezesnek!
+- Minden SPRITE, TEXT es FIELD objektumhoz tartozik egy paletta, mely
+    megadja, hogy a bitmap vagy font eroforrasban szereplo szinkodokhoz
+    rendre milyen fizikai szinkodok tartoznak a jelzotablan. Igy az
+    atszinezeses effektusok egyszeruen megvalosithatok.
+- Minden SPRITE, TEXT es FIELD objektum lehet engedelyezve, vagy letiltva.
+    A kijelzon csak engedelyezett allapotban jelennek meg.
+
+- Deklaraciokor az INTEGER valtozok kezdoerteke 0, a STRING-eke "",
+    a tombelemeke szinten 0 lesz. Uj erteket  ertekado utasitassal kaphatnak.
+    Az osszetett objektumok kikapcsolt (letiltott) allapotba kerulnek
+    (nem jelennek meg azonnal a kepernyon), oket a megfelelo beepitett
+    eljarasokkal lehet "eletre kelteni".
+
+- Beepitett INTEGER tipusu valtozokkal kerhetjuk le a hirdetotabla fizikai
+   jellemzoit. (Ezek a valtozok deklaracio nelkul is rendelkezesre allnak):
+	MAXX	legnagyobb x koordinata a kijelzon (pontok szama - 1)
+	MAXY	legnagyobb y koordinata a kijelzon
+	MAXCOL  legnagyobb lehetseges szinkod a kijelzon (szinek szama - 1)
+
+----------------------------------------------------------------------
+2.5. Egesz-kifejezesek
+----------------------
+
+- A nyelvben hagyomanyos matematikai kifejezesek hasznalhatok, de csak egesz
+    szamokkal.
+- Az operatorok csokkeno precedencia szerint:
+    (egy sorban azonos precedenciajuak, kiertekeles balrol jobbra)
+	() []		zarojel, tombelem
+	NOT -		logikai nem, ellentettkepzes (egyoperandusuak)
+	* / %		szorzas, osztas(egeszresz), maradekkepzes
+	+ - 		osszeadas, kivonas
+	< <= > >=	relacios
+	= <>		egyenlo, nem egyenlo
+	AND		logikai es
+	OR		logikai vagy
+- A relacios es logikai operatorok eredmenye 1 ha igaz, 0 ha hamis.
+    A logikai operatorok 0-t hamisnak, minden egyebet igaznak vesznek, de
+    az eredmeny mar garantaltan 0 vagy 1.
+- Az operatorokon kivul a kifejezesekben allhat meg szam-konstans (pl. -100),
+    INTEGER valtozo neve, vagy tombelem nev[index] forma szerint, ahol index
+    szinten egy tetszoleges egesz-kifejezes, nev a tombvaltozo azonositoja.
+- Tulcsordulasnal hibajelzes nincs, csak az also 16 bit marad meg.
+- Pelda egesz kifejezesre:
+    100 * (x + sprpoz[n * 2])
+    ahol x es n tipusa INTEGER, sprpoz pedig egy INT_ARRAY (tomb)
+
+- A beepitett eljarasok nemcsak INTEGER parametereket varhatnak, hanem mas
+    tipusu valtozokat is. (STRING, INT_ARRAY, SPRITE, TEXT, FIELD)
+    Ekkor csak egy ilyen tipusu valtozo azonositojat lehet ott megadni.
+    Kivetel a STRING, mert ott valtozoneven kivul szerepelhet sztring-konstans
+    is "szoveg" formaban, ahol a ket idezojel kozott tetszoleges karakterlanc
+    allhat, de az esetleges idezojeleket meg kell duplazni.
+    (pl. "Idezet: ""The rest is silence."" - William Shakespeare")
+
+----------------------------------------------------------------------
+2.6. Ertekadas
+--------------
+
+- Ertekadas INTEGER valtozonak:
+    nev := egesz-kif
+- Ertekadas tombelemnek:
+    nev[index] := egesz-kif
+    Itt egesz-kif egy tetszoleges egeszt eredmenyezo kifejezes (l. 2.5. pont)
+- Ertekadas STRING valtozonak:
+    nev := "szoveg"
+  vagy
+    nev1 := nev2
+    Ez utobbinal nev2 egy masik STRING tipusu valtozo.
+
+- Az osszetett objektumok (SPRITE, TEXT, FIELD) attributumai csak beepitett
+    eljarasokkal valtoztathatok meg, igy ertekadasban nem szerepelhetnek.
+
+----------------------------------------------------------------------
+2.7. Vezerlo szerkezetek
+------------------------
+
+- Felteteles elagazas:
+
+    IF feltetel THEN
+      utasitas
+      ...
+    END_IF
+
+    IF feltetel THEN
+      utasitas
+      ...
+    ELSE
+      utasitas
+      ...
+    END_IF
+
+    Az ELSE az ot megelozo legkozelebbi IF-hez kotodik.
+
+- Ciklusok:
+
+    WHILE feltetel
+      utasitas
+      ...
+    END_WHILE
+
+    REPEAT
+      utasitas
+      ...
+    UNTIL feltetel
+
+    FOR valtozo := kezdet TO veg STEP lepeskoz
+      utasitas
+      ...
+    END_FOR
+
+- Az ertelmezes a szokasos. A WHILE es a FOR eloltesztelos, a REPEAT hatul.
+    (Elofordulhat, hogy a FOR es a WHILE ciklus egyetlen egyszer sem fut le.)
+    "valtozo" egy INTEGER valtozo, "kezdet", "veg" es "lepeskoz" egy-egy
+    egesz-kifejezes. Ez a harom kifejezes csak egyszer, a FOR ciklus elso
+    lefutasa elott ertekelodik ki. STEP elmaradhat, ekkor lepeskoz = 1
+    "feltetel" is egesz kifejezes, mely igaz, ha nem nulla es hamis, ha 0
+    Ciklusok egymasba is agyazhatok, de a kulonbozo tipusu ciklusok nem
+    akadhatnak ossze "keresztbe"
+    (pl. WHILE ... REPEAT ... END_WHILE ... UNTIL nem megengedett)
+
+----------------------------------------------------------------------
+2.8. A #INCLUDE direktiva
+-------------------------
+
+- Evvel a direktivaval egy masik forrasfajl tartalmat helyezhetjuk el a
+    forrasfile-unkban. Egy ilyen "include-file" tobbszor is felhasznalhato
+    (akar egy forrasfile-on belul is), igy az ismetlodo reszek ujragepeleset
+    teszi szuksegtelenne.
+- Hasznalata:
+    #INCLUDE "filename.HCL"
+- Allhat SKETCH-en kivul, ekkor egy vagy tobb teljes SKETCH-et kell
+    tartalmaznia. Ha egy SKETCH-en belul all, akkor csak a jelenet egy
+    reszletet kell tartalmaznia. Allhat cikluson, elagazason belul is, de
+    BITMAPS, FONTS, vagy VARS deklaraciokon belul nem.
+- Az include-file szintaktikajara ugyanaz vonatkozik, mint a foprogramera.
+    Lehet benne valtozodeklaracio, ciklus, stb. Az include-file valtozoi
+    azonban nem lokalisak. Legjobb ugy kepzelni, mintha a file sorait
+    beturol beture bemasolna az interpreter a foprogramunkba.
+    Nehany megkotes azonban van:
+    - Tilos peldaul, hogy egy foprogrambeli WHILE-hoz tartozo END_WHILE egy
+	include-file-ban legyen. Ez igaz minden ilyen szerkezetre, es a
+	valtozodeklaraciora is.
+    - Ha egy cikluson belul van #INCLUDE, akkor abban nem lehet valtozo-
+	deklaracio, hiszen ez a masodik vegrehajtasnal ujradefinialast okozna.
+- Az include-file-ok egymasba agyazhatok.
+
+----------------------------------------------------------------------
+2.9. A beepitett eljarasok
+--------------------------
+
+- Beepitett eljarasok a kovetkezo modon hivhatok:
+    ELJARASNEV( param1, param2, ... )
+    Tehat az eljaras neve utan zarojelben vesszovel elvalasztva kell
+    felsorolni a szukseges parametereket. (A megadott tipusuakat, a megadott
+    szamban es sorrendben.) Ha nincs parameter, nem kell zarojel.
+- Az INTEGER parametereknek tetszoleges egesz-kifejezes megadhato, a tobbi
+    tipusnal csak egy olyan tipusu valtozo neve allhat, illetve STRING tipusnal
+    "szoveg" formaju sztring-konstans is. (l. 2.5. pont)
+- A kepernyo koordinatak ugy ertendok, hogy a (0,0) pont a hirdetotabla
+    bal felso pixele. Megadhato negativ vagy nagyon nagy koordinata is,
+    ekkor a kepernyon csak annyi latszik, amennyi belog.
+- Ha a szinek szama kevesebb, mint amilyen kodot megadunk, akkor a szinkod
+    modulo (maradekosan) ertendo.
+
+- Most a beepitett eljarasok neve, parameterlistaja es funkcionalis leirasa
+    kovetkezik. Mindharom objektumtipushoz sajat attributumbeallito es
+    specialis "effekt" utasitasok tartoznak.
+    Altalaban egy objektumot eloszor deklaraljunk, utana egy ASSIGN_...
+    utasitassal adjunk kezdoertekeket neki, ezutan ENABLE_... utasitasra
+    mar meg is jelenik a kepernyon (kiveve ha teljesen kilog), igy johetnek
+    az animaciok, effektek.
+- Az objektumokkal letiltott (DISABLED) allapotban is vegezhetunk mindenfele
+    muveletet, de az eredmeny ekkor csak a megfelelo ENABLE_... utasitas
+    utan latszik a kijelzon. Kiveteles kezelesu a FIELD objektum, mert az
+    ENABLE_FIELD hatasara ujra mintat vesz a kijelzo tartalmabol, igy a
+    korabbi muveletek "elvesznek". Tehat FIELD-et csak engedelyezett alapotban
+    hasznaljunk, engedelyezes elott csak a kezdoertekeket allitsuk be
+    ASSIGN_FIELD utasitassal.
+- Van nehagy nem objektumhoz kotodo utasitas is (pl. varakozas).
+
+----------------------------------------------------------------------
+2.9.1. SPRITE kezelo eljarasok
+------------------------------
+
+Attributumbeallito utasitasok:
+  ASSIGN_SPRITE(	// SPRITE objektum attributumok beallitasa
+			// paletta alapertelmezes szerint: (l. 2.4.pont)
+			//   1 <-> 1 (nincs fizikai-logikai konverzio)
+			// az utasitas utan az objektum DISABLED marad
+		obj: SPRITE,		// melyik objektumrol van szo
+		bitmap: INTEGER,	// tartalom: a bitmap azonositoja
+		startx: INTEGER,	// bal felso pont x koordinataja
+		starty: INTEGER,        // bal felso pont y koordinataja
+		priority: INTEGER)	// prioritas
+
+  MAKE_SPRITE(		// SPRITE objektum attributomok beallitasa
+			// Az eljaras letrehoz egy BITMAP eroforrast,
+			// melynek tartalma a hirdetotabla megadott reszenek
+			// aktualis kepe lesz. (A letrehozando BITMAP sorszamat
+			// nem kell megadni, automatikusan hozzarendelodik a
+			// kovetkezo ures hely.)
+			// A SPRITE objektum kepe ez a BITMAP, pozicioja a
+			// megadott lesz.
+			// paletta alapertelmezes szerint: (l. 2.4.pont)
+			//   1 <-> 1 (nincs fizikai-logikai konverzio)
+			// az utasitas utan az objektum DISABLED marad
+		obj: SPRITE,		// melyik objektumrol van szo
+		startx: INTEGER,	// bal felso pont x koordinataja
+		starty: INTEGER,        // bal felso pont y koordinataja
+		width: INTEGER,		// a BITMAP szelessege pixelben
+		height: INTEGER,	// a BITMAP magassaga pixelben
+		priority: INTEGER)	// prioritas
+
+  BITMAP_SPRITE(	// kep (bitmap) valtoztatasa
+		obj: SPRITE,		// melyik objektumrol van szo
+		bitmap: INTEGER)	// uj bitmap azonositoja
+
+  POSITION_SPRITE(	// pozicio valtoztatasa (ugras, nem mozgas)
+		obj: SPRITE,		// melyik objektumrol van szo
+		startx: INTEGER,	// bal felso pont uj x koordinataja
+		starty: INTEGER)        // bal felso pont uj y koordinataja
+
+  PALETTE_SPRITE(	// paletta megvaltoztatasa
+		obj: SPRITE,		// melyik objektumrol van szo
+		palette: INT_ARRAY)	// uj paletta (8 elemu tomb)
+
+  PRIORITY_SPRITE(	// prioritas megvaltoztatasa
+		obj: SPRITE,		// melyik objektumrol van szo
+		priority: INTEGER)	// uj prioritas
+
+  ENABLE_SPRITE(	// objektum megjelenites engedelyezes
+		obj: SPRITE)		// melyik objektumrol van szo
+
+  DISABLE_SPRITE(	// objektum megjelenites letiltas
+		obj: SPRITE)		// melyik objektumrol van szo
+
+Effektek:
+  MOVETO_SPRITE(	// objektum mozgatasa abszolut kepernyopoziciora
+		obj: SPRITE,		// melyik objektumrol van szo
+		tox: INTEGER,		// vegpont bal felso x koordinataja
+		toy: INTEGER,		// vegpont bal felso y koordinataja
+		phase: INTEGER)		// ennyi fazison keresztul mozgat,
+					// illetve 0 megadasa eseten a
+					// leheto legfinomabban
+
+  MOVEREL_SPRITE(	// objektum mozgatasa relativ ertekkel
+		obj: SPRITE,		// melyik objektumrol van szo
+		relx: INTEGER,		// relativ x iranyu mozgas
+		rely: INTEGER,        	// relativ y iranyu mozgas
+		phase: INTEGER)		// ennyi fazison keresztul mozgat,
+					// illetve 0 megadasa eseten a
+					// leheto legfinomabban
+
+  PLOT_SPRITE(         // objektum megjelenitese pontonkent
+                       // alveletlen sorrendben
+                obj:SPRITE,             // melyik objektumrol van szo
+                speed:INTEGER)          // megjelenites sebessege
+
+  ANIMATE_SPRITE(	// allo SPRITE animalas
+		obj: SPRITE,		// melyik objektumrol van szo
+		wait: INTEGER,		// varakozas a fazisok kozott ms-ban
+		bitmaps: INT_ARRAY)	// a fazisok kepeinek (bitmapok)
+					// azonositoit tartalmazo tomb
+
+  ROTATE_PALETTE_SPRITE(	// paletta rotalasa 1-gyel
+				// (8 ilyen utan visszaall a regi)
+		obj: SPRITE)		// melyik objektumrol van szo
+
+  FADE_SPRITE(		// paletta fokozatos elhalvanyitasa
+				// (minden szin eggyel csokken, amig nem 0)
+				// 7 ilyen hivasa utan az objektum egyszinu
+		obj : SPRITE)
+
+  TRANSPARENT_SPRITE(		// az SPRITE aktualis kepenek megfelelo
+				// BITMAP-ben az osszes (a logikai paletta
+				// figyelembevetele utan) hatterszinu pontot
+				// "atlatszo" szinure szinezi.
+				// (Az osszes olyan SPRITE megvaltozik, amely
+				// ezt a BITMAP eroforrast hasznalta!)
+		obj: SPRITE)		// melyik objektumrol van szo
+
+----------------------------------------------------------------------
+2.9.2. TEXT kezelo eljarasok
+----------------------------
+
+Attributumbeallito utasitasok:
+  ASSIGN_TEXT(		// TEXT objektum attributumok beallitasa
+			// paletta alapertelmezes szerint:
+			//   1 <-> 1 (nincs fizikai-logikai konverzio)
+			// az utasitas utan az objektum DISABLED marad
+		obj: TEXT,		// melyik objektumrol van szo
+		text: STRING,           // tartalom
+		font: INTEGER,		// karakterkeszlet azonositoja
+		startx: INTEGER,	// bal felso pont x koordinataja
+		starty: INTEGER,        // bal felso pont y koordinataja
+		priority: INTEGER)	// prioritas
+
+  CONTENT_TEXT(		// szoveg valtoztatasa
+		obj: TEXT,		// melyik objektumrol van szo
+		text: STRING)           // uj szoveg
+
+  FONT_TEXT(		// karakterkeszlet valtoztatasa
+		obj: TEXT,		// melyik objektumrol van szo
+		font: INTEGER)		// uj karakterkeszlet azonositoja
+
+  POSITION_TEXT(	// pozicio valtoztatasa (ugras, nem mozgas)
+		obj: TEXT,		// melyik objektumrol van szo
+		startx: INTEGER,	// bal felso pont uj x koordinataja
+		starty: INTEGER)        // bal felso pont uj y koordinataja
+
+  PALETTE_TEXT(		// paletta megvaltoztatasa
+		obj: TEXT,		// melyik objektumrol van szo
+		palette: INT_ARRAY)	// uj paletta (8 elemu tomb)
+
+  PRIORITY_TEXT(	// prioritas megvaltoztatasa
+		obj: TEXT,		// melyik objektumrol van szo
+		priority: INTEGER)	// uj prioritas
+
+  ENABLE_TEXT(		// objektum megjelenites engedelyezes
+		obj: TEXT)		// melyik objektumrol van szo
+
+  DISABLE_TEXT(		// objektum megjelenites letiltas
+		obj: TEXT)		// melyik objektumrol van szo
+
+Effektek:
+  MOVETO_TEXT(		// objektum mozgatasa abszolut kepernyopoziciora
+		obj: TEXT,		// melyik objektumrol van szo
+		tox: INTEGER,		// vegpont bal felso x koordinataja
+		toy: INTEGER,		// vegpont bal felso y koordinataja
+		phase: INTEGER)		// ennyi fazison keresztul mozgat,
+					// illetve 0 megadasa eseten a
+					// leheto legfinomabban
+
+  MOVEREL_TEXT(		// objektum mozgatasa relativ ertekkel
+		obj: TEXT,		// melyik objektumrol van szo
+		relx: INTEGER,		// relativ x iranyu mozgas
+		rely: INTEGER,        	// relativ y iranyu mozgas
+		phase: INTEGER)		// ennyi fazison keresztul mozgat,
+					// illetve 0 megadasa eseten a
+					// leheto legfinomabban
+
+  ROTATE_PALETTE_TEXT(	// paletta rotalasa 1-gyel
+			// (8 ilyen utan visszaall a regi)
+		obj: TEXT)		// melyik objektumrol van szo
+
+  FADE_TEXT(		// paletta fokozatos elhalvanyitasa
+				// (minden szin eggyel csokken, amig nem 0)
+				// 7 ilyen hivasa utan az objektum egyszinu
+		obj : TEXT)
+
+----------------------------------------------------------------------
+2.9.3. FIELD kezelo eljarasok
+-----------------------------
+
+Attributumbeallito utasitasok:
+  ASSIGN_FIELD(		// FIELD objektum attributumok beallitasa
+			// paletta alapertelmezes szerint:
+			//   1 <-> 1 (nincs fizikai-logikai konverzio)
+			// az utasitas utan az objektum DISABLED marad
+		obj: FIELD,		// melyik objektumrol van szo
+		width: INTEGER,		// a mezo uj szelessege pixelben
+		height: INTEGER,	// a mezo uj magassaga pixelben
+		startx: INTEGER,	// bal felso pont x koordinataja
+		starty: INTEGER)        // bal felso pont y koordinataja
+
+  POSITION_FIELD(	// pozicio valtoztatasa (ugras, nem mozgas)
+			// (az eddigi effektek hatasa elmulik)
+		obj: FIELD,		// melyik objektumrol van szo
+		startx: INTEGER,	// bal felso pont uj x koordinataja
+		starty: INTEGER)        // bal felso pont uj y koordinataja
+
+  SIZE_FIELD(		// meret valtoztatasa
+			// (az eddigi effektek hatasa elmulik)
+		obj: FIELD,		// melyik objektumrol van szo
+		width: INTEGER,		// a mezo uj szelessege pixelben
+		height: INTEGER)	// a mezo uj magassaga pixelben
+
+  PALETTE_FIELD(	// paletta megvaltoztatasa
+		obj: FIELD,		// melyik objektumrol van szo
+		palette: INT_ARRAY)	// uj paletta (8 elemu tomb)
+
+  ENABLE_FIELD(		// objektum megjelenites engedelyezes
+			// (ekkor tortenik "mintavetel" a kijelzo tartalmarol)
+		obj: FIELD)		// melyik objektumrol van szo
+
+  DISABLE_FIELD(	// objektum megjelenites letiltas
+			// (az eddigi effektek hatasa elmulik)
+		obj: FIELD)		// melyik objektumrol van szo
+
+Effektek:
+  ROTATE_FIELD(		// FIELD tartalom scrollozasa 1 pixellel "korbe"
+			// (a mezo helyben marad)
+			// a kilepo sor es/vagy oszlop a tuloldalon jon be
+		obj: FIELD,		// melyik objektumrol van szo
+		direction: INTEGER)	// irany: 678    (gy.k.: 1=jobbra,
+					//        5 1     2=jobbra+le,...)
+					//        432
+
+  SHIFT_FIELD(		// FIELD tartalom shiftelese 1 pixellel
+			// (a mezo helyben marad)
+			// a kilepo sor es/vagy oszlop eltunik
+			// a tuloldalon hatterszinu pontok lepnek be
+		obj: FIELD,		// melyik objektumrol van szo
+		direction: INTEGER)	// irany: 678    (gy.k.: 1=jobbra,
+					//        5 1     2=jobbra+le,...)
+					//        432
+
+  ROTATE_PALETTE_FIELD(	// paletta rotalasa 1-gyel
+			// (8 ilyen utan visszaall a regi)
+		obj: FIELD)		// melyik objektumrol van szo
+
+  FADE_FIELD(		// paletta fokozatos elhalvanyitasa
+				// (minden szin eggyel csokken, amig nem 0)
+				// 7 ilyen hivasa utan az objektum egyszinu
+		obj : FIELD)
+
+----------------------------------------------------------------------
+2.9.4. Egyeb eljarasok
+----------------------
+
+  BACKGROUND_COLOR(	// kijelzo hatterszinenek allitasa
+			// (ha nincs ilyen utasitas, akkor 0 szinu)
+		color: INTEGER)		// a hatterszin kodja
+
+  WAIT(			// varakozas
+		time: INTEGER)		// varakozas ideje milliszekundumban
+
+  ENABLE_ALL()		// az osszes SPRITE es TEXT objektum engedelyezese
+			// (zarojelek ekkor is kellenek, bar barameter nincs)
+
+  DISABLE_ALL()		// az osszes SPRITE es TEXT objektum letiltasa
+			// (zarojelek ekkor is kellenek, bar barameter nincs)
+
+  ENABLE_TABLE()	// a hirdetotabla kijelzes engedelyezese
+			// (kezdetben a tabla engedelyezett)
+
+  DISABLE_TABLE()	// a hirdetotabla kijelzes letiltasa
+			// Ekkor a tabla ugyanugy tovabb programozhato,
+			// mint eddig, de a kijelzon semmi nem fog latszani.
+
+======================================================================
+3. EGY PELDA HCL FORRASFILE
+============================
+- Az alabbi pelda forrasfile DOCDEMO.HCL neven kulon is megtalalhato a
+    programcsomagban. Probaljuk lefuttatni a
+      HCLIP docdemo /X=96 /Y=64 /C=8
+    paranccsal. Ha lepesenkent akarjuk a mukodest vizsgalni, irjuk meg a
+    fenti sor vegere a /D kapcsolot is.
+    (Az interpreter paranccsor parametereirol reszletesebb leiras az
+    interpreter felhasznaloi leirasaban (HCLIP.TXT) talalhato.)
+   
+
+// DOCDEMO.HCL
+// Egy pelda HCL forrasfile
+
+SKETCH intro			// intro nevu jelenet kezdete
+
+  BITMAPS			// bitmap eroforrasok
+    0: "face1.bit"
+    1: "face2.bit"
+    2: "face3.bit"
+    3: "demo.bit"
+  END_BITMAPS			// bitmap eroforrasok vege
+
+  FONTS				// font eroforrasok
+    0: "default.fnt"
+  END_FONTS			// font eroforrasok vege
+
+  VARS				// valtozodeklaraciok
+    i: 	    	INTEGER		// ciklusvaltozo
+    s:		STRING
+    phases: 	INT_ARRAY 3	// tomb animacio fazisok tarolasara
+    face:	SPRITE
+    demo:	SPRITE
+    msg:	TEXT
+  END_VARS			// valtozodeklaraciok vege
+
+  // itt kezdodnek az utasitasok:
+  BACKGROUND_COLOR(7)				// vilagosszurke hatter
+  s := "DEMO"
+  ASSIGN_TEXT(msg, s, 0, MAXX, 0, 10)           // kezdoertekek beallitasa
+  ENABLE_TEXT(msg)					// engedelyezes
+  MOVETO_TEXT(msg, MAXX / 2 - 16, MAXY / 2 - 8, 10)	// bemozgatas kozepre
+
+  ASSIGN_SPRITE(demo, 3, -16, 0, 20)            // kezdoertekek beallitasa
+  ENABLE_SPRITE(demo)					// engedelyezes
+  MOVETO_SPRITE(demo, MAXX / 2 - 8, MAXY / 2 + 4, 10)	// bemozgatas kozepre
+
+  FOR i := 0 TO 2				// tomb feltoltese ciklussal
+    phases[i] := i
+  END_FOR
+  ASSIGN_SPRITE(face, 0, 4, 4, 0)     		// kezdoertekek beallitasa
+  ENABLE_SPRITE(face)					// engedelyezes
+  FOR i := 0 TO 2
+    ANIMATE_SPRITE(face, 500, phases)
+  END_FOR
+
+END_SKETCH		// jelenet vege
+
+// DOCDEMO.HCL vege
+
+======================================================================
+4. A LEGFONTOSABB VALTOZASOK
+=============================
+
+v3.05: (V.10.)
+- uj nev: HCL.TXT (regi: nyelvuj2.txt)
+- uj MAKE_SPRITE, TRANSPARENT_SPRITE, ENABLE_TABLE, DISABLE_TABLE,
+    PLOT_SPRITE eljarasok (l. 2.9. pont)
+- pelda HCL forrasfile (l. 3. pont)
+
+v3.04: (IV.26.)
+- uj ENABLE_ALL eljaras, a DISABLE_ALL csak SPRITE-ra es TEXT-re vonatkozik
+    (l. 2.9. pont)
+
+v3.03: (IV.17.)
+- BITMAP es FONT 0-tol szamozodik (l. 2.3. pont)
+- uj FADE_..., es modosult MOVE_... eljarasok (l. 2.9. pont)
+- parameternelkuli eljarasnal (pl. DISABLE_ALL) kell ures zarojelpar
+- csicsazas
+
+v3.02: (IV.11.)
+- Nevet kapott a nyelv (vegre!): Ezentul HCL nyelvnek, azaz "Hirdetotabla
+    Command Language"-nek hivjuk, az ilyen  forrasfajlok alapertelmezett
+    kiterjesztese ertelemszeruen .HCL
+    (Meg mindig jobb, mint az eddigi "A magasszintu nyelv, amit az
+    interpreter ertelmez")
+- van NOT operator (l. 2.5. pont)
+- Megis lehet egymasba agyazott #INCLUDE (l. 2.8. pont)
+- csicsazas
+
+v3.01: (IV.3.)
+- csicsazas
+
+v3.0: (III.27.)
+- Ez mar NYELVUJ2.TXT neven fut, tiszta laprol, reszletesebben.
+- A bitmap es font eroforrasok nem valtozok, hanem egyszeruen fel kell
+    oket sorolni a jelenet elejen, ezutan a egy szammal lehet rajuk
+    hivatkozni (igy az interpreter a jelenet elejen fixen betolti oket
+    a file-okbol a memoriajaba)
+- A bitmap OBJEKTUMOT (mely mozgathato) ezentul SPRITE-nak nevezzuk,
+    hogy ne lehessen osszekeverni a bitmap eroforrassal.
+    (a SPRITE mozgathato a kijelzon, vele dolgozunk; a BITMAP eroforras
+    csak egy kep amit egy BMP file-bol toltunk be. Persze EGY adott
+    pillanatban a sprite megjelenese egy bitmap. (Zavaros, mi?)
+- Az INTEGER valtozo legyen 16 bites (felesleges a 32)
+- Tomb csak egeszekbol allhat, neve igy INT_ARRAY
+- Uj neve van a legtobb beepitett eljarasnak. (Igy egysegesebb es meg
+    ugysem itatodtak bele ugy a koztudatba mint pl. a Xerox)
+- Nincs (felhasznaloi) PROCEDURE es FUNCTION, sem #DEFINE
+  (Ugy tunik nem kell) Maradt #INCLUDE az ismetlodesekhez.
+- Irasban rogzitettunk sok szobeli es hallgatolagos megallapodast es
+    trivialitast is.
+
+v2.0:
+- Ez a Szabolcs fele NYELV2.TXT
+
+v1.0:
+- Ez a NYELVSP2.TXT made by sokan
+
+======================================================================

@@ -1,0 +1,286 @@
+             ASCII TEXTFILE MASTER (ATM) - FELHASZNL¢I LE¡RS
+                          1993.  prilis-m jus
+=============================================================================
+
+A programot k‚sz¡tette:
+                          T¢th B lint
+
+                     C¡m: 1039 Budapest, Kabar u. 7. V. 27.
+                 Tel/Fax: 187-3943
+                  E-mail: s4078tot@sun10.vsz.bme.hu
+              WWW ottlap: http://indigo2.vsz.bme.hu/bali/
+
+A program FREEWARE, azaz szabadon haszn lhat¢ ‚s m solhat¢.
+Azonban v ltoztatni tilos rajta ‚s terjeszt‚skor az ”sszes f jlt
+(program + dokument ci¢ + p‚ld k, l. a le¡r s v‚g‚t) tartalmaznia kell a
+csomagnak.
+
+=============================================================================
+
+ 1. Bevezet‚s
+--------------
+    Az Ascii TextFile Master - r”viden ATM - egy sz”vegf jl feldolgoz¢ ‚s
+form z¢ program. Bemenetk‚nt egy vagy t”bb speci lis form tum£ ASCII
+sz”vegf jlt v r, ezekb“l form zott, k”zvetlenl nyomtathat¢ ASCII f jl(oka)t
+ ll¡t el“.
+
+Lehet“s‚gei r”viden:
+
+    - Parancssor-orient lt "felhaszn l¢i k”rnyezet" (angol nyelv–)
+
+    - Hib s bemeneti f jl form tum eset‚n megfelel“ hibazenetek (angolul)
+
+    - ll¡that¢ lap- ‚s marg¢m‚retek (margins)
+
+    - Automatikus fej- ‚s l bl‚c (header & footer)
+
+    - Automatikus t”rdel‚s (word wrapping) (teh t szavakat nem v g kett‚)
+
+    - Sz”veg k‚t oldalra igaz¡t sa (justify) (/J opci¢)
+
+    - Kimenetre nem kerl“ megjegyz‚sek (#REM direkt¡va)
+
+    - Szimb¢likus nevekhez sz”vegr‚szletek rendelhet“k. (#DEFINE direkt¡va)
+        Ezek a makr¢-szer– defin¡ci¢k tetsz“leges m‚lys‚gig egym sba
+         gyazhat¢k ‚s b rhol felhaszn lhat¢k. M r l‚tez“ szimb¢lumok
+         tdefini lhat¢k illetve megsemmis¡thet“k (#UNDEF direkt¡va)
+
+    - A defin¡ci¢k kl”n f jlokba is elhelyezhet“k, ezeket a f jlokat azt n
+        t”bb dokumentumba is bef–zhetjk. (#INCLUDE direkt¡va)
+        Az include f jlok hivatkozhatnak m s include f jlokra. (Egym sba
+         gyazhat¢s g tetsz“leges m‚lys‚gig.)
+
+    - K”rlevelez‚s funkci¢ (print merge):
+        Egy speci lis form tum£ sz”vegf jlban ugyanazokhoz a szimb¢likus
+        nevekhez t”bb v ltozatban adhat¢k meg defin¡ci¢k. A program minden
+        v ltozathoz kl”n kimeneti f jlt k‚sz¡t. (Pl. t”bb szem‚lynek
+        elkldend“, m‚gis szem‚lyre szabott lev‚l)
+
+    - Speci lis szimb¢lumok aktu lis d tum, id“, forr sf jln‚v, oldalsz m,
+        sz¢k”z”k, res sorok, lapdob s besz£r s ra
+
+ 2. Parancssor-param‚terek
+---------------------------
+A program ind¡t sa:
+    ATM   forr sf jln‚v   [kimeneti f jln‚v]  [opci¢k]
+
+    A forr sf jln‚v a feldolgozand¢ ASCII sz”vegf jl neve, esetleg teljes
+el‚r‚si £ttal. Ha nincs kiterjeszt‚s, akkor az alap‚rtelmez‚s .TXT
+
+    A kimeneti f jlnevet nem k”telez“ megadni, de ha megadjuk, akkor a
+forr sf jln‚v ut n kell ¡rni. Az alap‚rtelmezett kiterjeszt‚s .OUT, illetve
+k”rlevelez‚s funkci¢n l a kl”nb”z“ kimeneti f jloknak rendre .O01, .O02, ...
+Ha nincs megadva, akkor az kimeneti f jln‚v megegyezik a forr sf jln‚vvel,
+a kiterjeszt‚s pedig .OUT vagy .O01, .O02, stb.
+
+Egy‚b opci¢k:
+    /D    K”rlevelez‚s funkci¢ bekapcsol sa. A D bet– ut n k”zvetlenl lehet
+            az adatf jl nev‚t megadni. Alap‚rtelmezett kiterjeszt‚s: .DAT
+            Ha nincs f jln‚v megadva, akkor a forr sf jlnevet veszi .DAT
+            kiterjeszt‚ssel.
+
+    /J    Sz”veg k‚t oldalra igaz¡t sa. Sz¢k”z”k egyenletes besz£r s val a
+            kimeneti sz”veg jobb sz‚le is "egyenes" lesz. (Csonka sorokat
+            nem igaz¡t.)
+
+  Lapm‚ret megad sa:
+    /PWn  H ny karakter f‚r egy sorba (n < 255) Alap‚rtelmez‚s: 79
+    /PLn  H ny sor f‚r egy lapra (n > 5) Alap‚rtelmez‚s: 60
+
+  Marg¢ megad sa:
+    /MTn  Fels“ marg¢ (sorokban)
+    /MBn  Als¢ marg¢
+    /MLn  Bal marg¢ (karakterekben)
+    /MRn  Jobb marg¢
+      Alap‚rtelmez‚s szerint nincs marg¢, illetve fejl‚c vagy l bl‚c eset‚n
+    alul ill. fell k‚t-k‚t sornyi.
+
+    A parancssor param‚terek tetsz“leges sorrendben adhat¢k meg. Kis ‚s
+nagybetk nem kl”nb”znek. Ha hib san adunk meg valamit, vagy a programot
+param‚terek megad sa n‚lkl ind¡tjuk el, akkor egy r”vid (angol nyelv–) le¡r st
+kapunk a megengedett opci¢kr¢l.
+
+    P‚lda param‚termegad sra:
+ATM level kimenet /Dadatok /PW128 /PL63 /MT5 /MB5 /ML10 /MR10
+
+ 3. Speci lis direkt¡v k
+-------------------------
+    A direkt¡v k #-tel kezd“d“ speci lis parancsok, melyeket a forr sf jlba,
+include-f jlba vagy adatf jlba elhelyezve a sz”vegfeldolgoz¢t vez‚relhetjk.
+Minden ilyen direkt¡v nak kl”n sorba kell kerlnie, a parancsot csak sz¢k”z”k
+el“zhetik meg. A direkt¡v k nev‚ben a kis- ‚s nagybetk keveredhetnek.
+
+  #REM sz”veg         Tetsz“leges megjegyz‚s, mely nem kerl a kimeneti f jlba
+
+  #DEFINE n‚v sz”veg  Sz”veg hozz rendel‚se szimb¢likus n‚vhez
+                        Szimb¢likus n‚v sz mjegyeket, al h£z s karaktert ( _ )
+                        ‚s betket tartalmazhat. (kezeteseket is!). Az angol
+                         b‚c‚ kis- ‚s nagybet–i ugyanannak sz m¡tanak. (Az
+                        ‚kezetes betk pl. ‚ ‚s  kl”nb”z“ek!)
+                        A szimb¢lum  ltal felvett jelent‚s a nevet k”vet“
+                        els“ nem sz¢k”z karaktert“l a sor v‚g‚ig tart. Ha a n‚v
+                        ut n nincs sz”veg, akkor a n‚v ‚rt‚ke res sztring.
+                        (De ilyenkor is hivatkozhatunk r , ellent‚tben az
+                        #UNDEF direkt¡v val.) A defin¡ci¢kban haszn lhatunk
+                        m s defin¡ci¢kat is, a szimb¢likus neveket kukac ( @ )
+                        karakterek k”z‚ z rva.
+                        (P‚ld ul: #DEFINE k”sz”n‚s Szia @n‚v@! )
+                        šgyeljnk a rekurzi¢ elkerl‚s‚re (v‚gtelen ciklus)!
+                        (Speci lis szimb¢lumok list j t l. a 6. pontban)
+                        Ha a sz”vegbe mag t a kukac karaktert akarjuk berakni,
+                        akkor kett“zzk meg (@@).
+                        A defin¡ci¢k behelyettes¡t‚se a szimb¢likus nevek
+                        hely‚re a forr sf jlban val¢ felhaszn l skor t”rt‚nik,
+                        ez‚rt a fenti p‚ld ban "n‚v" defin¡ci¢ja "k”sz”n‚s"-‚
+                        ut n is t”rt‚nhet.
+                        Ha a definini lt n‚v m r kor bban is l‚tezett, akkor
+                        az £j jelent‚s fell¡rja a r‚git.
+                        Egyszerre maxim lisan 100 szimb¢lum lehet defini lva,
+                        a t rolt sz”veg legfeljebb 255 karakter hossz£ lehet.
+                        A fent le¡rtak vonatkoznak az adatf jlbeli defin¡ci¢kra
+                        is.
+
+  #UNDEF n‚v          Kor bbi defin¡ci¢ t”rl‚se. (Ezut n m r nem hivatkozhatunk
+                        r  a forr sf jlban, de b rmikor £jra l‚trehozhatjuk egy
+                        m sik #DEFINE utas¡t ssal.)
+
+  #INCLUDE f jln‚v    Defin¡ci¢kat tartalmaz¢ include-f jl bef–z‚se
+
+  #ITEM               Rekordok elv laszt s ra szolg l az adatf jlban (l. ott)
+
+ 4. Include-f jl form tum
+--------------------------
+    Az include-f jl egy defin¡ci¢kat tartalmaz¢ sz”vegf jl, melyet #INCLUDE
+parancssal f–zhetnk be a forr sf jlba, adatf jlba vagy ak r egy m sik
+include-f jlba. Az include-f jl csak #REM, #DEFINE, #UNDEF ‚s #INCLUDE
+kezdet– sorokat tartalmazhat. Az res sorok figyelmen k¡vl maradnak, minden
+m s esetben hibajelz‚st kapunk. Az include f jlok t”bbsz”r”sen egym sba
+ gyazhat¢k, de a DOS korl tozza az egyszerre megnyithat¢ f jlok sz m t.
+šgyeljnk a rekurzi¢ elkerl‚s‚re (v‚gtelen ciklus)!
+    rdemes a gyakran haszn lt, egy t‚mak”rbe tartoz¢ sz”vegr‚szleteket
+egy include-f jlba tenni, ¡gy eg‚sz kifejez‚s-k”nyvt rakat k‚sz¡thetnk.
+
+ 5. Adatf jl form tum
+----------------------
+    Az adatf jl tulajdonk‚ppen egy speci lis defin¡ci¢s f jl, melyet a
+k”rlevelez‚s funkci¢n l haszn lhatunk.
+    A f jl elej‚n szimb¢likus nevek list ja  ll, minden sorban egy n‚v.
+Ezut n k”vetkeznek az egyes adatrekordok #ITEM sorral elv lasztva. Minden
+defin¡ci¢nak kl”n sorba kell kerlnie (s a teljes sor adja a defin¡ci¢t).
+Term‚szetesen ezek a defin¡ci¢k is tetsz“legesen hivatkozhatnak m s szimb¢likus
+nevekre. (l. #DEFINE direkt¡v n l a 3. pontban) A defin¡ci¢kat tartalmaz¢
+sorok az egyes szimb¢likus nevekhez a nevek megad si sorrendj‚ben rendel“dnek
+hozz . Minden rekordban pontosan annyi defin¡ci¢s sornak kell lennie, ah ny
+szimb¢lumot soroltunk fel a f jl elej‚n. Minden adatrekordhoz kl”n kimeneti
+f jl k‚szl.
+
+P‚lda:
+  Adatf jl (PELDA.DAT):
+    n‚v
+    szemsz¡n
+      #ITEM
+    Anna
+    k‚k
+      #ITEM
+    B‚la
+    barna
+  Forr sf jl (PELDA.TXT):
+    @n‚v@ szem‚nek sz¡ne @szemsz¡n@.
+  Gener lt kimeneti f jlok (ATM PELDA /D hat s ra):
+    PELDA.O01:  Anna szem‚nek sz¡ne k‚k.
+    PELDA.O02:  B‚la szem‚nek sz¡ne barna.
+
+    Az adatf jlban b rhol elhelyezhetnk #REM, #DEFINE, #UNDEF ‚s #INCLUDE
+sorokat, ezek nem sz m¡tanak sem szimb¢likus n‚vnek, sem defin¡ci¢nak.
+Az els“ #ITEM sor el“tti direkt¡v k a feldolgoz s legelej‚n hajt¢dnak v‚gre,
+a t”bbiek pedig akkor, amikor az a kimeneti f jl k‚szl, amelyikhez tartoz¢
+adatrekordban vannak. Az els“ #ITEM el“tti res sorok figyelmen k¡vl
+maradnak, de az adatrekordokban l‚v“k defin¡ci¢nak sz m¡tanak. (A felvett
+jelent‚s ilyenkor res sztring.) Ha a defin¡ci¢ els“ nem sz¢k”z karaktere #,
+akkor haszn ljuk helyette a @HASH@ szimb¢lumot.
+    Egy adatf jlban maxim lisan 50 szimb¢likus n‚vhez legfeljebb 100
+v ltozatban rendelhetnk jelent‚st.
+
+ 6. Forr sf jl form tum
+------------------------
+    A forr sf jl egy ASCII sz”vegf jl, melyb“l a kimeneti f jl gener l¢dik.
+Sz”vegen k¡vl tartalmazhat #REM, #DEFINE, #UNDEF ‚s #INCLUDE parancsokat is.
+(l. 3. pont) A sz”vegben defin¡ci¢kra (ak r adatf jl-beliek, ak r nem) £gy
+hivatkozhatunk, hogy a nev‚t kukac (@) karakterek k”z‚ tesszk. Ha mag t a
+kukac karaktert akarjuk haszn lni, akkor kett“zzk meg (@@). Ha a sz”veg egy
+sor ban az els“ nem sz¢k”z karakter # lenne, akkor helyette @HASH@ szimb¢lumot
+haszn ljunk. (Ha nem legel”l van, akkor haszn lhat¢ a # is.)
+
+Speci lis szimb¢lumok:
+
+  HEADER, FOOTER    Fejl‚c illetve l bl‚c
+                      Ha defini ljuk (pl. #DEFINE HEADER - @PAGE@. oldal - ),
+                      akkor a kimeneti f jlban automatikusan minden lap
+                      tetej‚re ill. alj ra kerl k”z‚pre igaz¡tva. Nem lehet
+                      egy sorn l hosszabb. T”bbsz”r is  tdefini lhat¢, illetve
+                      #UNDEF direkt¡v val megszntethet“. (Ha m r az els“ lap
+                      tetej‚n is akarunk fejl‚cet, akkor az els“ sz”veg el“tt
+                      defini ljuk.)
+
+  @DATE@            Aktu lis d tum besz£r sa a dokumentumba
+                      (p‚ld ul 1993. m jus 9.)
+
+  @TIME@            Pontos id“ (pl. 13:10)
+                      (A @DATE@ ‚s @TIME@ szimb¢lumok csak akkor m–k”dnek
+                      helyesen, ha a DOS-ban pontosan be van  ll¡tva a d tum ‚s
+                      az id“)
+
+  @FILENAME@        Forr sf jl neve, ahogy azt param‚terk‚nt megadtuk (illetve
+                      esetleg .TXT kiterjeszt‚ssel kieg‚sz¡tve)
+
+  @PAGE@            Aktu lis oldalsz m a kimeneti f jlban (j¢l haszn lhat¢
+                      p‚ld ul l bl‚cben)
+
+  @HASH@            # karakter (csak akkor kell haszn lni, ha sor elej‚n
+                      szerepelne a # karakter)
+
+  @NEWPAGE@         £j lap kezd‚se (l bl‚c, fejl‚c automatikusan kirak¢dik.)
+
+  @CRn@             n darab sorv‚g (CR) karakter besz£r sa (n < 255), vagyis ha
+                      a sor elej‚n voltunk a kimeneti f jlban, akkor n darab
+                      res sor besz£r sa, ha nem, akkor pedig a sor befejez‚se
+                      ‚s n - 1 darab res sor besz£r sa. n = 1 eset‚n @CR@ is
+                      ¡rhat¢.
+
+  @SPCn@            n darab sz¢k”z besz£r sa (n < 255)
+
+    A fenti szimb¢lumok is  tdefini lhat¢k, de ez nem aj nlott.
+
+    A program a sz”veget automatikusan form zza a program ind¡t sakor
+param‚terk‚nt  tadott lap- ‚s marg¢m‚retek alapj n. Szavakat nem v g kett‚,
+hanem £j sorba rakja, ha nem f‚r ki. Tabul tor karaktereket 8 sz¢k”zzel
+helyettes¡t. Ha a programot /J opci¢val ind¡tottuk el, akkor a nem csonka
+sorokat k‚t oldalra rendezi a program (a megadott marg¢m‚ret alapj n) £gy,
+hogy a sorba megfelel“ sz m£ sz¢k”z kerl egyenletesen elosztva.
+    Ha a bemeneti f jlban egy sor sz¢k”zzel vagy tabul torral kezd“dik, akkor
+a kimeneti f jlban a sz”veg £j sorban fog kezd“dni ‚s a sz”veg ut n soremel‚s
+kerl. (Term‚szetesen ha a sz”veg t£l hossz£, akkor t”bb sorba kerl.)
+    Az egym s ut ni, a sor elej‚n nem sz¢k”zt tartalmaz¢ sorok egy bekezd‚snek
+(paragraph) sz m¡tanak, ¡gy a program a lapm‚retnek megfelel“en  trendezheti a
+szavakat, teh t ami a sor elej‚n volt a forr sf jlban, az nem biztos, hogy ott
+lesz a kimeneten is. Ha a /J opci¢ be van kapcsolva, akkor k‚t sz‚lre is
+igaz¡tja a bekezd‚st (az utols¢ sor kiv‚tel‚vel).
+    A lap alj nak el‚r‚sekor a kimenetre automatikusan kikerl a lapdob s
+karakter ‚s ki¡r¢dik a l bl‚c illetve fejl‚c.
+
+    A kimeneti f jlokat DOS-b¢l "PRINT f jln‚v" paranccsal nyomtathatjuk ki.
+
+ 7. Specifik ci¢
+-----------------
+    A program IBM PC kompatibilis sz m¡t¢g‚pen MS-DOS 3.30 vagy £jabb verzi¢j£
+oper ci¢s rendszerrel futtathat¢. Mem¢riaszks‚glete k”rlbell 40 kbyte, de
+sok hossz£ defin¡ci¢ eset‚n ak r 85 kbyte is lehet.
+
+  A programhoz tartoz¢ f jlok:
+    ATM.EXE        Ascii Textfile Master program
+    ATM.DOC        Ez a dokument ci¢
+    ATM.CPP        C forr sf jl (Turbo C++)
+    LEVEL.TXT      Dem¢ forr sf jl
+    LEVEL.DAT      Dem¢ adatf jl (LEVEL.TXT-hez)
+    LEVEL.INC      Dem¢ include f jl
+    SAJAT.INC      Dem¢ include f jl

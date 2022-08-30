@@ -1,0 +1,71 @@
+# C64ASM  - Commodore 64 (6510) Assembler Package
+# Copyright (c) 1993,97 by T¢th B lint
+# MAKEFILE for Borland's MAKE.EXE utility (3.6 or later)
+
+# Borland Pascal Compiler (BPC) Version 7.0 and Turbo Vision 2.0 are needed.
+# The pre-compiled HELPFILE.TPU and the standard units (RTL & Turbo Vision)
+# must be available in the unit directories
+# and the Turbo Vision Help Compiler (TVHC.EXE) V1.1 in the search-path.
+
+# Use MAKE from the source directory to bring all targets up-to-date.
+# Use MAKE -DOPT=options to pass options to the compiler (BPC.EXE)
+# Use MAKE -DDEBUG to build all targets with debug info & max. checking code.
+# Use MAKE -DSINGLEEXE to include resources (C64IDE.TVR) in the EXE file.
+#  (The help text is always in the C64IDE.HLP file)
+
+!if $d(DEBUG)
+DEBOPT=-V -GD -$D+ -$L+ -$R+ -$Q+ -$S+
+!undef SINGLEEXE
+!endif
+
+# compiler macros
+TPC=bpc.exe
+TVHC=tvhc.exe
+
+# implicit rules
+.pas.exe:
+  $(TPC) /m $(DEBOPT) $(OPT) $<
+.pas.tpu:
+  $(TPC) /m $(DEBOPT) $(OPT) $<
+
+# explicit rules
+all: c64asm.exe c64disa.exe bas2txt.exe c64ide.exe c64ide.hlp c64ide.tvr
+
+c64asm.exe: c64asm.pas cglobals.pas cmemtool.pas ckif.pas casm.pas
+
+c64disa.exe: c64disa.pas cglobals.pas cmemtool.pas
+
+bas2txt.exe: bas2txt.pas cglobals.pas cmemtool.pas
+
+!if $d(SINGLEEXE)
+c64ide.exe: c64ide.tvr c64ide.pas \
+            cglobals.pas cmemtool.pas ckif.pas casm.pas \
+            cvhelp.pas cvglob.pas cvwin.pas
+  $(TPC) /m $(OPT) c64ide
+  copy /b c64ide.exe+c64ide.tvr temp.exe
+  copy temp.exe c64ide.exe
+  del temp.exe
+!else
+c64ide.exe: c64ide.pas \
+            cglobals.pas cmemtool.pas ckif.pas casm.pas \
+            cvhelp.pas cvglob.pas cvwin.pas
+  $(TPC) /m $(DEBOPT) $(OPT) c64ide
+!endif
+
+c64ide.hlp cvhelp.pas: c64help.txt
+  $(TVHC) c64help.txt c64ide.hlp cvhelp.pas
+
+c64ide.tvr: c64res.exe
+  c64res.exe
+
+c64res.exe: c64res.pas cvhelp.pas cvglob.pas
+
+clean:
+  del *.tpu
+  del *.exe
+  del *.tvr
+  del *.hlp
+  del *.rep
+  del *.map
+  del *.dis
+  del *.prg

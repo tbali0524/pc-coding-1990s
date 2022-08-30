@@ -1,0 +1,215 @@
+ TRIPLE CLASS DOKUMENTCI¢
+
+ T¢th B lint
+ BME, Vill. ‚s Inf. kar, M. Informatika szak, II. ‚vf. 1. f‚l‚v, 3. tank”r
+ 1993. november
+
+ C++ h zi feladat (45.)
+ Tetsz“leges m‚ret– lebeg“pontos sz m ‚s a megfelel“ m–veletek megval¢s¡t sa
+
+-----------------------------------------------------------------------------
+
+1. Mi a "Triple class"?
+-----------------------
+    A Triple Class egy lebeg“pontos sz mol st megval¢s¡t¢ C++ class t¡pus.
+  Nev‚t onnan kapta, hogy a single illetve double be‚p¡tett adatt¡pusokn l
+  j¢val nagyobb pontoss got (a gyakorlati probl‚m k szempontj b¢l szinte
+  "v‚gtelen" pontoss got) ‚rhetnk el vele. A bels“ t rol s megold s n k¡vl
+  a class minden fontosabb m–veletet megval¢s¡t, k”ztk
+      - konverzi¢t int, double ‚s megfelel“ form tum£ sztring (char*)
+	valamint Triple k”z”tt mindk‚t ir nyban
+      - konstruktorok ‚s ‚rt‚kad¢ oper torok a fenti t¡pusokkal
+      - kerek¡t“ illetve mantissza-csonk¡t¢ elj r sok
+      - aritmetikai alapm–veletek: +, -, *, /
+      - rel ci¢s oper torok: ==, !=, <, <=, >, >=
+      - abszol£t ‚rt‚k, faktori lis ‚s hatv nyoz s eg‚sz kitev“vel
+      - ki¡r s tudom nyos alakban
+      - hibakezel‚s
+    A Triple class-t tartalmaz¢ forr sf jl ”n ll¢an nem futtathat¢
+  (nincs benne _main() ), de saj t programunkban k”nnyen haszn lhatjuk.
+  (Erre mutat  p‚ld t a TRIPMAIN.CPP program.)
+
+2. A Triple Class haszn lata m s felhaszn l¢i programban
+--------------------------------------------------------
+    A Triple Class haszn lat hoz mind”ssze a #include "triple.h"
+  sort kell elhelyeznnk minden olyan modulunk elej‚re, mely b rmilyen
+  form ban hivatkozik a Triple Class-ra. A Borland C++ integr lt k”rnyezetben
+  ford¡tva a project file-unkba fel kell venni a TRIPLE.CPP file-t is,
+  illetve parancssorb¢l a linkernek  t kell adni a TRIPLE.OBJ file-t
+  "TLINK ... +TRIPLE.OBJ" forma szerint.
+  (Felt‚telezve, hogy el“tte m r leford¡tottuk "BCC TRIPLE.CPP" paranccsal.)
+     A forr sfile-jainkban ezut n m r l‚trehozhatunk "Triple" tipus£
+  class-okat, illetve megh¡vhatjuk a public t¡pus£ member fggv‚nyeit.
+
+3. A Triple class adatmez“i ‚s member fggv‚nyei
+------------------------------------------------
+
+3.1. Adatmez“k
+--------------
+    A sz m t rol sa nem a leghelytakar‚kosabb, de ¡gy a program
+   ttekinthet“bb. A class adatmez“i:
+	int Sign;	    // elojel: +1 vagy -1 (0-nak +1)
+	char* Mantissa;     // mantissza tizedespont nelkul
+	int Exponent;       // exponens
+	int Len;            // mantissza sztring merete
+    P‚ld ul ha a sz m -3.4056E-405, akkor A.Sign = -1; A.Mantissa = "34056";
+  A.Exponent = -405; A.Len = 5
+    A mantissza sztring a heap-ban foglal¢dik le, ‚s az egyes m–veletek
+  elmozgathatj k, ez‚rt a mutat¢t ne t roljuk k”ls“ v ltoz¢ban, mert nincs
+  biztos¡tva a friss¡t‚se.
+
+3.2. private fggv‚nyek
+-----------------------
+    A private fggv‚nyek nem h¡vhat¢k k¡vlr“l, kiz r¢lag bels“ haszn latra
+  vannak:
+	void Error( int ErrorCode );	// hibauzenet, kilepes
+	void ExtractZeros( void );      // folos nullak kivetele
+	void Assign( const char* AString );	// exp. alaku megadas
+    Az Error fggv‚ny bels“ hiba eset‚n h¡v¢dik meg (pl. null val oszt s).
+  Hibazenetet ¡r ki a standard hiba perif‚ri ra (cerr: alap‚rtelmez‚s
+  szerint a k‚perny“), ‚s kil‚p a programb¢l. A DOS visszat‚r‚si ‚rt‚k a
+  hiba k¢dja:
+	// Error hibakodjai (0 = nincs hiba; 1 = Out of memory)
+	const erInitValue  = 2;
+	const erSelfAssign = 3;
+	const erNotInt     = 4;
+	const erNotDouble  = 5;
+	const erDivByZero  = 6;
+    Az ExtractZeros fggv‚ny form zza a mantissz t. Lev gja a mantissza
+  elej‚n illetve v‚g‚n l‚v“ null kat, szks‚g eset‚n  ll¡tva az Exponent ‚s
+  Len mez“ket. (A public fggv‚nyek visszat‚r‚skor mindenk‚ppen ilyen
+  form ban hagyj k a mantissz t.)
+    Assign fggv‚ny a param‚terk‚nt kapott sztringet, mely egy tudom nyos
+  alak£ sz m,  tkonvert lja a Triple class bels“ strukt£r j ra, de nem
+  t”r“dik a Mantissa kor bbi ‚rt‚k‚vel, ez‚rt nem h¡vhat¢ k”zvetlenl.
+  Sok public konstruktor ‚s = oper tor haszn lja.
+
+3.3. public fggv‚nyek
+----------------------
+3.3.1. Konstruktorok ‚s a destruktor
+------------------------------------
+	Triple( void );			// ures konstruktor (0 kezdoertek)
+	Triple( const Triple& ATriple ); // copy konstruktor
+	Triple( int ASign, const char* AMantissa, int AExponent );
+	Triple( int AInt );
+	Triple( double ADouble );
+	Triple( const char* AString ) { Assign(AString); };
+	~Triple( void ) { delete Mantissa; };	// destruktor
+    A konstruktorok nagy sz m nak k”sz”nhet“en sokf‚lek‚ppen l‚trehozhatunk
+  Triple t¡pus£ class-t. A harmadik konstruktor a bels“ adatmez“knek
+  megfelel“ form ban v rja a param‚tereket (L. 3.1. pont), b r az ExtractZeros
+  elj r s az‚rt megh¡v¢dik.
+
+3.3.2. Oper torok
+-----------------
+  rt‚kad s:
+	Triple operator=( const Triple& ATriple );
+	int operator=( int AInt );
+	double operator=( double ADouble );
+	Triple& operator=( const char* AString )	// exp. alaku megadas
+  Aritmetikai m–veletek:
+	Triple operator+( Triple& ATriple );
+	Triple operator-( Triple& ATriple );
+	Triple operator*( const Triple& ATriple );
+	Triple operator/( const Triple& ATriple );
+  Aritmetikai ‚rt‚kad sok:
+	void operator+=( Triple& ATriple )
+	void operator-=( Triple& ATriple )
+	void operator*=( const Triple& ATriple )
+	void operator/=( const Triple& ATriple )
+  Rel ci¢s oper torok:
+	int operator==( const Triple& ATriple );
+	int operator<( const Triple& ATriple );
+	int operator!=( const Triple& ATriple )
+	int operator>( const Triple& ATriple )
+	int operator<=( const Triple& ATriple )
+	int operator>=( const Triple& ATriple )
+    A m–veletek ‚rtelmez‚se a szok sos. Az ‚rt‚kad¢ oper torok l ncba
+  f–zhet“k (pl. A=B=0).
+    Az ”sszead s, szorz s, oszt s algoritmusok az  ltal nos iskol ban tanult
+  ¡r sbeli algoritmusok sz m¡t¢g‚pes megval¢s¡t sa. Tal n nem a leggyorsabbak,
+  de egyszer–ek ‚s r”videk.
+    Az oszt s eredm‚ny v‚gtelen szakaszos tizedes t”rt is lehetne, ez‚rt a
+  TRIPLE.H header file-ban defini lva lett egy int MaxDivLen v ltoz¢
+  (kezd“‚rt‚ke 100) mely az oszt s eredm‚nyek‚nt l‚trej”v“ sz m mantissz j nak
+  maxim lis hossz t adja meg.
+
+3.3.3. Egy‚b fggv‚nyek
+-----------------------
+  Private mez“k el‚r‚se:
+	int GetSign( void ) { return(Sign); };
+	char* GetMantissa( void ) { return(Mantissa); };
+	int GetExponent( void ) { return(Exponent); };
+	int GetDigit( int AtExponent );
+      Az ut¢bbi fggv‚ny a param‚ternek megfelel“ helyi‚rt‚k– tizedes jegyet
+    adja vissza. P‚ld ul A=3.45678E+405 eset‚n A.GetDigit(403) = 5
+  Form zott (exponenci lis) alak:
+	char* GetScientific( void );	// sztringbe (new-val)
+	void Draw( void );		// cout-ra azaz a standard kiviteli
+					// kiviteli perif‚ri ra
+  Konvert l s hagyom nyos t¡pusokba:
+	int GetInt( void );
+	double GetDouble( void );
+      Ha a konvert l s nem v‚gezhet“ el, az Error() fggv‚ny h¡v¢dik meg ‚s
+    a program hibazenettel le ll.
+  Kerek¡t‚s ‚s csonk¡t s:
+	void Round( int AtExponent );
+	void SetManLen( int MantissaLen );
+      A Round fggv‚ny £gy kerek¡ti a sz mot, hogy a param‚ternek megfelel“
+    helyi‚rt‚k– jegy legyen a legutols¢ (legkisebb helyi‚rt‚k–). A matematikai
+    kerek¡t‚s szab lyai alkalmaz¢dnak. Eg‚szre kerek¡t‚shez Round(0)
+    fggv‚nyh¡v s kell.
+      A SetManLen fggv‚ny h¡v sa ut n a Mantissza legfeljebb a param‚ternek
+    megfelel“ hossz£s g£ lehet. (Esetleg r”videbb is, ha p‚ld ul 0 jegyek
+    kerln‚nek a sz m v‚g‚re vagy a Mantissza eleve r”videbb volt.)
+    A mantissza marad‚k r‚sze egyszer–en lev g¢dik, kerek¡t‚s nem t”rt‚nik.
+
+3.4 Egy‚b, nem Triple class-beli deklar ci¢k
+--------------------------------------------
+  Friend fggv‚ny:
+	friend Triple abs( const Triple& ATriple );	// abszol£t ‚rt‚k
+      A fenti fggv‚ny nem r‚sze a Triple class-nak, hanem kl”n  ll, de a
+    friend deklar ci¢ miatt hozz f‚r a szks‚ges private mez“kh”z.
+
+  Egy‚b:
+	Triple fact( int Base );	// faktori lis
+      A faktori lis fggv‚ny null t ad vissza, ha a param‚ter negat¡v.
+	Triple pow( const Triple& Base, int Expon )
+      A pow fggv‚ny a Base param‚ter eg‚szkitev“s hatv nyoz s t v‚gzi.
+	ostream& operator<<(ostream& cout, Triple& ATriple);
+      A fenti oper torral v lik lehet“v‚ Triple t¡pus£ sz m ki¡r sa a
+    C++ -ban megszokott m¢don. A ki¡rand¢ objektumok l ncba  ll¡that¢k.
+
+4. Rendszer k”vetelm‚nyek ‚s korl toz sok
+-----------------------------------------
+    A forr sf jlok leford¡t s hoz Borland C++ compiler 3.1-es verzi¢ja
+  szks‚ges. A leford¡tott p‚ldaprogram MS-DOS alatt fut, de a modult
+  elvileg Windows-os ‚s DOS-os programjainkban is haszn lhatjuk.
+    Mivel egy sz mnak esetenk‚nt sokezer ‚rt‚kes jegy‚t t roljuk, a program
+  mem¢riaig‚nye tekint‚lyesre n“het, ez k”nnyen okozhat mem¢ria probl‚m kat.
+    A kezelt sz mokra vonatkoz¢ korl toz sok:
+  A kitev“ int tipus£, ¡gy a kezelhet“ legnagyobb/legkisebb sz m kb.
+  ñ1Eñ32760 . S“t, egy szigor£bb megk”t‚s, hogy a t rolt legkisebb helyi‚rt‚k–
+  tizedes jegy helyi‚rt‚ke is -32768-n l nagyobb legyen. (Teh t p‚ld ul egy
+  10^-25000 nagys grend– sz mn l csak kb. 7700 ‚rt‚kes jegyet t rolhatunk.)
+  A mantissza maxim lis hossza egy‚b esetekben 32767 tizedes jegy. Azonban
+  figyelembe kell venni a glob lis mem¢ri ra vonatkoz¢ megk”t‚seket is,
+  ¡gy tekintetbe v‚ve, hogy sok m–velet Triple t¡pus£ seg‚dv ltoz¢kat haszn l,
+  el“fordulhat, hogy m s esetek is gondot okozhatnak.
+    Az int t¡pus t£lcsordul sa eset‚n hibajelz‚st nem kapunk, de a program
+  m–k“d‚se indeterminisztikuss  v lik. Ha nincs el‚g hely egy Triple v ltoz¢
+  l‚trehoz s hoz, akkor saj t hibakezel“nket is aktiviz lhatjuk a new
+  oper tor hibakezel“j‚nek  tir ny¡t s val. (Erre a tripmain.cpp programban
+  tal lhat¢ p‚lda.)
+
+5. A csomaghoz tartoz¢ f jlok
+-----------------------------
+	TRIPLE.H	Triple Class defin¡ci¢t tartalmaz¢ header-file
+	TRIPLE.CPP	Triple Class member funkci¢inak defin¡ci¢it tartalmaz¢
+				C++ forr sf jl (nem futtathat¢)
+	TRIPMAIN.CPP	Triple Class haszn lat t demonstr l¢ egyszer–
+				p‚ldaprogram
+	TRIPLE.OBJ	TRIPLE.CPP leford¡tva
+	TRIPLE.EXE	TRIPMAIN.CPP leford¡tva
+	TRIPLE.PRJ	Borland C++ project file TRIPLE.EXE-hez
+	TRIPLE.DOC	Ez a dokument ci¢s file

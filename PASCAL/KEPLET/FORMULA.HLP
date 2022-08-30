@@ -1,0 +1,364 @@
+; FORMULA 2.0 helpfile  Copyright (c) 1992,95 by B lint T¢th
+[16 Screens]
+; The 2-3. characters of the second line give the number of screens.
+;  (One-digit numbers must precede a leading 0,  e.g. 05)
+; Lines starting with semicolon (;) are not displayed by the help system
+; You can append the descriptions of your own definitions at the end of
+; this help file. Start new screen with a [Screen XY:] line,
+; where XY is the number of the screen.
+
+[Screen 01:]
+General function keys
+---------------------
+ F1 . . . . . .  Show this help (use Page Up / Down to browse)
+ Alt F1 . . . .  Show list of built-in functions
+ F2 . . . . . .  Save definitions to file
+ F3 . . . . . .  Load definitions from file
+ F4 . . . . . .  Append definitions from file to the list
+                  (The program doesn't check the multiple definitions.)
+ Tab, Shift Tab  Jump to constant, function or expression panel
+ Alt X, Esc . .  Quit program
+
+( Press Page Down for the list of editing keys! )
+
+At startup the program loads the STARTUP.DEF definition file (if it exists),
+so save in this file the definitions you use frequently.
+If you specify a definition file name in command line argument,
+that file will be loaded.
+
+To print the definitions, enter PRN as filename after hitting F2.
+[Screen 02:]
+Editing
+-------
+ Arrows  . . . . . .  Move cursor
+ Ctrl Left / Right .  Jump to next previous cell
+ Enter . . . . . . .  Evaluate expression / Jump to next cell
+ Page Up / Down  . .  Show next / previous page
+ Home / End  . . . .  Jump to beginning / end of cell
+ Ctrl Home / End . .  Jump to first / last cell in the line
+ Ctrl Page Up / Down  Jump to beginning / end of table
+ BackSpace . . . . .  Erase previous character
+ Del . . . . . . . .  Erase the character under the cursor
+ Ins . . . . . . . .  Change Insert / Overwrite mode
+ Alt R . . . . . . .  Clear cell
+ Alt S . . . . . . .  Clear line
+ Alt Y . . . . . . .  Delete line (extract from table)
+ Alt T . . . . . . .  Delete table
+ Alt N . . . . . . .  Insert empty line
+ Alt M . . . . . . .  Copy the cell above to this cell
+ Alt W . . . . . . .  Copy line - specify source line
+ Alt V . . . . . . .  Copy line - specify target line
+ Alt K . . . . . . .  Copy result of expression to constant list
+[Screen 03:]
+Expression syntax
+-----------------
+ Expressions must be entered as a string, much like if you would write them
+ on a paper. (But the sign of division and power is other.)
+
+ You can use:
+   - Numbers (in scientific form (e.g. -3.45E+18) or short form (e.g. -3) )
+   - Basic operators ( + , - , * , / ) (Sign of multiply is not necessary)
+   - Power (e.g. 45^3 ) ( Base must be non-negative )
+   - Parentheses nested at any depth
+   - Constant identifiers (built-in or defined constants)
+   - Function calls (built-in or defined functions)
+       Passing arguments:
+         - List of the arguments separated by comma in parenthesis
+         - Argument can be any expression
+         - At functions with one argument the parenthesis can be left out
+             when there isn't any oparator in the argument ( e.g. sin pi )
+ Operator precedence is as in mathemathics usual:
+   - parentheses, function calls, power, multiply/divide, add/subtract
+ Spaces can be inserted or omitted. (But there are some exceptions.)
+
+ Example expression: 2 PI SIN E + 2(ABS(ROOT2(1,  2*2,INT(1.3)))^2 - 2.1E-2)
+[Screen 04:]
+User-defined constants:
+-----------------------
+ - Enter the name of the constant in the first column, its value in the second
+ - If the value is a result of computing:
+     - Enter the appropriate expression in the Expression cell
+     - Press the Alt K
+        (The result appears at the end of the constants list)
+     - Give a name to the new constant
+
+User-defined functions:
+-----------------------
+ - Enter the name of the function in the first column
+ - Enter the number of arguments in the second column (1 can be omitted)
+ - Enter the defining formula in the third column as a regular expression
+     - Argument names are X1, X2, ... X9
+         (At functions with one argument, X can be used.)
+     - You can call any built-in or user-defined functions, but avoid
+          recursive calls. (It causes endless loop.)
+     - You can use defined constants as well.
+
+The names of constants and functions must start with a letter.
+The program doesn't check for multiple used names.
+[Screen 05:]
+Operators:
+----------
+ +   -   *   /   ^   (Power only to positive base)
+ Sign change: e.g. -x (Usually you should put it in parenthesis e.g. (-x)^2.5 )
+
+Built-in functions: (all with one argument)
+-------------------
+ ABS       absolute value
+ ARCTAN    arcustangent (in radians!)
+ COS       cosine (anle in radians!)
+ EXP       e raised to the x-th power (e = 2.718281...)
+ FACT      factorial (0 <= x <= 33; x is integer)
+ LN        natural logarithm (x > 0)
+ INT       integer part
+ SIN       sine (anle in radians!)
+ SGN       sign (1 if x > 0; 0 if x = 0; -1 if x < 0)
+ SQRT      square root (x >= 0)
+
+Built-in constant:
+------------------
+ PI ( 3.1415926535 )
+[Screen 06:]
+Many constants and function are in definition libraries. These libraries
+can be edited. The definitions in the standard libraries:
+
+MATH.DEF DEFINITION LIBRARY
+---------------------------
+CONSTANTS:
+ E             natural constant
+ M             lg e
+ PHI           (-1 + û5) / 2
+ NPHI          "great phi": (1 + û5) / 2
+
+FUNCTIONS:
+ FRAC          fraction part
+ ROUND         rounding to nearest integer
+ ROUNDN(x, n)  rounding to n decimal digits (0 <= n <= 10; n integer)
+ LG            base 10 logarithm (x > 0)
+ LOG(x, n)     base n logarithm (x > 0; n > 0; n <> 1)
+ RAD           converting from degrees to radians
+ DEG           converting from radians to degrees
+ DMSDEG(deg, min, sec) - converting from degrees/minutes/seconds to degrees
+[Screen 07:]
+MATH.DEF DEFINITION LIBRARY FUNCTIONS - CONTINUED (Trigonometric functions)
+ TAN       tangent (x <> Pi/2 + k Pi)  (Every angles are in radians!)
+ COT       cotangent (x <> k Pi)
+ SEC       secant (x <> Pi/2 + k Pi)
+ CSC       cosecant (x <> k Pi)
+ ARCSIN    inverse sine (-1 <= x <= 1)
+ ARCCOS    inverse cosine (-1 <= x <= 1)
+ ARCCOT    inverse cotangent
+ ARCSEC    inverse secant (x <= -1 or x >= 1)
+ ARCCSC    inverse cosecant (x <= -1 or x >= 1)
+ SINH      hyperbolic sine
+ COSH      hyperbolic cosine
+ TANH      hyperbolic tangent
+ COTH      hyperbolic cotangent (x <> 0)
+ SECH      hyperbolic secant
+ CSCH      hyperbolic cosecant (x <> 0)
+ ARSINH    inverse (area) hyperbolic sine
+ ARCOSH    inverse hyperbolic cosine (x >= 1)
+ ARTANH    inverse hyperbolic tangent (-1 < x < 1)
+ ARCOTH    inverse hyperbolic cotangent (x < -1 or x > 1)
+ ARSECH    inverse hyperbolic secant (0 < x <= 1)
+ ARCSCH    inverse hyperbolic cosecant (x <> 0)
+[Screen 08:]
+MATH.DEF DEFINITION LIBRARY FUNCTIONS - CONTINUED (Algebra)
+ ARITMEAN(x1, x2)  arithmetic mean of two numbers
+ GEOMMEAN(x1, x2)  geometric mean of two numbers (x1 * x2 >= 0)
+ HARMMEAN(x1, x2)  harmonic mean of two numbers
+ SQRMEAN(x1, x2)   square mean of two numbers
+ ARITN(a1, d, n)   n-th element of arithmetic series
+ ARITSUM(a1, d, n) partial sum of arithmetic series
+ GEOMN(a1, q, n)   n-th element of geometrical series
+ GEOMSUM(a1, q, n) partial sum of geometrical series
+ GEOMSER(a1, q)    sum of geometrical series (-1 < q < 1)
+ DISCR(a, b, c)    discriminant of quadratic equation
+ ROOT1(a, b, c)    greater root of quadratic equation(if DISCR>=0)
+ ROOT2(a, b, c)    lesser root of quadratic equation(if DISCR>=0)
+ DET2(a11, a12, a21, a22)  2x2 matrix determinant
+ DET3(a11, a12, ...  a33)  3x3 matrix determinant
+ PERM(n)           permutation
+ COMB(n, k)        combination ("n over k")  (0 <= k <= n)
+ REPCOMB(n, k)     repeatational combination
+ VAR(n, k)         variation
+ REPVAR(n, k)      repeatational variation
+[Screen 09:]
+MATH.DEF DEFINITION LIBRARY FUNCTIONS - CONTINUED (Calculus of probabilities)
+ PBERNOUL(n, p, k) Bernoulli distribution weighting function (0<=p<=1; k: 1-s)
+ PBINOM(n, p, x)   binomial distribution weighting function  (0<=p<=1)
+ PPOISSON(l, x)    Poisson distribution weighting function (l>0; x>=0,integer)
+ PGEOM(p, x)       geometric distribution weighting function (0<=p<=1; x>0,int)
+ PUNIFORM(a, b)    uniformal distribution density function
+ PEXPON(l, x)      exponential distribution weighting function  (l>0; x>=0)
+ PCAUCHY(x)        Cauchy distribution weighting function
+ PSTDNORM(x)       standard normal distribution weighting function
+ FUNIFORM(a, b, x) uniformal distribution function
+ FEXPON(l, x)      exponential distribution function
+ FCAUCHY(x)        Cauchy distribution function
+ MBINOM(n, p)      binomial distribution expected value
+ MPOISSON(l)       Poisson distribution expected value
+ MGEOM(p)          geometrical distribution expected value
+ MUNIFORM(a, b)    uniformal distribution expected value
+ MEXPON(l)         exponential distribution expected value
+ S2BINOM(n, p)     binomial distribution dispersion quadrat
+ S2POISS(l)        Poisson distribution dispersion quadrat
+ S2GEOM(p)         geometrical distribution dispersion quadrat
+ S2UNIFOR(a, b)    uniformal distribution dispersion quadrat
+ S2EXPON(l)        exponential distribution dispersion quadrat
+[Screen 10:]
+MATH.DEF DEFINITION LIBRARY FUNCTIONS - CONTINUED (Geometry)
+ POLYDIAG(n)     number of diagonals of n-side polygon
+ POLYANGL(n)     sum of internal angles of n-side polygon
+ HERONA          (internal function)
+ HERONB          (internal function)
+ HERON(a, b, c)  area of triangle  (Heron formula)
+ T3(a, b, gamma) area of triangle (gamma in radian)
+ PITAGORC(a, b)  side of rectangular triangle (Pitagoras thesis)
+ PITAGORA(c, b)  perpendicular side of rectangular triangle (Pitagoras thesis)
+ COSTHESI(a, b, gamma)  side of triangle (cosine thesis) (gamma in radian)
+ CIRCLEK(r)      periphery of circle
+ CIRCLET(r)      area of circle
+ FRUPYRV(m, t1, t2) volume of frustum of pyramid
+ TETRAM(a)       height of tetraeder
+ TETRARE(a)      radius of external circle of tetraeder
+ TETRARI(a)      radius of internal circle of tetraeder
+ TETRAA(a)       surface of tetraeder
+ TETRAV(a)       volume of tetraeder
+ HEXARE(a)       radius of external circle of hexaeder
+ HEXARI(a)       radius of internal circle of hexaeder
+ HEXAA(a)        surface of hexaeder
+ HEXAV(a)        volume of hexaeder
+[Screen 11:]
+MATH.DEF DEFINITION LIBRARY FUNCTIONS - CONTINUED (space geometry)
+ OCTARE(a)      radius of external circle of octaeder
+ OCTARI(a)      radius of internal circle of octaeder
+ OCTAA(a)       surface of octaeder
+ OCTAV(a)       volume of octaeder
+ DODEKARE(a)    radius of external circle of dodecaeder
+ DODEKARI(a)    radius of internal circle of dodecaeder
+ DODEKAA(a)     surface of dodecaeder
+ DODEKAV(a)     volume of dodecaeder
+ IKOZARE(a)     radius of external circle of ikozaeder
+ IKOZARI(a)     radius of internal circle of ikozaeder
+ IKOZAA(a)      surface of ikozaeder
+ IKOZAV(a)      volume of ikozaeder
+ CYLINDA(r, m)  surface of cylinder
+ CYLINDV(r, m)  volume of cylinder
+ CONEA(r, a)    surface of cone
+ CONEV(r, m)    volume of cone
+ FRUCONEA(r1, r2, m) surface of frustum of cone
+ FRUCONEV(r1, r2, m) volume of frustum of cone
+ SPHEREA(r)     surface of sphere
+ SPHEREV(r)     volume of sphere
+[Screen 12:]
+PHYSICS.DEF DEFINITION LIBRARY
+------------------------------
+CONSTANTS:
+ GAMMA     gravitational constant [Nmý/kgý]
+ KELECTR   electric constant [Vm/As]
+ E0        permittivity of vacuum [As/Vm]
+ KMAGNET   magnetic constant [Vs/Am]
+ MU0       permeability of vacuum [Vs/Am]
+ FARAD     Faraday constant [C/mol]
+ C         speed of light [m/s]
+ NA        Avogadro constant [1/mol]
+ NL        Loschmidt constant at normal state [1/m^3]
+ VM        molar volume at normal state [m^3/mol]
+ VM0       molar volume at 0 øC, 101323 Pa [m^3/mol]
+ R         molar gas constant [J/mol K]
+ K         Boltzmann constant [J/K]
+ BETA      volume thermal expansion coefficient [1/K]
+ H         Planck constant [Js]
+ HV        h' ( = h / 2 pi ) [Js]
+ U         atomic mass unit [kg]
+ MUB       Bohr magneton [Amý]
+ MUM       nuclear magneton [Amý]
+[Screen 13:]
+PHYSICS.DEF DEFINITION LIBRARY CONSTANTS - CONTINUED
+ QE        elementary charge (charge of electron * -1) [C]
+ ME        rest mass of electron [kg]
+ QESPEC    specific charge of electron [C/kg]
+ MUE       magnetic moment of electron [Amý]
+ RE        electron radius [m]
+ MP        rest mass of proton [kg]
+ QPSPEC    specific charge of proton [C/kg]
+ MUP       magnetic moment of proton [Amý]
+ LAMBDACP  Coumpton wavelength p [m]
+ MN        rest mass of neutron [kg]
+ MUN       nuclear magneton [Amý]
+ LAMBDACN  Coumpton wavelength n [m]
+ MD        rest mass of deuteron [kg]
+ MUD       magnetic moment of deuteron [Amý]
+ MALPHA    rest mass of alpha particle [kg]
+ QASPEC    specific charge of alpha particle [C/kg]
+ MH        rest mass of hydrogen atom [kg]
+ A0        Bohr radius [m]
+ MEARTH    mass of the Earth [kg]
+ REARTH    average radius of Earth [m]
+[Screen 14:]
+PHYSICS.DEF DEFINITION LIBRARY CONSTANTS - CONTINUED
+ MMOON     mass of the Moon [kg]
+ RMOON     radius of the Moon [m]
+ DEAMOON   average Earth-Moon distance [m]
+ G         gravitational acceleration normal value (at 45ø) [m/sý]
+ G0        gravitational acceleration at the Poles [m/sý]
+ GBP       gravitational acceleration in Budapesten [m/sý]
+ G90       gravitational acceleration at the Equator [m/sý]
+ COSMV1    first cosmic velocity (round-trip at surface level) [m/s]
+ COSMV2    second cosmic velocity (escape from Earth) [m/s]
+ COSMV3    third cosmic velocity (escape from Sun) [m/s]
+ HGEOSTAC  height of geostational orbit [m]
+ THUBBLE   Hubble constant [‚v]
+ GAMMAP    gyro-magnetic coefficient [Amý/Js]
+ C1        first radiational constant [Wmý]
+ C2        second radiational constant [mK]
+ SIGMA     Stefan-Boltzmann constant [W m^-2 /K^-4]
+ FI0       fluxoid-quantum [Wb]
+ RYDBERG   Rydberg constant [1/m]
+ ALPHA     fine-structure constant
+ CWATER    specific heat of water [J/kg K]
+[Screen 15:]
+PHYSICS.DEF DEFINITION LIBRARY CONSTANTS - CONTINUED
+
+SI prefixes:
+
+ DEKA     [1E+1]    HEKTO    [1E+2]     KILO     [1E+3]     MEGA     [1E+6]
+ GIGA     [1E+9]    TERA     [1E+12]    PETA     [1E+15]    EXA      [1E+18]
+ DECI     [1E-1]    CENTI    [1E-2]     MILLI    [1E-3]     MIKRO    [1E-6]
+ NANO     [1E-9]    PIKO     [1E-12]    FEMTO    [1E-15]    ATTO     [1E-18]
+
+Not SI units of measurement:
+(The appropriate SI unit is in parenthesis)
+
+ ANGSTROM [m]       LIYEAR   [m]        PARSEC   [m]        LITER    [m^3]
+ MAZSA    [kg]      TON      [kg]       MINUTE   [s]        HOUR     [s]
+ DAY      [s]       DYN      [N]        KPOND    [N]        TORR     [Pa]
+ ATM      [Pa]      BAR      [Pa]       POISE    [Pa s]     STOKES   [mý/s]
+ CAL      [J]       KCAL     [J]        ERG      [J]        WATTHOUR [J]
+ KWH      [J]       EVOLT    [J]        LE       [W]        BIOT     [A]
+ FRANKLIN [C]       GAUSS    [T]        MAXWELL  [Wb]       OERSTED  [A/m]
+ CURIE    [Bq]      RD       [Gy]       RONTGEN  [C/kg]
+
+[Screen 16:]
+MEASURE.DEF DEFINITION LIBRARY (Not SI units of measurement)
+------------------------------
+Weights: [kg]
+ DRAM               OUNCE [OZ]          POUND [LB]          STONE
+ QUARTERW           GBHWT               USHWT               BTON
+Measures of capacity: [liter]
+ GILL               PINT                QUART               GALLON
+ PECK               BUSHEL              QUARTERC
+Linear measures: [m]
+ LINE               INCH                FOOT                YARD
+ FATHOM             POLE/PERCH/ROD      FURLONG             MILE
+ NAUTMILE           LEAGUE              NLEAGUE
+Square measures: [mý]
+ SQINCH             SQFOOT              SQYARD              SQUARE
+ ACRE               SQMILE              KATHOLD             HEKTAR
+ NSZOGOL
+Cubic measures: [m^3]
+ CUBINCH            CUBFOOT             CUBYARD             REGISTON
+Money:
+ PENCE [GB pound]   QUARTER [$]         DIME [$]            NICKEL [$]
+Conversion functions:
+ FAHRENH, CELSIUS   converting from øC to øF and vice versa

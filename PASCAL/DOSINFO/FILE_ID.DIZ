@@ -1,0 +1,8 @@
+DOSINFO v1.3
+Information about dos version, current
+date and time, graphic drive, BREAK and
+VERIFY settings, environment variables,
+free conventional memory, hard disk sizes
+and free space.
+New in v1.3: Output redirectable to file.
+FREEWARE by Balint Toth

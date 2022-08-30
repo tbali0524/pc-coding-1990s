@@ -1,0 +1,38 @@
+BIN = sort_svc.exe rsort.exe
+GEN = sort_cln.c sort_svc.c sort_xdr.c sort.h
+
+CC     = cl
+RPCCOM = rpcgen.exe
+
+LOPTS = /m /stack:8192
+LIBS  = ssunrpc.lib ssocket snetlib spc sconfig
+
+CFLAGS = -DMSC -DPCTCP -Ox -Gs
+
+all: $(GEN) $(BIN)
+
+sort_cln.c: sort.x
+	$(RPCCOM) -l sort.x >$@
+
+sort_svc.c: sort.x
+	$(RPCCOM) -s tcp sort.x >$@
+
+sort_xdr.c: sort.x
+	$(RPCCOM) -c sort.x >$@
+
+sort.h: sort.x
+	$(RPCCOM) -h sort.x >$@
+
+rsort.exe: rsort.obj sort_cln.obj sort_xdr.obj
+	link $**,$@,,$(LIBS) $(LOPTS);
+
+sort_svc.exe: sort_pro.obj sort_svc.obj sort_xdr.obj
+	link $**,$@,,$(LIBS) $(LOPTS);
+
+rsort.obj:	sort.h rsort.c
+
+sort_pro.obj:	sort.h sort_pro.c
+
+clean:
+	l:\pctcp\rpclab\rm -los $(GEN) *.obj *.map $(BIN)
+

@@ -1,0 +1,44 @@
+(* MODULA-2 Hazi feladat                                            *)
+(* (Termelo-fogyaszto problema n meretu pufferrel)                  *)
+(* T¢th B lint                                                      *)
+(* BME Informatika Szak, 3. evfolyam, 1. felev (1994-95), 3.tankor  *)
+(* E-mail: s4078tot@sun10.vsz.bme.hu                                *)
+(* 1994. november                                                   *)
+(* ================================================================ *)
+
+(* Korkoros puffer kezelo modul interfesz resze *)
+DEFINITION MODULE Buffer;
+
+CONST
+  MaxBufferSize = 64000;        (* maximalis buffermeret *)
+
+(* Inicializalas "Size" darab karakter mereture
+  IsDemoMode = TRUE eseten kepernyos megjelenites is,
+  es statusz kijelzes Put-nal es Get-nel *)
+PROCEDURE InitBuffer(Size: CARDINAL; IsDemoMode: BOOLEAN);
+
+(* Puffer megszuntetese, memoria felszabaditasa, ablak lecsukasa *)
+PROCEDURE DoneBuffer;
+
+(* TRUE, ha a puffer inicializalva van *)
+PROCEDURE IsInited(): BOOLEAN;
+
+(* TRUE, ha a puffer ures *)
+PROCEDURE IsEmpty(): BOOLEAN;
+
+(* TRUE, ha a puffer tele van *)
+PROCEDURE IsFull(): BOOLEAN;
+
+(* A puffer merete (hany karakter fer bele) *)
+PROCEDURE GetSize(): CARDINAL;
+
+(* Elemek szama a pufferben a lekerdezes pillanataban *)
+PROCEDURE GetItemNum(): CARDINAL;
+
+(* Elem berakasa a pufferbe; ha tele van, elalszik *)
+PROCEDURE Put(Item: CHAR);
+
+(* Elem kivetele a pufferbol; ha ures elalszik *)
+PROCEDURE Get(): CHAR;
+
+END Buffer.

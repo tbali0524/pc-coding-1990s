@@ -1,0 +1,205 @@
+
+  H C L I P
+  Hirdetotabla Command Language Interpreter
+
+  Felhasznaloi leiras
+======================================================================
+
+ GOOD-BYTE project
+ 2.csapat (Alm.A,Visi G.,Toth B.)
+ utolso modositas: 1994.V.16.
+
+ T.B.
+
+======================================================================
+TARTALOM:
+=========
+1. Osszefoglalo
+2. Parancssor parameterek
+3. Visszateresi kodok
+4. Hardverigeny
+
+======================================================================
+1. Osszefoglalo
+===============
+
+- A HCLIP program a hirdetotabla hardver-szimulator vezerlesere szolgal.
+    Bemenetkent egy specialis szintaktikaju szovegfile-t, a HCL forrasfile-t
+    var, mely egy hirdetotablan megjeleno musor leirasara szolgal.
+    Az interpreter a forrasfajl utasitasainak soronkenti ertelmezesevel es
+    vegrehajtasaval lefuttatja a kepernyon a musort, vagy annak egy
+    jelenetet. Futtatas az ESC billentyu megnyomasaval is megszakithato.
+
+- A HCL nyelv leirasa egy kulon file-ban talalhato (HCL.TXT)
+
+- Az interpreter a futtatas soran a szukseges eroforras file-okat
+    az aktualis konyvtarban keresi, hacsak nem adtunk meg eleresi utat
+    a HCL forrasfile-on belul az eroforras neve elott.
+
+- Az aktualis konyvtarban kell lennie az EGAVGA.BGI nevu file-nak is, enelkul
+    a program nem fut.
+
+- A programcsomaghoz tartozik egy felhasznaloi felulet is, mellyel
+    kenyelmesen es interaktivan szerkeszthetunk musort.
+    Az a program egy HCL forrasfile-t allit elo, melyet ez az interpreter
+    ertelmez. Ez esetben a HCL nyelv reszletes ismeretere nincs is szukseg.
+    Ettol fuggetlenul termeszetesen kozvetlenul is irhatunk HCL forrasfile-t
+    egy szovegszerkesztovel.
+
+======================================================================
+2. Parancssor parameterek
+=========================
+
+  A program inditasanak szintaxisa:
+
+    HCLIP.EXE  forrasfilename[.HCL] [jelenetnev] [opciok]
+
+- Az interpreter inditasakor mindenkeppen meg kell adni a futtatando
+    HCL forrasfile nevet, esetleg eleresi uttal, ha nem az aktualis
+    konyvtarban van. Alapertelmezett kiterjesztes: .HCL
+    Ezenkivul opcionalisan megadhato meg (legfeljebb) egy jelenet nev is,
+    ekkor csak az ilyen nevu jelenetet (SKETCH-et) futtatja le a program.
+    (Ha nem adunk meg jelenet nevet, akkor az osszes jelenet sorra kerul
+    olyan sorrendben, ahogy a forrasfile-ban szerepelnek.)
+    A jelenetnevnek, ha szerepel, a forrasfile neve utan kell kovetkeznie.
+
+- Meg lehet adni a hirdetotabla fizikai jellemzoit: a tabla meretet es a
+    szinek szamat. Ha valamelyiket nem adjuk meg, az alapertelmezett erteket
+    veszi az interpreter.
+      /X=xmeret	  Pixelek szama a hirdetotablan vizszintesen
+		    (xmeret egy 32 es 256 kozotti 8-cal oszthato egesz szam)
+                    (alapertelmezes: 128)
+      /Y=ymeret	  Pixelek szama a hirdetotablan fuggolegesen
+		    (ymeret egy 8 es 64 kozotti 8-cal oszthato egesz szam)
+                    (alapertelmezes: 64)
+      /C=colors	  Szinek szama a hirdetotablan
+		    (colors lehetseges ertekei: 2,4,6 vagy 8)
+                    (alapertelmezes: 8)
+
+- Megadhatok meg egyeb opciok is, melyek a program mukodesi modjat
+    befolyasoljak (az alabbi opciok egymastol fuggetlenul megadhatok):
+	/W	Varakozasos mod (WAIT)
+		  Minden olyan utasitas utan, mely valtoztat a hirdetotablan,
+		  a program egy billentyu lenyomasaig var.
+		  (E nelkul az opcio nelkul folyamatos lenne a musor futasa)
+                  Ha Enter-t nyomunk, akkor a tovabbi futas mar folyamatos.
+                  Esc-re minden uzemmodban megszakad a futas.
+	/L	Vegtelenitett mod (LOOP)
+		  A musor (vagy egyetlen jelenet eseten a jelenet) vegen
+		  elolrol kezdodik a futtatas. ESC billentyuvel lehet kilepni.
+	/Q	Csendes mod. (QUIET)
+		  A program semmilyen uzenetet nem ir a szoveges kepernyore,
+		  csak a visszateresi kod utal az esetleges hibara.
+	/D	Hibakeresesi mod. (DEBUG)
+		  A futtatas kozben a kepernyo also szelen mindig lathato a
+		  forrasfile utoljara vegrehajtott sora. Minden sor
+		  vegrehajtasa utan az interpreter egy billentyu lenyomasaig
+		  var. (Ilyenkor a /W kapcsolo figyelmen kivul hagyodik.)
+                  Ha Enter-t nyomunk, akkor a tovabbi futas mar folyamatos.
+
+- Az opciokat tetszoleges sorrendben, tetszoleges helyen (pl. forrasfile
+    neve elott) is megadhatunk. Kis es nagybetuk ugyanazok.
+    A bevezeto / jel helyett - jel is allhat.
+
+- Kotelezo a forrasfile nevenek megadasa. A tobbi opcio es a jelenetnev nem
+    kotelezo.
+
+- Ha nem megengedett parametert adunk meg, vagy valami hianyzik, akkor
+    (hacsak nem volt /Q) rovid angol ismertetot kapunk a kepernyore a
+    lehetseges parameterekrol. Ugyanez tortenik, ha a programot parameterek
+    nelkul hivjuk meg.
+
+- Pelda parameteratadasra:
+    HCLIP docdemo /x=96 /y=32 /c=6 -w intro /Q /L
+
+======================================================================
+3. Visszateresi kodok
+=====================
+
+- A program hibatlan mukodes eseten 0-as DOS ERRORLEVEL koddal ter vissza.
+    Ha musor futtatasa kozben barmilyen hiba merult fel, (szintaktikus
+    hiba a forrasfajlban, file olvasasi hiba, stb.), akkor valamilyen pozitiv
+    visszateresi kodot kapunk, mely utal a hiba termeszetere. Ha nem
+    "csendes" modban vagyunk (lasd. /Q kapcsolo), akkor rovid (angol)
+    hibauzenet is irodik a kepernyore a hibas sor sorszamaval.
+
+- A visszateresi kodok:
+    0		minden rendben
+    2		tul keves a memoria
+                  (Probalja meg kisebb tabla-meretekkel inditani a programot!
+                  Ha ez sem segit, hasznaljon kevesebb BITMAP es FONT
+                  eroforrast!)
+    3           hibas vagy hianyzo parancssor parameter (l. 2. pont)
+    4           a hardver-szimulator nem inicializalhato
+                (Lehetseges okok: nincs VGA kepernyo vagy nincs az aktualis
+                konyvtarban az EGAVGA.BGI nevu file.)
+
+    100         A felhasznalo felbeszakitotta az ertelmezo futasat (ESC)
+    101         Az utasitas verem tulcsordult (tul sok vezerlo utasitas,
+                  illetve INCLUDE van egymasba agyazva)
+    110         Hiba egy file muveletnel (egyeb file hibak eseten)
+    111         Hiba a file megnyitasanal
+    112         Tul hosszu sor (hosszabb, mint 128 karakter)
+    120         Szintaktikai hiba (altalanos hibak)
+    130         A file nem vart vege
+    131         Mar folyik egy jelenet vegrehajtasa
+                  (jeleneten belul ujabb SKETCH utasitas)
+    132         A jelenet nem vart vege
+    133         Meg nem kezdtunk el uj jelenetet (utasitas jeleneten kivul)
+    140         BITMAPS, FONTS, VARS szerepel egy vezerlo utasitas belsejeben
+    141         Mar volt BITMAPS resz (csak egyszer szerepelhet jelenetenkent)
+    142         Hibas bitmap sorszam (egyesevel kell 0-tol kezdve novekednie)
+    143         Mar volt FONTS resz (csak egyszer szerepelhet jelenetenkent)
+    144         Hibas font sorszam (egyesevel kell 0-tol kezdve novekednie)
+    150         Fenntartott szo (valtozokent akartuk deklaralni)
+    151         Beepitett eljaras (valtozokent akartuk deklaralni)
+    152         Mar deklaralt valtozo nev (ujra akartuk deklaralni)
+    160         Nem baloldali valtozo (ertekadas baloldalan csak INTEGER,
+                  INT_ARRAY es STRING allhat)
+    161         A tomb elemenek indexe kivul esik a deklaralt tartomanyon
+    162         Nem vagy nem megfelelo valtozo
+    170         Nem vart UNTIL
+    171         Nem vart END_WHILE
+    172         Hianyzik a TO (a FOR utan)
+    173         Nem vart END_FOR
+    174         Hianyzik a THEN (az IF utan)
+    175         Nem vart ELSE
+    176         Nem vart END_IF
+
+    201         szintaktikus hiba az egesz-kifejezesben
+    202         ismeretlen azonosito az egesz-kifejezesben
+    203         hianyzo zaro zarojel az egesz-kifejezesben
+    204         hianyzo zaro szogletes zarojel
+    205         hianyzo tombindex
+    206         hianyzo operandus az egesz-kifejezesben
+    207         hianyzo egesz-kifejezes
+    208         nem megengett tombindex
+    209         nullaval valo osztas
+
+    221         hianyzo nyito zarojel az eljarasnev utan
+    222         hianyzo zaro zarojel a parameterlista vegen
+    223         hianyzo parameter a beepitett eljarashivashoz
+    224         nem megengedett tipusu valtozo a parameterlistaban
+    225         az egesz tipusu parameter nem a megengedett intervallumba esik
+
+    231         bitmap eroforrast nem sikerult betolteni (pl. rossz filenev)
+    232         hibas bitmap eroforras file
+    233         font eroforrast nem sikerult betolteni (pl. rossz filenev)
+    234         hibas font eroforras file
+    235         tul sok bitmap (max. 100 lehet egy jelenetben)
+    236         tul sok font (max. 20 lehet egy jelenetben)
+    237         tul sok valtozo (max. 100 lehet egy jelenetben)
+    238         ujradefinialt valtozo
+
+======================================================================
+4. Hardverigeny
+===============
+
+- A program IBM PC/AT 286-os vagy avval kompatibilis gepen fut, MS-DOS
+    operacios rendszer alatt. EGA vagy VGA kepernyot igenyel.
+    Memoriaigenye nagyban fugg a futtatando musortol. Ha egy jelenetben
+    sok nagymeretu bitmap vagy font eroforras van, akkor a 640KB memoria
+    konnyen kevesnek bizonyulhat, mig egy minimalis musorhoz kis felbontas
+    mellett akar 200KB is elegendo lehet.
+
+======================================================================

@@ -1,0 +1,218 @@
+                   =========================================
+                                     STEFI
+                   =========================================
+
+                       GRAPH EDITOR AND ANALYSER PROGRAM
+                                  Version 1.0c
+
+                     Copyright (c) 1995-2001 by B lint T¢th
+
+                                 DOCUMENTATION
+
+ ============================================================================
+
+  Contents
+  --------
+  1. Introduction
+  2. Legal and Distribution Information
+  3. Getting Started
+  4. How to Get Online Help
+  5. Constraints
+  6. Revision History
+  7. Other Programs Available from the Same Author
+  8. Contacting the Author
+
+  1. Introduction
+  ---------------
+    STEFI is a Graph Editor and Analyser Program
+    You can edit, save, view graphs and analyse them. Report can be
+    generated about many details, e.g. weights, matrices, components,
+    Prufer code, min. cost path and tree, excentricity, center,
+    topologic order, strong components, circles and more.
+
+    The package is being distributed as FREEWARE.
+
+    The program runs on any IBM PC or compatible computer, under
+    MS-DOS 3.30 or newer operating system. It needs about 400 kbytes of free
+    (conventional) memory. The presence of a mouse can be helpful but not
+    mandatory.
+    The program also runs as a DOS application under Windows 95/98/ME/NT
+    but not under Windows XP as it has no DOS support.
+
+  2. Legal and Distribution Information
+  -------------------------------------
+    This program is being distributed as FREEWARE. It means that you may use
+    the program free of charge. However, if you insist to send donations, you
+    may do so by sending the choosen amount to my address. (See at the end of
+    this document.) Postcards are also kindly appreciated. Or just an email,
+    saying that you use (or used) this software.
+
+    The distribution files of the program package are:
+        FILE_ID .DIZ     Short program description
+        STEFI   .DOC     Program documentation/manual
+        STEFI   .EXE     Stefi - the executable program itself
+        STEFI   .TVH     Online binary helpfile (needed by STEFI.EXE)
+        DAG     .GRF     Sample graph file
+        DISTANCE.GRF     Sample graph file
+        FOREST  .GRF     Sample graph file
+        FULL    .GRF     Sample graph file
+        PRUFER  .GRF     Sample graph file
+        STRONGC .GRF     Sample graph file
+
+    The program package, which MUST include all the above files may be freely
+    copied and distributed. These files may be re-archived to better suit a
+    given distribution system, but the files may not be modified in any other
+    way. No distributor may charge more than $5 for the distribution of this
+    program. Uploading to BBSs or FTP sites or distribution on CD-ROMs are
+    accepted and encouraged.
+
+    The most recent version of this program is available on the Web at:
+      http://members.chello.hu/toth.balint/software
+
+  3. Getting Started
+  ------------------
+    STEFI uses Turbo Vision as a user interface, what is well-known for its
+    simple usage. On the top of the screen there is a menu bar. Click with the
+    mouse on any item to access a pull-down menu and then click on a menu item
+    to select it. You can also press F10 to access the menu bar and cursor
+    keys and Enter to navigate.
+    On the right side of the menu bar the filename of the currently opened
+    graph can be seen (or <untitled> if it hasn't been saved yet).
+    The bottom of the screen is the status bar which lists some of the
+    available hotkeys or a short description of the highlighted menu item.
+    The largest part of the screen (called desktop) is empty at startup. Later
+    the results of a graph analysis appears here in a separate window. You
+    can browse the result with the cursor keys, Page Up/Down or with the
+    vertical scroll bar on the right side of the window. You may have several
+    windows opened at the same time, you can move, resize or arrange them.
+
+    To see quickly, how STEFI works, press F3 or select Open from the
+    Graph menu. Select any saved graph (graph files have .GRF as extension)
+    and click on Ok. Press F7 or select Graph|View to see the graph. Press
+    any key to bring back the user interface then press F9 or select
+    Graph|Report to analyse it. A dialog box appears where you can choose what
+    information will be put in the report. The default is all available
+    information. Click on Ok and the report will be displayed on the screen
+    and saved to the disk at the same time. Now press F4 or select Graph|Edit
+    to modify the graph and re-create the report.
+    See the online documentation for more details about creating opening,
+    viewing, editing, saving and analysing graphs, moving resizing, arranging
+    windows, using dialog boxes, etc.
+
+  4. How to Get Online Help
+  -------------------------
+    STEFI contains context-sensitive online help. To get help on any menu item
+    or dialog box, simply press F1. A help screen appears describing the
+    current menu item or dialog box.
+    You can also access the help system via the Help menu. Choose the Contents
+    menu item as a starting point. To get help on using the help system itself,
+    choose the Help on Help menu item. Most of the help screens contains
+    links to other help screen. To jump to the referenced screen, just click
+    the portion of text with different color.
+    Also note, when a menu item is highlighted, the status bar (at the bottom
+    of the screen) gives a short description of that menu item.
+    The graph editor has no help screen, but all valid key-kombination is
+    listed on the left side of the screen.
+
+  5. Constraints
+  --------------
+    Currently the program supports graphs only with a limited size. The
+    upper limit of nodes is 26, mainly because it is convenient to label
+    a node by a single letter. This limit could be increased (and possible
+    will be increased in a future version) but I find it big enough for
+    practical situations, because editing larger graphs and seeing analysis
+    results of larger graphs are not easy.
+    Only one edge is allowed between two nodes. (Or two in case of a directed
+    graph: one in both directions.) No single loop (an edge with the same node
+    as start and endpoint) is allowed.
+    Here are the constraints:
+        Maximum number of nodes: 26
+        Maximum number of edges: 26 * 25 (The number of maximum possible edges
+                                          in a full directed 26-node graph.)
+        Maximum number of circles: 1000
+        Maximum number of cuts: 1000
+
+  6. Revision History
+  -------------------
+   - V1.0c (released on 8 November, 2001)
+     - Report can generate list of all circles in the graph.
+     - Fixed the infamous Borland Pascal bug that caused Runtime error
+        on machines with a too fast CPU.
+     - The package is now FREEWARE.
+
+   - V1.0b (released on 15 April, 1996)
+     - Maximum width of report can configured (80, 128 or 250 characters).
+       Useful for printing.
+
+   - V1.0a (released on 15 November, 1995)
+     - Fixed a minor bug which occured when reporting the minimal cost pathes
+       of graphs with more then 10 nodes.
+     - Another sample graph was added (FULL.GRF).
+     - The documentation has been also slightly changed. (See Chapter 5 and 6.)
+
+   - V1.0 (released on 1 September, 1995)
+     - Initial release.
+
+  7. Other Programs Available from the Same Author
+  ------------------------------------------------
+    There are some other freeware programs available from the same author:
+      - BALI'S CALC  - a Simple Scientific Calculator Program with
+                        ( ) x^y x! Pi Deg Rad Sin & Arcs, Ln Exp Mem
+                        Ran SCI BackSpace & more. DOS text mode,
+                        keyboard and/or mouse control (FREEWARE).
+      - FORMULA v2.0 - a Mathemathical Expression Evaluating Program
+                        with about 100 - 100 built-in contants and functions,
+                        and a constant and function editor, where you can
+                        define and save your own set. (FREEWARE)
+      - C64ASM v1.1a - a Commodore 64 (6510) Assembler Package for PC
+                        C64ASM is an assembler for 6510 CPU, but runs on PC
+                        Supports local & global symbols, math.expressions,
+                        .IF, .GOTO, .INCLUDE, .INCBIN, detailed report & more.
+                        C64DISA is a disassembler with hexa/ascii dumps.
+                        BAS2TXT converts a tokenized CBM file to textfile.
+                        PRG, T64 and P00 file format support. (FREEWARE)
+      - C64PROGS     - Two Commodore 64 programs written in pure assembly.
+                         - Bali's Sprite Designer 4.0
+                         - Bali's Character Editor 2.0
+                        In T64 tape file format. A C64 emulator (or a real C64)
+                        is required. (FREEWARE)
+      - C64SRC       - The assembly source files of C64PROGS in T64 tape file
+                        format. C64ASM v1.1 (or PROFI-ASS 64 on a real or
+                        emulated C64) is needed to compile them. (FREEWARE)
+      - DOSINFO v1.3 - Information about dos, disks and more (FREEWARE)
+      - PRIMES       - List of prime numbers and prime factorization (FREEWARE)
+      - ASCII TEXTFILE MASTER  - A commandline-driven ascii textfile processor
+                        with margins, automatic page breaks, header & footer,
+                        justify, include files, symbolic defines, print merge
+                        and more. Manual only in Hungarian. (FREEWARE)
+
+    These programs are available on the World Wide Web at
+      http://members.chello.hu/toth.balint/software
+
+  8. Contacting the Author
+  ------------------------
+    I am always glad when receiving any feedbacks about my programs.
+    If you are satisfied :-), please let me know.
+    If you find it useless :-(, poor or disappointing, or just made a
+    much better one, please don't hesitate to write me that, too.
+    If you find any bugs :-(, please report them to me.
+    If you have any suggestions for further improvements, I will
+    appreciate them as well.
+    If you are interested in getting the source code of this or other
+    programs made by me, contact me for details.
+
+    Contact me at:
+
+            B lint T¢th
+
+    Mail:   Galopp u. 12. VIII. 22.
+            H-1046 Budapest
+            HUNGARY
+            Europe
+
+    Phone:  (+36)-1-2300551 (This is a Hungarian call (GMT+0100) )
+
+    E-mail: toth.balint@chello.hu
+
+    Don't forget to visit my personal home page at:
+      http://members.chello.hu/toth.balint/bali

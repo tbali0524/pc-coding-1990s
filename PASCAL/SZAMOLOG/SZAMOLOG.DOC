@@ -1,0 +1,121 @@
+
+                 SZèMOL¢GêP c°mñ program kezelÇsi £tmutat¢ja
+
+A programot kÇsz°tette:
+                          T¢th B†lint
+
+                     C°m: 1039 Budapest, Kabar u. 7. V. 27.
+                 Tel/Fax: 187-3943
+                  E-mail: s4078tot@sun10.vsz.bme.hu
+              WWW ottlap: http://indigo2.vsz.bme.hu/bali/
+
+Ez a program SHAREWARE. Regisztr†ci¢s inform†ci¢khoz l†sd az angol nyelvñ
+v†ltozat REGISTER.DOC f†jlj†t!
+
+
+  1. BevezetÇs
+  ------------
+      A program egy egyszerñbb tudom†nyos zsebkalkul†tor szimul†ci¢ja.
+    KezelÇse egy szok†sos zsebsz†mol¢gÇp kezelÇsÇhez hasonl¢.
+      A program IBM PC kompatibilis sz†m°t¢gÇpen, MS-DOS 3.30 vagy e feletti
+    oper†ci¢s rendszeren, legal†bb 40 kbyte szabad mem¢ria esetÇn fut.
+      A program ind°t†sa: SZAMOLOG.EXE (Ha a megfelelì kînyvt†rban vagyunk.)
+    Ekkor a kÇpernyì baloldal†n megjelenik a sz†mol¢gÇp kÇpe, m°g jobboldalt
+    egy tîmîr kezelÇsi £tmutat¢ l†that¢.
+      A programb¢l az Esc vagy Alt X vagy Alt Q billentyñvel tudunk kilÇpni.
+
+  2. A "gombok" megnyom†sa
+  ------------------------
+      A sz†mol¢gÇp klaviat£r†j†n villog egy kurzor. Ezt tudjuk a kurzornyilak-
+    kal illetve a Home, End, Page Up, Page Down billentyñkkel mozgatni a
+    "gombok" kîzîtt. Ha Enter-t nyomunk, akkor az aktu†lis "gomb" lenyom¢dik.
+      Sok gomb kîzvetlen billentyñnyom†ssal is elÇrhetì:
+        sz†mjegyek, tizedespont, alapmñveletek ( + - * / ), z†r¢jelek (),
+        < = BackSpace,    C = C,  A = AC,  E = EXP, S = SCI, M = Mem, \ = +/-,
+        T = Tan, G = Lg,  L = Ln, R = Rad, D = Deg, ^ = x˝,  ˚ = ˚x,  ! = x!,
+        ¸ = x¸,  # = Ran, P = Pi, = = = (Ez ut¢bbi nem sorminta!)
+      Ha van egÇr, akkor azt is haszn†lhatjuk. (A bal gomb helyettes°ti az
+    Enter-t.) Az egÇrkurzor egy piros tÇglalap (monokr¢m monitoron fekete),
+    Çs a villog¢ lapos (billentyñzeti) kurzort¢l teljesen fÅggetlenÅl mozog.
+      Ha egy "gombot" megnyomunk (a h†rom m¢dszer b†rmelyikÇvel), akkor
+    a villog¢ (billentyñzeti) kurzor a gombra ugrik. (Ha nem lett volna ott.)
+
+  3. Sz†mok bevitele
+  ------------------
+      Sz†mok megadhat¢k tudom†nyos alakban (pl. -1.234E-18) vagy rîviden
+    (pl. 5). Az elìjelet a +/- gombbal lehet v†ltogatni, a mantissza Çs a
+    kitevì elv†laszt†s†ra az EXP szolg†l. Ha a kitevì pozit°v, akkor az
+    elìjel elhagyhat¢ (sìt automatikusan kirak¢dik), ha negat°v, akkor ezt a
+    - gombbal kell bevinni. Az utols¢ karakter a < (BackSpace) gombbal
+    tîrîlhetì. Az egÇsz kijelzìt a C tîrli.
+      Az †br†zolhat¢ sz†mtartom†ny kb. Ò1EÒ39 . A sz†mol†si pontoss†g 9-10
+    tizedes jegy, °gy ennÇl tîbbet nem Çrdemes megadni.
+      BeÇp°tett konstans a Pi, ez b†rmikor elìh°vhat¢ a megfelelì gombbal.
+
+  4. KÇtoperandus£ mñveletek
+  --------------------------
+      Az alapmñveleteken k°vÅl haszn†lhatunk mÇg hatv†nyoz†st Çs n. gyîkvon†st
+    is. Az ut¢bbi kettìnÇl a kitevìt (illetve hogy h†nyadik gyîk) a mñveleti
+    gomb ut†n kell be°rni, Çs az alapnak pozit°vnak kell lennie.
+      A mñveleti sorrend a matematikai precedenciaszab†lyoknak felel meg,
+    teh†t:
+        - hatv†nyoz†s Çs gyîkvon†s ( x¸, ¸˚x )
+        - szorz†s Çs oszt†s ( *  / )
+        - îsszead†s Çs kivon†s ( +  - )
+    Ez z†r¢jelezÇssel m¢dos°that¢. (Z†r¢jelek gyakolatilag tetszìleges
+    mÇlysÇgig egym†sba skatuly†zhat¢k.)
+
+  5. BeÇp°tett fÅggvÇnyek
+  -----------------------
+      NÇh†ny fontosabb fÅggvÇny is haszn†lhat¢. Ezek:
+        - SzîgfÅggvÇnyek (Sin, Cos, Tan)
+           (A paramÇter radi†nban Çrtendì! Ha fokban adjuk meg, v†ltsuk †t a
+           Rad gombbal!)
+        - Inverz szîgfÅggvÇnyek (ArcSin, ArcCos, ArcTan)  - jelîlÇs: -1
+           (Az eredmÇny radi†nban Çrtendì! ètv†lt†s fokra a Deg gombbal.)
+        - ètv†lt†s fokr¢l radi†nra (Rad)
+        - ètv†lt†s radi†nr¢l fokra (Deg)
+        - TermÇszetes alap£ logaritmus Çs exponenci†lis fÅggvÇny (Ln, e^x)
+        - T°zes alap£ logaritmus Çs exponenci†lis fÅggvÇny (Lg, -1)
+        - Faktori†lis (x!)
+        - NÇgyzetre emelÇs (x˝)
+        - NÇgyzetgyîk (˚x)
+        - Reciprok (1/x)
+        - EllentettkÇpzÇs (+/-)
+        - VÇletlensz†m 0.000 Çs 0.999 kîzîtt
+           (Ez ut¢bbi "fÅggvÇny" esetÇn a paramÇter lÇnyegtelen.)
+      Az †tadott paramÇter mindig a gomb megnyom†sakor a kijelzìn lÇvì sz†m.
+    Ha a fÅggvÇny nincs Çrtelmezve az adott argumentumra, akkor a gÇp
+    "Aritmetikai hiba!" Åzenetet ad. Ekkor nyomjuk meg az AC gombot, hogy
+    alap†llapotba †ll°tsuk vissza a sz†mol¢gÇpet.
+      Ugyancsak ilyen hibaÅzenetet kapunk, ha sz†mol†s kîzben t£lcsordul†s
+    lÇp fel. (Az †br†zolhat¢ sz†mtartom†ny kb. Ò1EÒ39)
+      (MegjegyzÇs: îsszead†s Çs kivon†s esetÇn elìfordulhat, hogy a program
+    t£lcsordul†skor Runtime Error hibaÅzenettel le is †ll. Ekkor ind°tsuk
+    el £jra.)
+
+  6. Mem¢ria
+  ----------
+      Egyszerre egy sz†m t†rol†s†ra van lehetìsÇg. Ha a mem¢ria nem Åres,
+    akkor ezt a sz†mkijelzì bal felsì sark†ban megjelenì M betÅ jelzi.
+      A mem¢ri†val kapcsolatos gombok:
+        - Mem : A kijelzìn lÇvì sz†m t†rol†sa a mem¢ri†ban. (Ha nulla,
+                  akkor a mem¢ria tîrlÇse)
+        - M+  : A kijelzìn lÇvì sz†m hozz†ad†sa a mem¢ria tartalm†hoz, az
+                  eredmÇny t†rol†sa a mem¢ri†ban
+        - RM  : Mem¢ria tartalm†nak kiir†sa
+      A mem¢ri†t sem a C, sem az AC gomb nem tîrli.
+
+  7. EgyÇb gombok
+  ---------------
+       =  : mñvelet elvÇgzÇse
+      AC  : Vissza†ll†s alaphelyzetbe. (A kijelzì Çs az eddig beadott
+              mñveletek tîrlìdnek.)
+      SCI : norm†l/tudom†nyos sz†mkijelzÇs v†lt†sa
+             - "Norm†l" m¢dban a sz†mok e lehetì legrîvidebb alakban °r¢dnak
+               ki. Exponenci†lis alakot csak 0.01-nÇl kisebb illetve 10^9-nÇl
+               nagyobb abszol£tÇrtÇkñ sz†mokn†l haszn†l.
+             - "Tudom†nyos m¢dban a kijelzÇs mindig exponenci†lis alak£, a
+               tizedes jegyek sz†ma fix. (Ezt az Åzemm¢dot a sz†mkijelzì
+               feletti "SCI" ki°r†s is jelzi.)
+      ESC : A program befejezÇse, visszalÇpÇs a Dos-ba.

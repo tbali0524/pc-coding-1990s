@@ -1,0 +1,141 @@
+script Bali;
+
+macro Proc
+  LeftOfLine;
+  InsertText("procedure ");
+  SetBlockBeg; 
+  RightOfLine;
+  SetBlockEnd;
+  InsertText("\nbegin\n\nend; { ");
+  CopyBlock;
+  RightOfLine;
+  InsertText(" }\n");
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  RightOfLine;
+  ToggleHideBlock;
+  FixScreenPos;
+end;
+
+macro Func
+  LeftOfLine;
+  InsertText("function ");
+  SetBlockBeg; 
+  RightOfLine;
+  SetBlockEnd;
+  InsertText("\nbegin\n\nend; { ");
+  CopyBlock;
+  RightOfLine;
+  InsertText(" }\n");
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  RightOfLine;
+  ToggleHideBlock;
+  FixScreenPos;
+end;
+
+macro CopyRight
+  LeftOfLine;
+  InsertText("\n\n");
+  LeftOfLine;
+  InsertText("program ");
+  SetBlockBeg;
+  RightOfLine;
+  SetBlockEnd;
+  InsertText(";\n\n");
+  LeftOfLine;
+  InsertText("begin\n\nend. { ");
+  CopyBlock;
+  RightOfLine;
+  InsertText(" }\n\n");
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  InsertText("{ ");
+  CopyBlock;
+  RightOfLine;
+  InsertText("  Copyright (c) 1995 by T¢th B lint }");
+  LeftOfLine;
+  CursorDown;
+  CursorDown;
+  CursorDown;
+  CursorDown;
+  CursorDown;
+  CursorRight;
+  CursorRight;
+  ToggleHideBlock;
+  FixScreenPos;
+end;
+
+macro Divider
+  InsertText("\n");
+  LeftOfLine;
+  InsertText("{==========================================================");
+  InsertText("=================}\n\n");
+  LeftOfLine;
+  FixScreenPos;
+end;
+
+
+macro IfStruct
+  InsertText("if  then\nbegin\n\nend { if }\nelse\nbegin\n\n");
+  InsertText("end; { else }\n");
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorRight;
+  CursorRight;
+  CursorRight;
+  FixScreenPos;
+end;
+
+macro TextReset
+  RightOfLine;
+  InsertText("\n\n");
+  LeftOfLine;
+  InsertText("  {$I-}\nReset(F)\n{$I+}\nif IOResult <> 0 then\n");
+  InsertText("begin\n\n  Exit;\n");
+  CursorLeft;
+  CursorLeft;
+  InsertText("end; { if IOResult }\n");
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorUp;
+  CursorLeft;
+  CursorLeft;
+  InsertText("var\n  F: Text;\n");
+  CursorLeft;
+  CursorLeft;
+  InsertText("begin\n  Assign(F,  );");
+  CursorLeft;
+  CursorLeft;
+  CursorLeft;
+  FixScreenPos;
+end;
+
+Ctrl-B+^P : Proc;
+Ctrl-B+^F : Func;
+Ctrl-B+^C : Copyright;
+Ctrl-B+^D : Divider;
+Ctrl-B+^I : IfStruct;
+Ctrl-B+^R : TextReset;

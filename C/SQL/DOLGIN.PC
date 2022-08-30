@@ -1,0 +1,114 @@
+#include "ansiterm.h"
+#include <stdio.h>
+#include <string.h>
+
+#define TRUE 1
+#define ENTER '\015'
+#define BS '\8'
+
+EXEC SQL INCLUDE sqlca;
+EXEC SQL BEGIN DECLARE SECTION;
+    char *username = "HALLG28";
+    char *password = "HALLG28";
+    VARCHAR dszsz[12];
+    VARCHAR dnev[31];
+    VARCHAR dcim[31];
+    VARCHAR dtel[8];
+    int tazont[100];
+    int bazon,tazon;
+    VARCHAR tcimt[100][31];
+    int bazont[100];
+    VARCHAR bnevt[100][31];
+EXEC SQL END DECLARE SECTION;
+
+main()
+{
+    int i;
+    char c;
+
+    EXEC SQL WHENEVER SQLERROR GOTO sqlerror;
+    EXEC SQL CONNECT :username IDENTIFIED BY :password;
+    puts("\nConnected to Oracle.\n");
+    EXEC SQL SELECT tazon, tcim INTO :tazont, :tcimt FROM telephely;
+    EXEC SQL SELECT bazon, bnev INTO :bazont, :bnevt FROM beosztas;
+    for (i = 0; i < 100; i++)
+    {
+	tcimt[i].arr[tcimt[i].len] = '\0';
+	bnevt[i].arr[bnevt[i].len] = '\0';
+    };
+    CLS;
+    printf(" Adja meg a szszot:");
+    gets(dszsz.arr);
+    dszsz.len = strlen(dszsz.arr);
+    printf("\n nev: ");
+    gets(dnev.arr);
+    dnev.len = strlen(dnev.arr);
+    printf("\n cim: ");
+    gets(dcim.arr);
+    dcim.len = strlen(dcim.arr);
+    printf("\n tel: ");
+    gets(dtel.arr);
+    dtel.len = strlen(dtel.arr);
+    printf("\n\n");
+
+    i=0;
+    CLS;
+    GOTOXY(1,0);
+    printf(" Valassza ki a telephelyet:\n\n");
+    printf(" Telep azonosito:  Telep cim:\n");
+    printf("     %2d          %20s",tazont[i],tcimt[i].arr);
+    while(TRUE){
+      c=getchar();
+      if(c=='b') break;
+      if(c=='v' && i!=0) {
+        i--;
+        GOTOXY(4,0);
+        CLREOL;
+        printf("     %2d          %20s\n",tazont[i],tcimt[i].arr);}
+      else if(c=='o'){
+        i++;
+        GOTOXY(4,0);
+        CLREOL;
+        printf("     %2d          %20s\n",tazont[i],tcimt[i].arr);}
+    };
+    tazon=tazont[i];
+    
+
+    printf("\n");
+    i=0;
+    CLS;
+    GOTOXY(1,0);
+    printf(" Valassza ki a beosztast:\n\n");
+    printf(" Beosztas azonosito:  Beosztas:\n");
+    printf("     %2d          %20s\n",bazont[i],bnevt[i].arr);
+    while(TRUE){
+      c=getchar();
+      if(c=='b') break;
+      if(c=='v' && i!=0) {
+        i--;
+        GOTOXY(4,0);
+        CLREOL;
+        printf("     %2d          %20s\n",bazont[i],bnevt[i].arr);}
+      else if(c=='o'){
+        i++;
+        GOTOXY(4,0);
+        CLREOL;
+        printf("     %2d          %20s\n",bazont[i],bnevt[i].arr);}
+    };
+    bazon=bazont[i];
+    EXEC SQL INSERT INTO dolgozo
+	VALUES (:dszsz, :dnev, :dcim, :dtel, :tazon, :bazon);
+
+    EXEC SQL COMMIT RELEASE;
+    CLS;
+    printf("Ok.\n");
+    exit(0);
+
+sqlerror:
+    CLS;
+    sqlca.sqlerrm.sqlerrmc[sqlca.sqlerrm.sqlerrml] = '\0';
+    printf("%s\n", sqlca.sqlerrm.sqlerrmc);
+    EXEC SQL WHENEVER SQLERROR CONTINUE;
+    EXEC SQL ROLLBACK RELEASE;
+    exit(1);
+};

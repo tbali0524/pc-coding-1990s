@@ -1,0 +1,214 @@
+                   =========================================
+                                  BALI'S CALC
+                   =========================================
+
+                     SIMPLE SCIENTIFIC CALCULATOR PROGRAM
+
+                       Copyright (c) 1995 by B lint T¢th
+
+                                 DOCUMENTATION
+
+ ============================================================================
+
+  Contents
+  --------
+  1. Introduction
+  2. Pressing the "Buttons"
+  3. Entering Numbers
+  4. Operators with Two Arguments
+  5. Built-in Functions
+  6. Memory
+  7. Other Buttons
+  8. Other Programs Available from the Same Author
+  9. Contacting the Author
+
+
+  1. Introduction
+  ---------------
+    BALI'S CALC is a simple scientific calculator program.
+
+    The program runs on any IBM PC or compatible computer, under
+    MS-DOS 3.30 or newer operating system. It needs about 40 kbytes of free
+    (conventional) memory. The presence of a mouse can be helpful but not
+    mandatory.
+    The program also runs as a DOS application under Windows 95/98/ME/NT
+    but not under Windows XP as it has no DOS support.
+
+    The package is being distributed as FREEWARE.
+
+    To start the program type BALICALC and press enter. (If it is in the
+    current directory or in a directory listed in the PATH environmental
+    variable. Otherwise specify full pathname before the programname.)
+    On the left side of the screen a calculator (with display and buttons)
+    appears, while on the right side you can see a short help about the
+    program.
+    To quit press Esc or Alt-X or Alt-Q.
+
+
+  2. Pressing the "Buttons"
+  -------------------------
+    The cursor is blinking on the calculator's button panel. You can move
+    the cursor above the "buttons" using the arrow keys, and the Home, End,
+    Page Up and Page Down keys. If you press Enter, the current button
+    will be pressed.
+    Many buttons have a hotkey, so you can activate them by a single keypress
+    on the computer's keyboard. These hotkeys are:
+      < = BackSpace,    C = C,  A = AC,  E = EXP, S = SCI, M = Mem, \ = +/-,
+      T = Tan, G = Lg,  L = Ln, R = Rad, D = Deg, ^ = xý,  û = ûx,  ! = x!,
+      ü = xü,  # = Ran, P = Pi, = = = (This last one isn't a joke!)
+    You can also use a mouse, if you have one. The left mouse-button activates
+    a calculator's button (like Enter). The mouse-cursor, a red rectangle
+    moves independently from the blinking (thin) cursor.
+    If you press a calculator button (using any of these three methods),
+    the blinking (keyboard) cursor will jump above that button.
+
+
+  3. Entering Numbers
+  -------------------
+    Numbers can be given in scientific form (e.g. -1.234E-18) or shortly
+    (e.g. 5). The sign can be toggled with +/- button. Use the EXP button
+    to enter an exponent. If the exponent is positive then its sign can be
+    left out (it appears automatically), if negative then use the - button.
+    The < (BackSpace) button erases the last character (digit), the C button
+    clears the whole display.
+    The usable number range is about ñ1Eñ39, the computing accuracy is 9-10
+    digit.
+    Pi is a built in constant, it can be recalled anytime by pressing the
+    appropriate (Pi) button.
+
+
+  4. Operators with Two Arguments
+  --------------------------------
+    Beside the basic operators ( + - * / ) you can use n.-th power and root.
+    By these last two, the exponent must be given after the operator and the
+    base must be positive.
+    The precedence is usual (as in the mathemathics):
+        - power and root ( xü, üûx )
+        - multiplication and division ( * / )
+        - addition and subtraction ( + -)
+    This order of computing can be changed by using parentheses.
+    Parentheses can be embedded practically in any depth.
+
+
+  5. Built-in Functions
+  ---------------------
+    Some basic functions are available:
+        - Trigonometric functions (Sin, Cos, Tan)
+            (Operand must be in radian. If you enter it in degrees, press
+            the Rad button to convert)
+        - Inverse trigonometric functions (ArcSin, ArcCos, ArcTan)
+            (Notation on the buttons: -1)
+            (The result is in radians)
+        - Converting from degrees to radians (Rad)
+        - Converting from radians to degrees (Deg)
+        - Natural logarithm and exponential function (Ln, e^x)
+        - Base ten logarithm and exponential (10^x) function (Lg, -1)
+        - Factorial (x!)
+        - Square (xý)
+        - Square root (ûx)
+        - Reciprocal (1/x)
+        - Sign changing (+/-)
+        - Random number between 0.000 and 0.999
+            (By this function the operand is ignored)
+    The operand is always the number on the display. If the operand is out
+    of the function's input range, an "Arithmetic error!" message appears.
+    In that case press the AC button to reset the calculator.
+    The same error message appears, if an overflow occurs. (The valid
+    number range is about ñ1Eñ39)
+    (Note: by addition and subtraction the program may stop with a Runtime
+    error message if an overflow occured. In this case simply restart the
+    calculator program.)
+
+
+  6. Memory
+  ---------
+    One number can be stored at one time. If the memory is not empty, an M
+    can be seen on the upper left corner of the display.
+    The memory manipulating buttons:
+        - Mem : Stores the number on the display in the memory.
+                  (If it is 0, it clears the memory.)
+        - M+  : Adds the number on the display to the memory content and
+                  store the result in the memory.
+        - RM  : Shows the content of the memory on the screen.
+    The C and the AC buttons don't clear the memory.
+
+
+  7. Other Buttons
+  ----------------
+       =  : Executes the previous operation
+      AC  : Resets the calculator
+              (Display and previous operations are cleared)
+      SCI : Toggles between normal and scientific notation
+             - In "normal" mode numbers are displayed in the shortest form.
+               Exponents are used only if number is less than 0.01 or
+               greater than 10^9 (without signs)
+             - In "scientific" mode the exponent is always displayed and
+               the number of the decimal digits is constant.
+               (In this mode "SCI" can be seen on the display.)
+      ESC : Quits from program, returns to DOS.
+
+
+  8. Other Programs Available from the Same Author
+  ------------------------------------------------
+    There are some other freeware programs available from the same author:
+      - FORMULA v2.0 - a Mathemathical Expression Evaluating Program
+                        with about 100 - 100 built-in contants and functions,
+                        and a constant and function editor, where you can
+                        define and save your own set. (FREEWARE)
+      - STEFI v1.0c  - a Graph Editor and Analyser Program
+                        where you can edit mathemathical graphs and analyse
+                        them in detail: matrices, components, Prufer code,
+                        minimal cost path and tree, excentricity, center,
+                        topologic order, strong components & more. (FREEWARE)
+      - C64ASM v1.1a - a Commodore 64 (6510) Assembler Package for PC
+                        C64ASM is an assembler for 6510 CPU, but runs on PC
+                        Supports local & global symbols, math.expressions,
+                        .IF, .GOTO, .INCLUDE, .INCBIN, detailed report & more.
+                        C64DISA is a disassembler with hexa/ascii dumps.
+                        BAS2TXT converts a tokenized CBM file to textfile.
+                        PRG, T64 and P00 file format support. (FREEWARE)
+      - C64PROGS     - Two Commodore 64 programs written in pure assembly.
+                         - Bali's Sprite Designer 4.0
+                         - Bali's Character Editor 2.0
+                        In T64 tape file format. A C64 emulator (or a real C64)
+                        is required. (FREEWARE)
+      - C64SRC       - The assembly source files of C64PROGS in T64 tape file
+                        format. C64ASM v1.1 (or PROFI-ASS 64 on a real or
+                        emulated C64) is needed to compile them. (FREEWARE)
+      - DOSINFO v1.3 - Information about dos, disks and more (FREEWARE)
+      - PRIMES       - List of prime numbers and prime factorization (FREEWARE)
+      - ASCII TEXTFILE MASTER  - A commandline-driven ascii textfile processor
+                        with margins, automatic page breaks, header & footer,
+                        justify, include files, symbolic defines, print merge
+                        and more. Manual only in Hungarian. (FREEWARE)
+
+    These programs are available on the World Wide Web at
+      http://members.chello.hu/toth.balint/software
+
+  9. Contacting the Author
+  ------------------------
+    I am always glad when receiving any feedbacks about my programs.
+    If you are satisfied :-), please let me know.
+    If you find it useless :-(, poor or disappointing, or just made a
+    much better one, please don't hesitate to write me that, too.
+    If you find any bugs :-(, please report them to me.
+    If you have any suggestions for further improvements, I will
+    appreciate them as well.
+    If you are interested in getting the source code of this or other
+    programs made by me, contact me for details.
+
+    Contact me at:
+
+            B lint T¢th
+
+    Mail:   Galopp u. 12. VIII. 22.
+            H-1046 Budapest
+            HUNGARY
+            Europe
+
+    Phone:  (+36)-1-2300551 (This is a Hungarian call (GMT+0100) )
+
+    E-mail: toth.balint@chello.hu
+
+    Don't forget to visit my personal home page at:
+      http://members.chello.hu/toth.balint/bali

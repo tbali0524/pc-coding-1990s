@@ -1,0 +1,68 @@
+
+program:
+  modszervalasztas;
+  IF valasz = "m"
+  THEN bekeradat
+  ELIF valasz = "v"
+  THEN veletlen
+  FI;
+  FOR k FROM 2 UPTO n
+  REP
+    FOR j FROM n DOWNTO k
+    REP
+      IF a [j - 1] > a [j]
+      THEN csere
+      FI
+    ENDREP
+  ENDREP;
+  kiirsorozat.
+
+  modszervalasztas:
+    LET n = 6;
+    INT VAR k, j, verem;
+    TEXT VAR valasz;
+    ROW n INT VAR a;
+    put (" Buborekos rendezes");
+    line;
+    put ("********************");
+    line (2);
+    put ("Veletlenszamok vagy megadott szamok? (v/m)  ");
+    REP get (valasz)
+    UNTIL valasz = "m" OR valasz = "v"
+    ENDREP.
+  
+  bekeradat:
+    put ("Kerem a sorozatot!");
+    line;
+    FOR k FROM 1 UPTO n
+    REP
+      put (k);
+      put (". elem? ");
+      get (a [k])
+    ENDREP.
+  
+  veletlen:
+    line;
+    put ("A rendezettlen sorozat");
+    FOR k FROM 1 UPTO n
+    REP
+      line;
+      a [k] := choose128;
+      put (a [k])
+    ENDREP.
+  
+  csere:
+    verem := a [j - 1];
+    a [j - 1] := a [j];
+    a [j] := verem.
+  
+  kiirsorozat:
+    line;
+    put ("A rendezett sorozat:");
+    FOR k FROM 1 UPTO n
+    REP
+      line;
+      put (a [k])
+    ENDREP.
+  
+

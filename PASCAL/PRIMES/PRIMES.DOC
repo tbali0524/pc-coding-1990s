@@ -1,0 +1,155 @@
+                 =============================================
+                                    PRIMES
+                 =============================================
+
+          PRIME LIST AND PRIME FACTORIZATION LIST GENERATOR PROGRAM
+
+                       Copyright (c) 1995 by B lint T¢th
+
+                                 DOCUMENTATION
+
+ ============================================================================
+
+  Contents
+  --------
+  1. Introduction
+  2. Legal Notice
+  3. Usage
+  4. Other Programs Available from the Same Author
+  5. Contacting the Author
+
+  1. Introduction
+  ---------------
+    PRIMES can generate the list of the prime numbers in a textfile.
+    It can generate the prime factorization (e.g. 644 = 2 * 2 * 7 * 23 )
+    of the numbers in another textfile. These textfiles can be printed
+    or searched later by any ascii editor.
+    The upper limit of the lists can be given. (Maximum is 60000)
+
+    The program runs on any IBM PC or compatible computer, under
+    MS-DOS 3.30 or newer operating system.
+    The program also runs as a DOS application under Windows 95/98/ME/NT
+    but not under Windows XP as it has no DOS support.
+    It needs about 90 kbytes of free (conventional) memory.
+
+  2. Legal Notice
+  ---------------
+    This program is being distributed as FREEWARE. It means that you may use
+    the program free of charge.
+
+    The distribution files are:
+        FILE_ID .DIZ     Short program description
+        PRIMES  .DOC     Program documentation
+        PRIMES  .EXE     PRIMES executable program
+
+    The program package, which MUST include all the above files may be freely
+    copied and distributed. These files may be re-archived to better suit a
+    given distribution system, but the files may not be modified in any other
+    way. No distributor may charge more than $5 for the distribution of this
+    program. Uploading to BBSs or FTP sites or distribution on CD-ROMs are
+    accepted and encouraged.
+
+  3. Usage
+  --------
+    If you start the program without arguments you will get a brief help
+    about the available options.
+    Options can be given preceded by / or -
+    Lower and upper case letters mean the same.
+    Multiple options can be given in a line separated by one or more spaces.
+    The order of options is unsignificant.
+
+    Options are:
+
+    /?            shows this help
+    /n:number     greatest examined number ( 1 < N < 60000 )  default is 1000
+    /p            list of the prime numbers between 1 and N
+                      to the file PRIMES.TXT
+    /p:filename   same as /p but to the file "filename"
+    /f            prime factorization of the numbers between 1 and N
+                      to the file FACTOR.TXT
+    /f:filename   same as /f but to the file "filename"
+
+    Examples:
+      PRIMES /P           writes the list of the prime numbers
+                            between 1 and 1000 to the file PRIMES.TXT
+      PRIMES /N:500 /F    writes the prime factorization of the numbers
+                            between 1 and 500 to the file FACTOR.TXT
+      PRIMES /P /F:F.TXT  writes the list of the prime numbers
+                            between 1 and 1000 to the file PRIMES.TXT
+                            and writes the prime factorization of the numbers
+                            between 1 and 1000 to the file F.TXT
+
+    If the given upper limit (/n option) is high, building the listfiles can
+    take some time and the generated files are quite long.
+    (PRIMES /N:60000 /P /F took less than 1 minute on a 486DX2/66 with a disk
+    cache program and about 1.5 minutes without cache on the same machine.
+    The generated FACTOR.TXT was about 1.4 megabytes.)
+
+  4. Other Programs Available from the Same Author
+  ------------------------------------------------
+    There are some other shareware and freeware programs available from
+    the same author:
+      - BALI'S CALC  - a Simple Scientific Calculator Program with
+                        ( ) x^y x! Pi Deg Rad Sin & Arcs, Ln Exp Mem
+                        Ran SCI BackSpace & more. DOS text mode,
+                        keyboard and/or mouse control (FREEWARE).
+      - FORMULA v2.0 - a Mathemathical Expression Evaluating Program
+                        with about 100 - 100 built-in contants and functions,
+                        and a constant and function editor, where you can
+                        define and save your own set. (FREEWARE)
+      - STEFI v1.0c   - a Graph Editor and Analyser Program
+                        where you can edit mathemathical graphs and analyse
+                        them in detail: matrices, components, Prufer code,
+                        minimal cost path and tree, excentricity, center,
+                        topologic order, strong components & more. (FREEWARE)
+      - C64ASM v1.1a  - a Commodore 64 (6510) Assembler Package for PC
+                        C64ASM is an assembler for 6510 CPU, but runs on PC
+                        Supports local & global symbols, math.expressions,
+                        .IF, .GOTO, .INCLUDE, .INCBIN, detailed report & more.
+                        C64DISA is a disassembler with hexa/ascii dumps.
+                        BAS2TXT converts a tokenized CBM file to textfile.
+                        PRG, T64 and P00 file format support. (FREEWARE)
+      - C64PROGS     - Two Commodore 64 programs written in pure assembly.
+                         - Bali's Sprite Designer 4.0
+                         - Bali's Character Editor 2.0
+                        In T64 tape file format. A C64 emulator (or a real C64)
+                        is required. (FREEWARE)
+      - C64SRC       - The assembly source files of C64PROGS in T64 tape file
+                        format. C64ASM v1.1 (or PROFI-ASS 64 on a real or
+                        emulated C64) is needed to compile them. (FREEWARE)
+      - DOSINFO v1.3 - Information about dos, disks and more (FREEWARE)
+      - ASCII TEXTFILE MASTER  - A commandline-driven ascii textfile processor
+                        with margins, automatic page breaks, header & footer,
+                        justify, include files, symbolic defines, print merge
+                        and more. Manual only in Hungarian. (FREEWARE)
+
+    These programs are available on the World Wide Web at
+      http://members.chello.hu/toth.balint/software
+
+  8. Contacting the Author
+  ------------------------
+    I am always glad when receiving any feedbacks about my programs.
+    If you are satisfied :-), please let me know.
+    If you find it useless :-(, poor or disappointing, or just made a
+    much better one, please don't hesitate to write me that, too.
+    If you find any bugs :-(, please report them to me.
+    If you have any suggestions for further improvements, I will
+    appreciate them as well.
+    If you are interested in getting the source code of this or other
+    programs made by me, contact me for details.
+
+    Contact me at:
+
+            B lint T¢th
+
+    Mail:   Galopp u. 12. VIII. 22.
+            H-1046 Budapest
+            HUNGARY
+            Europe
+
+    Phone:  (+36)-1-2300551 (This is a Hungarian call (GMT+0100) )
+
+    E-mail: toth.balint@chello.hu
+
+    Don't forget to visit my personal home page at:
+      http://members.chello.hu/toth.balint/bali

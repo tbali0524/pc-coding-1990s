@@ -1,0 +1,1015 @@
+;{******************************************}
+;{                                          }
+;{        S T E F I   - gr fprogram         }
+;{                                          }
+;{    Copyright (c) 1995 by T¢th B lint     }
+;{   Borland Pascal 7.0, Turbo Vision 2.0   }
+;{                                          }
+;{******************************************}
+
+; Help Text - English
+;
+
+.topic NoContext=0
+
+ Welcome to STEFI! Ü
+  ßßßßßßßßßßßßßßßßßß
+
+Press Esc to close this window
+or choose one of the following topics:
+
+  {How to Use Help:HelpUsingHelp}
+  {Help Contents:HelpContents}
+
+; ==========================================================================
+.topic HelpContents=1000
+ ÉÍÍÍÍÍÍÍÍÍÍÍÍİ HELP CONTENTS ŞÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+ º {How to Use Help:HelpUsingHelp}                          ºÛ
+ º {Menu commands:Menu}                            ºÛ
+ º {Using the keyboard:Keyboard}                       ºÛ
+ º {Text Viewer:TextViewer}                              ºÛ
+ º {Graph Editor:EditGraph}                             ºÛ
+ º {Error Messages:ErrorMessages}                           ºÛ
+ ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼Û
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+; ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶Û
+; º Graphs                                   ºÛ
+; º Glossary                                 ºÛ
+; ==========================================================================
+.topic HelpUsingHelp
+ How to Use Online Help Ü
+  ßßßßßßßßßßßßßßßßßßßßßßß
+(To read all of this screen, scroll down.)
+
+You can use the online Help from
+the Help menu or via hot keys.
+
+ ÚÄÄÄÄÄÄÄÄ¿  Wherever you are in the program,
+ ³   F1   ³  you can press F1 to see a Help
+ ÀÄÄÄÄÄÄÄÄÙ  screen about the menu command
+             or dialog-box item that's
+             currently active.
+
+This context-sensitive Help comes up
+in a Help window:
+
+ ÚÄÄÄÄÄ¿  In many cases the help text doesn't
+ ³Arrow³  fit in the Help window. You can use
+ ÀÄÄÄÄÄÙ  the arrow keys to scroll through the
+          text.
+
+ ş Most Help screens have some highlighted
+   items ("Help keywords") on them that lead
+   to another Help screen.
+
+ ÚÄÄÄÄÄ¿  You can use Tab to select the next
+ ³ Tab ³  Help keywords, then press Enter.
+ ÀÄÄÄÄÄÙ  (Shift-Tab jumps backwards.)
+
+ ÚÄ[ğ)Ä¿  If you're using a mouse, just
+ ³Mouse³  double-click the Help keyword
+ ÀÄÄÄÄÄÙ  you're interested in.
+
+Choose one of these Help keywords to find out
+how to:
+
+  {Go to the Help Contents screen:Contents}
+  {Get help on using Help:UsingHelp}
+
+; ==========================================================================
+;                           MENUPONTOK
+; ==========================================================================
+.topic Menu
+ Menu commands Ü
+  ßßßßßßßßßßßßßß
+The top-down menus are located on the top of the screen. You can activate
+them by pressing F10 or clicking one of them.
+
+STEFI has the following five menus:
+
+  {File}
+  {Graph}
+  {Options}
+  {Window}
+  {Help}
+
+; ==========================================================================
+.topic File=1100
+ File  (Alt+F) Ü
+  ßßßßßßßßßßßßßß
+The File menu offers choices for opening textfiles, printing textfiles,
+changing directories, shelling to DOS and exiting the program.
+
+ {Open Textfile...:OpenText}
+ {Print}
+ {Change Dir:ChangeDir}
+ {DOS Shell:DosShell}
+ {Exit}
+
+; ==========================================================================
+.topic OpenText
+ Graph³Open Textfile... Ü
+  ßßßßßßßßßßßßßßßßßßßßßßß
+The Open Textfile command displays the {Open a File:OpenDBox} dialog box.
+In this dialog box you select the textfile you want
+to open in a {View window:ViewWindow}.
+
+; ==========================================================================
+.topic Print
+ File³Print Ü
+  ßßßßßßßßßßß
+The Print command sends the textfile or report in the active View window
+to the printer.
+
+; ==========================================================================
+.topic ChangeDir
+ File³Change Dir... Ü
+  ßßßßßßßßßßßßßßßßßßß
+The Change Dir command brings up the {Change Directory:ChDirDBox}
+dialog box, in which you can change the current directory.
+
+; ==========================================================================
+.topic DosShell
+ File³DOS Shell Ü
+  ßßßßßßßßßßßßßßß
+With the DOS Shell command, you can leave the program temporarily
+to perform a DOS command or run another program.
+
+To return to this program, type EXIT at the DOS prompt.
+
+; ==========================================================================
+.topic Exit
+ File³Exit  (Alt+X) Ü
+  ßßßßßßßßßßßßßßßßßßß
+The Exit command terminates this program.
+
+; ==========================================================================
+.topic Graph=1200
+ Graph  (Alt+G) Ü
+  ßßßßßßßßßßßßßßß
+The Graph menu offers choices for creating new graphs,
+opening graphs from file, saving graphs to file, viewing and editing graph,
+creating a report from analysis results and showing results graphically.
+
+ {New}           {Open...:Open}
+ {Save}          {Save As...:SaveAs}
+ {View}          {Edit}
+ {Report...:Report}      {Show...:Show}
+
+; ==========================================================================
+.topic New
+ Graph³New Ü
+  ßßßßßßßßßß
+The New command creates a new, empty graph.
+
+If the previous graph is unsaved, a dialog box appears asking if you want
+to save it.
+
+Use {Graph³Edit:Edit} to edit the new graph.
+
+; ==========================================================================
+.topic Open
+ Graph³Open...  (F3) Ü
+  ßßßßßßßßßßßßßßßßßßßß
+The Open command displays the {Open a File:OpenDBox} dialog box. In
+this dialog box you select the graph file you want to open.
+
+If the previous graph is unsaved, a dialog box appears asking if you want
+to save it.
+
+; ==========================================================================
+.topic Save
+ Graph³Save  (F2) Ü
+  ßßßßßßßßßßßßßßßßß
+The Save command saves the current graph in a file.
+
+If the graph is 'untitled', the {Save File As:SaveAsDBox}
+dialog box appears so you can give a name to the file and save it under that
+name.
+
+; ==========================================================================
+.topic SaveAs
+ Graph³Save As... Ü
+  ßßßßßßßßßßßßßßßßß
+The Save As command opens the {Save File As:SaveAsDBox} dialog box,
+where you can save the current graph under a different name, in a different
+directory, or on a different drive.
+
+You can enter the new file name, including the drive and directory,
+and click or choose OK.
+
+; ==========================================================================
+.topic View
+ Graph³View  (F7) Ü
+  ßßßßßßßßßßßßßßßßß
+The View command shows the current graph on the graphics screen.
+When finished, press any key to exit the Graph Viewer.
+
+; ==========================================================================
+.topic Edit
+ Graph³Edit  (F4) Ü
+  ßßßßßßßßßßßßßßßßß
+The Edit command starts the {Graph Editor:EditGraph}, where you can edit
+the current graph.
+When finished with the editing, press Esc to exit the Graph Editor.
+
+; ==========================================================================
+.topic Report
+ Graph³Report...  (F9) Ü
+  ßßßßßßßßßßßßßßßßßßßßßß
+The Report command opens the {Report:ReportDBox} dialog box,
+where you can choose what aspects of the current graph are to be analysed.
+
+After you have pressed the Ok button, the computer analyse,
+what you have chosen, creates a report, and opens a {View window:ViewWindow}
+where you can see the results.
+
+; ==========================================================================
+.topic Show
+ Graph³Show... (F8) Ü
+  ßßßßßßßßßßßßßßßßßßß
+The Show command opens the {Show:ShowDBox} dialog box,
+where you can choose what aspects of the current graph to show.
+
+After you have pressed the Ok button, the computer analyse,
+what you have chosen, and shows the results on the graphic screen.
+When finished, press any key to exit the Graph Viewer.
+
+; ==========================================================================
+.topic Options=1300
+ Options  (Alt+O) Ü
+  ßßßßßßßßßßßßßßßßß
+The Options menu contains commands that let you change various default
+settings.
+
+The available commands are:
+
+ {Mouse...:Mouse}
+ {Colors...:Colors}
+
+; ==========================================================================
+.topic Mouse
+ Options³Mouse... Ü
+  ßßßßßßßßßßßßßßßßß
+The Mouse command brings up the {Mouse Options:MouseDBox}
+dialog box, where you can set various options that control how your
+mouse works, including:
+
+ ş how fast a double-click is
+ ş which mouse button (right or left) is
+   active
+
+; ==========================================================================
+.topic Colors
+ Options³Colors... Ü
+  ßßßßßßßßßßßßßßßßßß
+The Colors item brings up the {Colors dialog:ColorsDBox} box,
+where you can customize the colors of the display.
+
+; ==========================================================================
+.topic Window=1400
+ Window  (Alt+W) Ü
+  ßßßßßßßßßßßßßßßß
+The Window menu contains commands for manipulating windows.
+
+Most of the windows in this program have all the standard window
+elements, like scroll bars, a close box, and zoom icons.
+
+For more about windows and their elements, see the
+{Window Basics:WindowBasics} Help screen.
+
+ Window-management commands
+ ßßßßßßßßßßßßßßßßßßßßßßßßßß
+ {Tile}          {Cascade}
+ {Close All:CloseAll}     {Close}
+ {Size/Move:Resize}     {Zoom}
+ {Next}          {Previous:Prev}
+
+; ==========================================================================
+.topic Tile
+ Window³Tile Ü
+  ßßßßßßßßßßßß
+Choose Window³Tile to tile all open windows on the desktop.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ ÉÍÍÍÍÍÍÍÍÍÍÍÍ1ÍÍ»ÚÄÄÄÄÄÄÄÄÄÄÄÄ2ÄÄ¿ ³
+ ³ º               º³               ³ ³
+ ³ º               º³               ³ ³
+ ³ º               º³               ³ ³
+ ³ º               º³               ³ ³
+ ³ ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ ³
+ ³ ÚÄÄÄÄÄÄÄÄÄÄÄÄ3ÄÄ¿ÚÄÄÄÄÄÄÄÄÄÄÄÄ4ÄÄ¿ ³
+ ³ ³               ³³               ³ ³
+ ³ ³               ³³               ³ ³
+ ³ ³               ³³               ³ ³
+ ³ ³               ³³               ³ ³
+ ³ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+             Tiled Windows
+
+; ==========================================================================
+.topic Cascade
+ Window³Cascade Ü
+  ßßßßßßßßßßßßßßß
+Choose Window³Cascade to stack all open windows on the desktop.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ1Ä¿
+ ³ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ2Ä¿
+ ³³ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ3Ä¿
+ ³³³ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ4Í»
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ÀÀÀÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+        Cascaded Windows
+
+; ==========================================================================
+.topic CloseAll
+ Window³Close All Ü
+  ßßßßßßßßßßßßßßßßß
+
+Choose this command to close all open windows.
+
+; ==========================================================================
+.topic Resize
+ Window³Size/Move  (Ctrl+F5) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+Choose this command to change the size or position of the active
+window.
+
+ ÜÜÜÜÜÜ
+  Size
+ ßßßßßß
+If you press Shift while you use the arrow keys, you can change
+the size of the active window. When it's at the size you want, press Enter.
+
+If a window has a Resize corner, you can drag that corner to
+resize the window.
+
+ ÜÜÜÜÜÜ
+  Move
+ ßßßßßß
+When you choose Window³Size/Move, the active window moves in
+response to the arrow keys. Once you've moved the window to where
+you want it, press Enter.
+
+You can also move a window by dragging its title bar with the
+mouse.
+
+; ==========================================================================
+.topic Zoom
+ Window³Zoom  (F5) Ü
+  ßßßßßßßßßßßßßßßßßß
+Choose Zoom to resize the active window to the maximum size.
+
+If the window is already zoomed, you can choose this command to
+restore it to its previous size.
+
+You can also double-click anywhere on the window's title bar
+(except where an icon appears), or on the Zoom box in the window's
+upper right corner, to zoom or unzoom the window.
+
+; ==========================================================================
+.topic Next
+ Window³Next  (F6) Ü
+  ßßßßßßßßßßßßßßßßßß
+Choose Next to make the next window active, which makes it the topmost
+open window.
+
+; ==========================================================================
+.topic Prev
+ Window³Previous  (Shift+F6) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+Choose Previous to make the most-recently active window be active again.
+
+; ==========================================================================
+.topic Close
+ Window³Close  (Alt+F3) Ü
+  ßßßßßßßßßßßßßßßßßßßßßßß
+Choose Close to close the active window.
+
+You can also click the Close box in the upper left corner to close a window.
+
+Choose Close All to close all windows.
+
+; ==========================================================================
+.topic Help=1500
+ Help  (Alt+H) Ü
+  ßßßßßßßßßßßßßß
+The Help menu provides access to on-line Help, which comes up in a
+special Help window. The text in the Help window is a help screen.
+
+(Also, don't forget that one-line menu and dialog-box hints appear
+on the status line whenever you select a menu command or dialog box item.)
+
+These are the available Help system commands:
+
+ {Contents}
+ {Using Help:UsingHelp}
+ {About...:About}
+
+; ==========================================================================
+.topic Contents
+ Help³Contents Ü
+  ßßßßßßßßßßßßßß
+The Help Contents screen provides a summary of
+several Help topics you can choose from.
+
+To get to the Help Contents screen,
+choose Contents from the Help menu.
+
+See also
+  {How to Use Help:HelpUsingHelp}
+  {Help Contents:HelpContents}
+
+; ==========================================================================
+.topic UsingHelp
+ Help³Using Help Ü
+  ßßßßßßßßßßßßßßßß
+Choose Using Help to pop up a help screen about how to use the help system.
+
+See also:
+  {How to Use Help:HelpUsingHelp}
+  {Help Contents:HelpContents}
+
+; ==========================================================================
+.topic About
+ Help³About... Ü
+  ßßßßßßßßßßßßßß
+When you choose the About command from the Help menu, a
+dialog box appears, showing copyright and version information.
+
+To close the box, press Esc, Space, or Enter, or click the OK button.
+
+; ==========================================================================
+;                           DIALOG BOX-ok
+; ==========================================================================
+.topic OpenDBox=2000
+ Help on Open a File Dialog Box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Open a File dialog box contains an input box, a file list,
+a file information panel, the standard {Cancel:CancelBtn} button,
+one other action button (Open).
+
+ ÚÄ Name ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Name input box is where you enter the name of the file to
+load, or the file-name mask to use as a filter for the Files list
+box (for example, *.*).
+
+This input box has a {history list:History} attached to it.
+
+ Ú Files ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ³  FILENM01.TXT  ³  FILENM09.TXT  ³
+ ³  FILENM02.TXT  ³  FILENM10.TXT  ³
+ ³  FILENM03.TXT  ³  FILENM11.TXT  ³
+ ³  FILENM04.TXT  ³  FILENM12.TXT  ³
+ ³  FILENM05.TXT  ³  ..            ³
+ ³  FILENM06.TXT  ³  \DOC          ³
+ ³  FILENM07.TXT  ³  \EXAMPLES     ³
+ ³  FILENM08.TXT  ³  \DEMOS        ³
+ ³  ±±±ş±±±±±±±±±±±±±±±±±±±±±±   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Files list box lists the names of files in the current
+directory that match the file-name mask in the Name input box,
+plus the parent directory and all subdirectories.
+
+To open a file, click the file name (or move the cursor to it),
+then choose Open.
+
+If you are using the keyboard, press Enter to open the selected file.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ C:\STEFI\EXAMPLES\*.TXT                  ³
+ ³ REPORT.TXT     145  Jan 30,1994  12:00pm ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The File information panel shows the path name, file name, date, time,
+and size of the selected file.
+
+None of the items on this information panel are selectable.
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [ Open ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+Once you've typed in or selected the file you want, choose the Open button
+(choose Cancel if you change your mind).
+
+You can also just press Enter once the file is selected,
+or you can double-click the file name.
+
+If you are opening a textfile, it opens a new View window and
+places the selected file in that window.
+
+If you are opening a graph, it loads the selected file as the active graph.
+
+; ==========================================================================
+.topic SaveAsDBox
+ Help on the Save File As dialog boxÜ
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Save File As dialog box contains an input box, a file list,
+a file information panel, and the standard {OK:OkBtn}, {Cancel:CancelBtn}
+and Help buttons.
+
+ ÚÄ Save File As ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Save File As input box is where you enter the new name you want
+to save the file under, or the file-name mask for the Files list box.
+
+This input box has a {history list:History} attached to it.
+
+ Ú Files ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                 ³
+ ³  FILENM01.TXT  ³  FILENM09.TXT  ³
+ ³  FILENM02.TXT  ³  FILENM10.TXT  ³
+ ³  FILENM03.TXT  ³  FILENM11.TXT  ³
+ ³  FILENM04.TXT  ³  FILENM12.TXT  ³
+ ³  FILENM05.TXT  ³  ..            ³
+ ³  FILENM06.TXT  ³  \DOC          ³
+ ³  FILENM07.TXT  ³  \EXAMPLES     ³
+ ³  FILENM08.TXT  ³  \DEMOS        ³
+ ³  ±±±ş±±±±±±±±±±±±±±±±±±±±±±   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Files list box lists the names of files in the current directory
+that match the file-name mask in the Save File As input box, plus the
+parent directory and all subdirectories.
+
+To save a file under a new name, select the file name
+(click it or move the cursor to it), then choose OK.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ C:\STEFI\EXAMPLES\*.TXT                  ³
+ ³ REPORT.TXT     145  Jan 30,1994  12:00pm ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The File information panel shows the path name, file name, date, time,
+and size of the selected file.
+
+; ==========================================================================
+.topic ChDirDBox
+ Help on the Change Directory dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Change Directory dialog box consists of an input box, a list
+box, the standard {OK:OkBtn} and Help buttons, and two other buttons
+(Chdir and Revert).
+
+ Ú Directory Name ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³                                     ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Directory Name input box is where you type in the path of the
+new directory.
+
+This input box has a {history list:History} attached to it.
+
+ Ú Directory Tree ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³   Drives                            ³
+ ³   ÀÄÂC:\                            ³
+ ³     ÀÄÂSTEFI                        ³
+ ³       ÀÄÄEXAMPLES                   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Directory Tree list box is where you point to (or move the cursor to)
+a directory name and choose the directory you want.
+
+If you're using the keyboard, press Enter to make the selected
+directory be the current directory, then choose OK or press Esc
+to exit the dialog box.
+
+As soon as you change directories, the new current directory tree
+appears in the Directory Tree list box.
+
+The Directory Tree list box is where you select the directory you want
+to move to.
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [Chdir ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+The Chdir button changes the current directory once you've
+selected or typed in a directory name.
+
+ ÚÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [Revert] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÙ
+The Revert button goes back to the previous directory, as long as
+you haven't yet exited the dialog box.
+
+; ==========================================================================
+.topic ReportDBox
+ Help on the Report dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+In this dialog box you can choose what to include in the report about
+the current graph. You can also choose the language of the report (English
+and Hungarian are the available languages.)
+
+; ==========================================================================
+.topic ShowDBox
+ Help on the Show dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+In this dialog box you can choose some analysis results to show on the
+graph graphically.
+
+; ==========================================================================
+.topic MouseDBox
+ Help on the Mouse Options dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+This dialog box consists of one check box, one slider bar, and
+the standard buttons OK and Cancel.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ Mouse Double Click       ³
+ ³ Slow     Medium     Fast ³
+ ³ ±±±±±±±±±±±ş±±±±±±±±±± ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Mouse Double Click slider bar adjusts the double-click speed of
+your mouse.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [X] Reverse Mouse Buttons ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Reverse Mouse Buttons makes the right mouse button take on the
+normal functions of the left--and vice versa.
+
+; ==========================================================================
+.topic ColorsDBox
+ Help on the Colors dialog box Ü
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The Colors dialog box consists of two list boxes, a text display
+area, the standard OK, Cancel, and Help buttons, and one of the
+following:
+
+ ş On color and black-and-white systems, it
+   also contains two color palettes.
+ ş On monochrome systems, it contains a set
+   of radio buttons instead of the palettes.
+
+This dialog box is where you can change the colors of different
+parts of this program.
+
+ ÚÄ Group ÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³   Desktop          ³
+ ³   Menus            ş³
+ ³   Dialogs          ±³
+ ³   Viewer           ±³
+ ³                    ±³
+ ³                    ±³
+ ³                    ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+The Group list box contains the names of the different regions of
+the program that you can customize.
+
+ ÚÄ Item ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³   Color            ³
+ ³                    ş³
+
+When you select a group from the Group list, the Item list box
+displays the names of the different views in that region.
+
+ Ú Foreground ¿   Ú Background ¿
+ ³ °±²°±²°±²° ³   ³ ²°±²°±²°±² ³
+ ³ ²°±²°±²°±² ³   ³ °±²°±²°±²° ³
+ ³ ±²°±²°±²°± ³   ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+On color and black-and-white systems, you use the Foreground and
+Background palettes to modify colors.
+
+ Ú Colors ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³  (ù) Mono low        ³
+ ³  ( ) Mono high       ³
+ ³  ( ) Mono underscore ³
+ ³  ( ) Mono inverse    ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+On monochrome systems, you use the Colors set of radio buttons
+systems to modify the character attributes.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ Text Text Text ³
+ ³ Text Text Text ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+On all systems, the display text (above the Help button) shows
+the current color or attribute settings.
+
+Changes do not take effect on the desktop until you close the
+Colors dialog box by choosing OK.
+
+; ==========================================================================
+.topic DAbout
+
+ Welcome to STEFI! Ü
+  ßßßßßßßßßßßßßßßßßß
+
+Press Esc to close this window
+or choose one of the following topics:
+
+  {How to Use Help:HelpUsingHelp}
+  {Help Contents:HelpContents}
+
+; ==========================================================================
+;                              EGYB
+; ==========================================================================
+.topic OkBtn=4000
+
+ ÚÄÄÄÄÄÄÄÄ¿
+ ³ [ OK ] ³
+ ÀÄÄÄÄÄÄÄÄÙ
+
+If you choose this button, the settings you've made in the dialog box
+are recorded.
+
+If this is the default button, you only need to press Enter to choose it.
+
+; ==========================================================================
+.topic CancelBtn
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ [ Cancel ] ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+If you choose Cancel, nothing changes and no action occurs, and
+the dialog box is put away.
+
+Esc always cancels a dialog box, even if a Cancel button does
+not appear.
+
+
+; ==========================================================================
+.topic History
+  history list
+ ßßßßßßßßßßßßßß
+The history list attached to an input box lists whatever text you typed
+the last few times you used the dialog box.
+
+You can get to the history list whenever you see a down-arrow icon
+to the right of an input box.
+
+You can use the history list to re-enter text that you've already entered.
+You can also edit an entry in the history list directly.
+
+Press Esc to exit from the history list without making a selection.
+
+; ==========================================================================
+.topic WindowBasics
+  Windows
+ ßßßßßßßßß
+
+A window is a bordered screen area that you can move, resize, zoom,
+rearrange, close, and open.
+
+It easy to spot the active window; it always has a double-lined border
+around it, and it always has these elements:
+
+     {Close:CloseBox}                   {Zoom:ZoomBox}
+      {box:CloseBox}                    {box:ZoomBox}
+       ³                      ³
+       V                      V
+    {ÉÍ[ş]ÍÍÍÍÍ Title Bar ÍÍÍÍ[ ]Í»:TitleBar}
+    º                            ±
+    º                            ±
+    º                            ±
+    º                            ş
+    º                            ±
+    º                            ±<ÄÄÄÄ¿
+    º                            ±     ³
+    ÈÍ±±ş±±±±±±±±±±±±±±±±±±±±±±ÍÍ¼     ³
+                     ^                 ³
+                     ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+                                       ³
+                                 {Scroll Bars:ScrollBars}
+
+You can have any number of windows open (memory allowing), but only one
+window can be active at any time. The active
+window is the one that you're currently working in.
+
+Generally, any command you choose applies only to the active window.
+
+If your windows overlap, the active window is always the topmost one
+(the one on top of all the others).
+
+; ==========================================================================
+.topic CloseBox
+  Close box
+ ßßßßßßßßßßßß
+You can click the Close box to quickly close the window.
+(You can also choose {Window³Close:Close} or press Alt+F3.)
+
+; ==========================================================================
+.topic ZoomBox
+  Zoom box
+ ßßßßßßßßßßß
+The Zoom box appears in the window's upper right corner.
+
+If the icon in the Zoom box is an up arrow, you can click the arrow
+to enlarge the window to the largest size possible.
+
+If the icon is a double-headed arrow, the window is already at its
+maximum size; click the arrow to return the window to its previous size.
+
+(You can also choose {Window³Zoom:Zoom} or press F5.)
+
+; ==========================================================================
+.topic TitleBar
+  title bar
+ ßßßßßßßßßßßß
+You can double-click the title bar to zoom the window.
+You can also drag the title bar to move the window around.
+
+; ==========================================================================
+.topic ScrollBars
+  scroll bars
+ ßßßßßßßßßßßßß
+
+Scroll bars are horizontal or vertical bars that show both mouse
+and keyboard users how far into the file they've gone. You use these
+bars with a mouse to scroll the contents of the window.
+
+  - Click the arrow at either end to scroll
+    one line at a time. (Keep the mouse button
+    pressed to scroll continuously.)
+  - You can click the shaded area at either
+    end of the scroll box to scroll the window
+    one page (windowful) at a time.
+  - You can drag the scroll box to any spot
+    on the scroll bar to quickly move to a
+    spot in the window relative to the
+    position of the scroll box.
+
+; ==========================================================================
+.topic TextViewer
+  The Built-in Text Viewer
+ ßßßßßßßßßßßßßßßßßßßßßßßßßß
+There are many ways to get into an open View window (make it active):
+
+ 1)  Click it.
+ 3)  Press F6 (or Shift F6) to cycle through the
+     open windows.
+
+To close the active View window, choose {Window³Close:Close}.
+
+ See Also:
+  Cursor Movement Commands
+
+; ==========================================================================
+.topic Keyboard
+ Using the keyboard Ü
+  ßßßßßßßßßßßßßßßßßßß
+
+To get online help press F1.
+
+To activate the menubar, press F10.
+You can open a menu also by pressing Alt with the first letter
+of the menu name:
+
+    File                      Alt+F
+    Graph                     Alt+G
+    Options                   Alt+O
+    Window                    Alt+W
+    Help                      Alt+H
+
+  Menu command hot-keys:
+ ßßßßßßßßßßßßßßßßßßßßßßßß
+    File³Exit                 Alt+X
+    Graph³Open...             F3
+    Graph³Save                F2
+    Graph³View                F7
+    Graph³Edit                F4
+    Graph³Report...           F9
+    Graph³Show...             F8
+    Window³Size/Move          Ctrl+F5
+    Window³Zoom               F5
+    Window³Next               F6
+    Window³Previous           Shift+F6
+    Window³Close              Alt+F3
+    Help³Index                Shift+F1
+
+  Text Viewer keys:
+ ßßßßßßßßßßßßßßßßßßß
+    Scroll one line forward      Down Arrow
+    Scroll one line backward     Up Arrow
+    Scroll one page forward      Page Down
+    Scroll one page backward     Page Up
+    Scroll to the start of text  Ctrl+Page Down
+    Scroll to the end of text    Ctrl+Page Up
+
+ The {Graph Editor:EditGraph} has its own set of hotkeys.
+
+; ==========================================================================
+.topic ErrorMessages
+  Error Messages
+ ßßßßßßßßßßßßßßßß
+
+  {Not enough free memory to complete operation.:NoMem}
+  {Error reading file.:ErrorReading}
+  {Error writing file.:ErrorWriting}
+  {Error during printing.:ErrorPrinting}
+  {Could not open help file.:ErrorHelp}
+  {Could not init VGA graphics.:NoGraphics}
+  {Cannot show requested info.:ErrorShow}
+
+; ==========================================================================
+.topic NoMem
+  Not enough free memory to complete operation.
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+Try to close some unnecessary View Window, and
+do not ask report about large matrices.
+
+If it doesn't help, exit STEFI, uninstall some TSR
+(terminate-and-stay resident) programs to increase
+the amount of free memory and try again.
+
+; ==========================================================================
+.topic ErrorReading
+  Error reading file.
+ ßßßßßßßßßßßßßßßßßßßßß
+ Possible causes:
+ ş There isn't any file under the given path
+    and filename.
+ ş There are problems with the disk.
+ ş If opening graf, the given filename is not
+    a valid GRF file.
+
+Check the spelling of the filename to read.
+
+; ==========================================================================
+.topic ErrorWriting
+  Error writing file.
+ ßßßßßßßßßßßßßßßßßßßßß
+ Possible causes:
+ ş The given name is not a valid DOS filename.
+ ş The given path doesn't exist.
+ ş Disk is full.
+ ş There are problems with the disk.
+
+; ==========================================================================
+.topic ErrorPrinting
+  Error during printing.
+ ßßßßßßßßßßßßßßßßßßßßßßßß
+ Possible causes:
+ ş No printer connected.
+ ş Paper is out in the printer.
+
+; ==========================================================================
+.topic ErrorHelp
+  Could not open help file.
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The help file (STEFI.TVH) must be in the same directory as STEFI.EXE.
+
+; ==========================================================================
+.topic NoGraphics
+  Could not init VGA graphics.
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+To view or edit a graph, a VGA graphic card and monitor is needed.
+
+; ==========================================================================
+.topic ErrorShow
+  Cannot show requested info.
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+The requested info doesn't exist or makes no sense in the current graph.
+
+; ==========================================================================
+.topic ViewWindow=10
+ The View Window Ü
+  ßßßßßßßßßßßßßßßß
+View windows are where you can read textfiles
+or reports about graph analysis results.
+
+You can open as many View windows as you want.
+
+ ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+  Closing and Opening View Windows
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+To close an active View window, click the window's {close box:CloseBox}
+or choose {Window³Close:Close}.
+
+To open an View window, choose {File³Open Textfile:Open} or
+{Graph³Report..:Report}.
+
+ ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+  For More Information
+ ßßßßßßßßßßßßßßßßßßßßßß
+Choose one of these for more information:
+
+ {Using windows:WindowBasics}
+ {Using the Text Viewer:TextViewer}
+ {Using hotkeys:Keyboard}
+
+; ==========================================================================
+.topic EditGraph
+ The Graph EditorÜ
+  ßßßßßßßßßßßßßßßß
+You can create and edit graphs in the Graph Editor.
+The editor works in graphical mode, so when you select {Graph³Edit:Edit},
+the windows, the menubar and the statusline disappears,
+
+On the left side of the screen you get a brief description about
+the keyboard actions. On the right you can view and edit the graph.
+
+Use the arrow keys to move the cross-shaped cursor. Add nodes with Ins or
+delete them with Del. Almost all of the operations affect the selected
+node or line. This one is highlighted (displayed in another color).
+You can also add weight to the nodes and the lines or create directed graph.
+
+When finished editing, press Esc to exit the Graph Editor.
+
+; ==========================================================================

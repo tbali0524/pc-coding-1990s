@@ -1,0 +1,134 @@
+
+program:
+  deklaracio;
+  REP
+    menu;
+    SELECT valasz OF
+      CASE 1: bevitel
+      CASE 2: kiiras
+      CASE 3: kiiregyet
+    ENDSELECT
+  UNTIL valasz = 4
+  ENDREP;
+  page.
+
+  deklaracio:
+    LET maxvonathossz = 18;
+    LET celszam = 26;
+    ROW celszam ROW maxvonathossz ROW 2 INT VAR kocsi;
+    ROW celszam INT VAR vonathossz;
+    INT CONST akodja :: 96;
+    INT VAR valasz;
+    INT VAR vonatsorszam :: 0;
+    TEXT VAR vonat;
+    TEXT VAR billentyu;
+    INT VAR i, j, k;
+    FOR i FROM 1 UPTO celszam
+    REP vonathossz [i] := 0
+    ENDREP.
+  
+  menu:
+    page;
+    cursor (21, 3);
+    put ("RENDEZOPALYAUDVAR - SZIMULACIOS  PROGRAM");
+    cursor (10, 5);
+    put ("(c) Copyright: 1990. Toth Balint, Berzsenyi Daniel Gimnazium");
+    cursor (18, 10);
+    put ("1 - Uj vonat fogadasa");
+    cursor (18, 12);
+    put ("2 - Osszes varakozo szerelveny megtekintese");
+    cursor (18, 14);
+    put ("3 - Egy varakozo szerelveny megtekintese");
+    cursor (18, 16);
+    put ("4 - Vege");
+    cursor (23, 22);
+    put ("Kerem valasszon! (1-4)     :");
+    get (valasz);
+    page.
+  
+  bevitel:
+    vonatsorszam INCR 1;
+    put ("Minden kocsit egy karakter jelkepez.");
+    line;
+    put ("A celallomas jelolese betukkel tortenik. (a - z)");
+    line (2);
+    put ("Kerem a beerkezett szerelvenyt:");
+    line;
+    get (vonat);
+    rendezes.
+  
+    rendezes:
+      FOR k FROM 1 UPTO LENGTH vonat
+      REP
+        j := ascii (vonat SUB k) - akodja;
+        IF j > 0 AND j < 27
+        THEN
+          vonathossz [j] INCR 1;
+          kocsi [j] [vonathossz [j]] [1] := vonatsorszam;
+          kocsi [j] [vonathossz [j]] [2] := k;
+          IF vonathossz [j] = maxvonathossz
+          THEN elinditvonat
+          FI
+        FI
+      ENDREP.
+    
+      elinditvonat:
+        page;
+        put (vonat SUB k);
+        put ("-ba tarto vonat megtelt, es elindult celja fele.");
+        line;
+        put ("Tartalma:");
+        varakozik;
+        kiirjediket;
+        vonathossz [j] := 0.
+      
+        varakozik:
+          cursor (14, 24);
+          put ("Kerem nyomjon le valamit,majd utana ENTER-t!     :");
+          get (billentyu).
+        
+        kiirjediket:
+          page;
+          put ("Celallomas: ");
+          put (code (j + akodja));
+          line;
+          put ("A varakozo kocsik:");
+          FOR i FROM 1 UPTO vonathossz [j]
+          REP
+            line;
+            put (i);
+            put (". :");
+            put (kocsi [j] [i] [1]);
+            put (". vonat,");
+            put (kocsi [j] [i] [2]);
+            put (". kocsi")
+          ENDREP;
+          varakozik.
+        
+  kiiras:
+    j := 0;
+    billentyu := " ";
+    REP
+      j INCR 1;
+      IF vonathossz [j] > 0
+      THEN kiirjediket
+      FI
+    UNTIL j = celszam OR billentyu = "m"
+    ENDREP.
+  
+  kiiregyet:
+    REP
+      put ("Kerem a celallomast: ");
+      get (billentyu);
+      line
+    UNTIL billentyu >= "a" AND billentyu <= "z"
+    ENDREP;
+    j := ascii (billentyu) - akodja;
+    IF vonathossz [j] > 0
+    THEN kiirjediket
+    ELSE
+      put ("Nincs ide meno kocsi.");
+      varakozik
+    FI.
+  
+

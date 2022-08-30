@@ -1,0 +1,176 @@
+                 =============================================
+                                   DOSINFO 
+                 =============================================
+
+                     INFORMATION ABOUT DOS, DISKS AND MORE
+                                  Version 1.3
+
+                     Copyright (c) 1991,95 by B lint T¢th
+
+                                 DOCUMENTATION
+
+ ============================================================================
+
+  Contents
+  --------
+  1. Introduction
+  2. Legal Notice
+  3. Usage
+  4. Revision History
+  5. Other Programs Available from the Same Author
+  6. Contacting the Author
+
+  1. Introduction
+  ---------------
+    DOSINFO gives information about dos version, current date and time,
+    graphic drive, BREAK and VERIFY settings, environment variables,
+    free conventional memory, hard disk sizes and free spaces.
+
+    The program runs on any IBM PC or compatible computer, under
+    MS-DOS 3.30 or newer operating system.
+    It needs about 40 kbytes of free (conventional) memory.
+
+  2. Legal Notice
+  ---------------
+    This program is being distributed as FREEWARE. It means that you may use
+    the program free of charge.
+
+    The distribution files are:
+        FILE_ID .DIZ     Short program description
+        DOSINFO .DOC     Program documentation
+        DOSINFO .EXE     DOSINFO v1.3 executable program
+
+    The program package, which MUST include all the above files may be freely
+    copied and distributed. These files may be re-archived to better suit a
+    given distribution system, but the files may not be modified in any other
+    way. No distributor may charge more than $5 for the distribution of this
+    program. Uploading to BBSs or FTP sites or distribution on CD-ROMs are
+    accepted and encouraged.
+
+  3. Usage
+  --------
+    If you start the program with /h or /? as argument you will get a brief
+    help about the available options.
+    Options can be given preceded by / or -
+    Lower and upper case letters mean the same.
+    Multiple options can be given in a line. Each group of options must start
+    with a / or - and must not contain spaces. The groups must be separated
+    by one or more spaces. The /s, /f and /c options must be last ones in a
+    group, the best is to give them separately.
+
+    Options are:
+
+    /h , /?       shows this help screen
+    /v            DOS version
+    /e            list of environment variables
+    /k            settings of DOS-switches ( BREAK, VERIFY )
+    /d            current date
+    /t            current time
+    /m            free conventional memory
+    /g            graphic driver and current mode
+    /s[drive]     total space on drive
+    /f[drive]     free space on drive
+    /c[drive]     current directory on drive
+    /a            size information about all hard drives
+
+    If you use /s, /f or /c without a drive letter, the current drive will be
+    selected.
+    If no option is given, DOSINFO uses "/vdtkgmc /a".
+    If you specify a filename, the output will be generated in this file,
+    not on the screen. The default extension is .TXT
+    Note: If given, the name of the output file must preceed all other options.
+
+    Examples:
+      DOSINFO             info about everything except environment variables
+      DOSINFO /?          get help
+      DOSINFO report -dT  current date and time in REPORT.TXT
+      DOSINFO /MS /f -c   free memory, current directory, total space and free
+                            space on current drive
+      DOSINFO /SA /FA     total space and free space on drive A:
+      DOSINFO hd.lst /A   total space and free space on all hard drives in
+                            the file HD.LST
+
+  4. Revision History
+  -------------------
+    - Version 1.0 (1991)
+        - First version, in Hungarian
+    - Version 1.1 (1991)
+        - Minor modification, still in Hungarian
+    - Version 1.2 (August 20, 1995)
+        - Translated to English
+	- Added /A option
+        - Disk size and free space displayed also in kilobytes and megabytes
+        - If no option is given, DOSINFO prints everything except environment
+            variables
+        - Added external documentation
+        - Released to the public as freeware
+     - Version 1.3 (13 November, 1995)
+        - Output can be written to file, not only to screen
+
+  5. Other Programs Available from the Same Author
+  ------------------------------------------------
+    There are some other freeware programs available from the same author:
+      - BALI'S CALC  - a Simple Scientific Calculator Program with
+                        ( ) x^y x! Pi Deg Rad Sin & Arcs, Ln Exp Mem
+                        Ran SCI BackSpace & more. DOS text mode,
+                        keyboard and/or mouse control (FREEWARE).
+      - STEFI v1.0c  - a Graph Editor and Analyser Program
+                        where you can edit mathemathical graphs and analyse
+                        them in detail: matrices, components, Prufer code,
+                        minimal cost path and tree, excentricity, center,
+                        topologic order, strong components & more. (FREEWARE)
+      - FORMULA v2.0 - a Mathemathical Expression Evaluating Program
+                        with about 100 - 100 built-in contants and functions,
+                        and a constant and function editor, where you can
+                        define and save your own set. (FREEWARE)
+      - C64ASM v1.1a - a Commodore 64 (6510) Assembler Package for PC
+                        C64ASM is an assembler for 6510 CPU, but runs on PC
+                        Supports local & global symbols, math.expressions,
+                        .IF, .GOTO, .INCLUDE, .INCBIN, detailed report & more.
+                        C64DISA is a disassembler with hexa/ascii dumps.
+                        BAS2TXT converts a tokenized CBM file to textfile.
+                        PRG, T64 and P00 file format support. (FREEWARE)
+      - C64PROGS     - Two Commodore 64 programs written in pure assembly.
+                         - Bali's Sprite Designer 4.0
+                         - Bali's Character Editor 2.0
+                        In T64 tape file format. A C64 emulator (or a real C64)
+                        is required. (FREEWARE)
+      - C64SRC       - The assembly source files of C64PROGS in T64 tape file
+                        format. C64ASM v1.1 (or PROFI-ASS 64 on a real or
+                        emulated C64) is needed to compile them. (FREEWARE)
+      - PRIMES       - List of prime numbers and prime factorization (FREEWARE)
+      - ASCII TEXTFILE MASTER  - A commandline-driven ascii textfile processor
+                        with margins, automatic page breaks, header & footer,
+                        justify, include files, symbolic defines, print merge
+                        and more. Manual only in Hungarian. (FREEWARE)
+
+    These programs are available on the World Wide Web at
+      http://members.chello.hu/toth.balint/software
+
+  6. Contacting the Author
+  ------------------------
+    I am always glad when receiving any feedbacks about my programs.
+    If you are satisfied :-), please let me know.
+    If you find it useless :-(, poor or disappointing, or just made a
+    much better one, please don't hesitate to write me that, too.
+    If you find any bugs :-(, please report them to me.
+    If you have any suggestions for further improvements, I will
+    appreciate them as well.
+    If you are interested in getting the source code of this or other
+    programs made by me, contact me for details.
+
+    Contact me at:
+
+            B lint T¢th
+
+    Mail:   Galopp u. 12. VIII. 22.
+            H-1046 Budapest
+            HUNGARY
+            Europe
+
+    Phone:  (+36)-1-2300551 (This is a Hungarian call (GMT+0100) )
+
+    E-mail: toth.balint@chello.hu
+
+    Don't forget to visit my personal home page at:
+      http://members.chello.hu/toth.balint/bali

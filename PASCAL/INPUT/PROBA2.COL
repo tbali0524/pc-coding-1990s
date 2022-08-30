@@ -1,0 +1,16 @@
+clear
+place square
+place square
+put square on square
+place square
+print
+put square on square
+place circle
+put triangle on square
+put triangle on square
+print
+place triangle
+take triangle from square
+take circle off
+place square
+print

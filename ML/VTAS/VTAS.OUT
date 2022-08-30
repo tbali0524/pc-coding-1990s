@@ -1,0 +1,27 @@
+Tug entering system at 2330 with a planned speed of 12.0000 knots
+          Waypoint:    A    B    D    E    F
+          Arrival:   2330 2345 2355 0010 0030
+
+WhiteSailBoat entering system at 2345 with a planned speed of 6.00000 knots
+          Waypoint:    E    C    B    D    E
+          Arrival:   2345 0005 0035 0055 0125
+
+TugWBarge entering system at 2355 with a planned speed of 5.00000 knots
+          Waypoint:    D    E    C    B    A
+          Arrival:   2355 0031 0055 0131 0207
+Projected encounter with Tug on leg between Waypoints D & E
+** Warning ** Close passing with Tug at Waypoint D
+
+PowerCruiser entering system at 0000 with a planned speed of 15.0000 knots
+          Waypoint:    F    E    C    B    A
+          Arrival:   0000 0016 0024 0036 0048
+Projected encounter with Tug on leg between Waypoints F & E
+Projected encounter with WhiteSailBoat on leg between Waypoints C & B
+** Warning ** Close passing with WhiteSailBoat at Waypoint B
+
+LiberianFreighter entering system at 0007 with a planned speed of 18.0000 knots
+**> Invalid Route Plan for Vessel: LiberianFreighter
+
+ChineseJunk entering system at 0045 with a planned speed of 8.00000 knots
+**> Invalid Route Plan for Vessel: ChineseJunk
+

@@ -1,0 +1,9 @@
+#system auto exe
+#model mthread jpi
+#pragma check(index=>on,range=>on,stack=>on,nil_ptr=>on,overflow=>on,guard=>on)
+#pragma debug(vid=>full)
+
+#compile %main
+#link %prjname
+
+

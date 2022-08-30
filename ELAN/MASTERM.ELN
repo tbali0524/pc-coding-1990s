@@ -1,0 +1,38 @@
+
+program:
+  ROW 4 TEXT CONST szo :: ["a", "b", "c", "d"];
+  INT VAR talszam :: 0;
+  REP
+    INCR talszam;
+    bekerszo;
+    hanytalalat
+  UNTIL feher = 4
+  ENDREP;
+  put ("Kitalaltad ");
+  put (talszam);
+  put (" talalgatasbol").
+
+  bekerszo:
+    INT VAR n;
+    ROW 4 TEXT VAR talalgat;
+    put ("Kerem talalgasson  ");
+    FOR n FROM 1 UPTO 4
+    REP
+      REP
+        get (talalgat [n]);
+        talalgat [n] := HEAD talalgat [n]
+      UNTIL talalgat [n] > "a" AND talalgat [n] < "f"
+      ENDREP
+    ENDREP.
+  
+  hanytalalat:
+    feher := 0;
+    fekete := 0;
+    FOR n FROM 1 UPTO 4
+    REP
+      FOR k FROM 1 UPTO 4
+      REP
+      ENDREP
+    ENDREP.
+  
+

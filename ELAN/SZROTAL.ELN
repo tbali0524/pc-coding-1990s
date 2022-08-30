@@ -1,0 +1,52 @@
+
+program:
+  bevitel;
+  INT VAR szamlalo :: LENGTH szoveg * 2 + 2;
+  INT VAR i, a, b;
+  REP
+    felsosor;
+    a := LENGTH szoveg;
+    b := 2;
+    UPTO LENGTH szoveg - 2
+    REP kozepe
+    ENDREP;
+    alsosor;
+    leptetszoveg;
+    szamlalo DECR 1
+  UNTIL szamlalo = 0
+  ENDREP.
+
+  bevitel:
+    TEXT VAR szoveg;
+    put ("Kerem a szoveget: ");
+    get (szoveg);
+    put (ascii (1)).
+  
+  felsosor:
+    cursor (1, 1);
+    put (szoveg);
+    put (HEAD szoveg).
+  
+  kozepe:
+    cursor (1, b);
+    put (szoveg SUB a);
+    cursor (LENGTH szoveg + 1, b);
+    put (szoveg SUB b);
+    a DECR 1;
+    b INCR 1.
+  
+  alsosor:
+    cursor (1, LENGTH szoveg);
+    UPTO LENGTH szoveg + 1
+    REP
+      put (szoveg SUB a);
+      a DECR 1;
+      IF a = 0
+      THEN a := LENGTH szoveg
+      FI
+    ENDREP.
+  
+  leptetszoveg:
+    szoveg := TAIL szoveg + HEAD szoveg.
+  
+

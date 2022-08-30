@@ -1,0 +1,64 @@
+
+program:
+  bevitel;
+  rendezes;
+  kicserelinullatbere;
+  kiireredmenyt.
+
+  bevitel:
+    LET n = 7;
+    ROW n INT VAR a;
+    INT VAR b;
+    INT VAR i :: 1;
+    put ("Adja meg az A vektort!");
+    line;
+    bekeri a iedik elemet;
+    FOR i FROM 2 UPTO n
+    REP
+      REP bekeri a iedik elemet
+      UNTIL a [i] <= a [i - 1]
+      ENDREP
+    ENDREP;
+    put ("Adja meg B-t: ");
+    get (b).
+  
+    bekeri a iedik elemet:
+      put (i);
+      put (". elem: ");
+      get (a [i]).
+    
+  rendezes:
+    INT VAR verem;
+    FOR i FROM 1 UPTO n DIV 2
+    REP
+      verem := a [i];
+      a [i] := a [n + 1 - i];
+      a [n + 1 - i] := verem
+    ENDREP.
+  
+  kicserelinullatbere:
+    BOOL VAR vanmeg :: true;
+    i := 1;
+    WHILE a [i] <= 0 AND vanmeg
+    REP
+      IF a [i] = 0
+      THEN a [i] := b
+      FI;
+      IF i < n
+      THEN i INCR 1
+      ELSE vanmeg := false
+      FI
+    ENDREP.
+  
+  kiireredmenyt:
+    line;
+    put ("Eredmeny:");
+    FOR i FROM 1 UPTO n
+    REP
+      line;
+      put (i);
+      put (". elem: ");
+      put (a [i])
+    ENDREP.
+  
+

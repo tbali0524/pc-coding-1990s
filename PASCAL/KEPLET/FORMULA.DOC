@@ -1,0 +1,283 @@
+                 =============================================
+                                    FORMULA
+                 =============================================
+
+                  MATHEMATHICAL EXPRESSION EVALUATING PROGRAM
+                                  Version 2.0
+
+                     Copyright (c) 1992,95 by B lint T¢th
+
+                                 DOCUMENTATION
+
+ ============================================================================
+
+  Contents
+  --------
+  1. Introduction
+  2. Entering a Formula
+  3. Expression Syntax
+  4. Editing and Viewing the Function List
+  5. Editing and Viewing the Constant List
+  6. Saving, Loading and Appending Definitions
+  7. The Available Standard Definition Libraries
+  8. Getting Online Help
+  9. Other Programs Available from the Same Author
+  10. Contacting the Author
+
+  1. Introduction
+  ---------------
+    FORMULA is a Mathemathical Expression Evaluating Program with
+    about 100 - 100 built-in contants and functions, and a
+    constant and function editor, where you can define and save your own set.
+
+    The program runs on any IBM PC or compatible computer, under
+    MS-DOS 3.30 or newer operating system.
+    The program also runs as a DOS application under Windows 95/98/ME/NT
+    but not under Windows XP as it has no DOS support.
+    It needs about 160 kbytes of free (conventional) memory.
+
+    The package is being distributed as FREEWARE.
+
+    To start the program type FORMULA and press enter. (If it is in the
+    current directory or in a directory listed in the PATH environmental
+    variable. Otherwise specify full pathname before the programname.)
+
+    The main screen of the program appears. In the upper left corner
+    you can see the constants panel, in the upper right corner the program
+    title and copyright information. The functions panel is on the lower
+    half of the screen. Above that there is an expression line, where you
+    can type in an expression to evaluate.
+
+    A SIMPLE SESSION:
+    - Type a simple expression, e.g.: 1/sin(pi/4) and press enter. The result
+      of evaluation (1.4142135624E+00) appears above the expression.
+    - To load the mathemathical definitions, press F3 then Y (confirmation).
+      Type in the name of the definition file (MATH.DEF) and press Enter.
+      After the O.K. message, press Enter and the new constants and functions
+      will be available on the panels.
+    - To browse the functions, press the Tab key until the cursor is blinking
+      in the functions panel. Now press Page Up/Down as you like.
+    - To get further help, press F1 and then Page Up/Down to browse.
+      (This online help contains also the list of standard definition files.)
+    - To quit press Esc or Alt-X and answer Y (Yes) to the confirmating
+      question.
+
+  2. Entering a Formula
+  ---------------------
+    You can enter a formula in the expression line. Type any numbers or
+    letters, they will appear in the line. Use the left and right arrow keys
+    to move the cursor, Backspace to erase the previous character, Del to
+    erase the character under the cursor and Alt-R to erase the whole line.
+    Press Home to jump to the beginning of the line or End to jump after the
+    last character.
+    The Ins key changes between Insert and Overwrite modes.
+    At program start the line-editor is in Insert mode. It means, if you
+    enter a new character, it will be inserted in the line. In overwrite
+    mode the new character replaces the old one under the cursor.
+    After entering the formula, press Enter to evaluate it. The result will
+    appear above the expression, on the right side of the screen.
+    If the expression is not correct, an error line appears. Then press Enter
+    to accept it and continue editing the expression.
+    You can copy the result of the evaluation in the constants panel with
+    Alt-K.
+
+  3. Expression Syntax
+  --------------------
+    Expressions must be entered as a string, much like if you would write
+    them on a paper. (But the sign of division and power is other.)
+
+    You can use:
+      - Numbers (in scientific form (e.g. -3.45E+18) or short form (e.g. -3) )
+      - Basic operators ( + , - , * , / ) (Sign of multiply is not necessary)
+      - Power (e.g. 45^3 ) ( Base must be non-negative )
+      - Parentheses nested in any depth
+      - Constant identifiers (built-in or defined constants)
+      - Function calls (built-in or defined functions)
+          Passing arguments:
+            - List of the arguments separated by comma in parenthesis
+            - Argument can be any expression
+            - At functions with one argument the parenthesis can be left out
+                when there isn't any oparator in the argument ( e.g. sin pi )
+    Operator precedence is as in mathemathics usual:
+      - parentheses, function calls, power, multiply/divide, add/subtract
+    Spaces can be inserted or omitted. (But there are some exceptions.)
+
+    Built-in functions: (all with one argument)
+     ABS       absolute value
+     ARCTAN    arcustangent (in radians!)
+     COS       cosine (anle in radians!)
+     EXP       e raised to the x-th power (e = 2.718281...)
+     FACT      factorial (0 <= x <= 33; x is integer)
+     LN        natural logarithm (x > 0)
+     INT       integer part
+     SIN       sine (anle in radians!)
+     SGN       sign (1 if x > 0; 0 if x = 0; -1 if x < 0)
+     SQRT      square root (x >= 0)
+    Built-in constant:
+     PI ( 3.1415926535 )
+
+    The built-in functions and the PI are always available.
+    Other constants are in the standard definition libraries.
+
+    Example expression: 2 PI SIN E + 2(ABS(ROOT2(1,  2*2,INT(1.3)))^2 - 2.1E-2)
+
+  4. Editing and Viewing the Function List
+  ----------------------------------------
+    Press the Tab key repeatedly until the cursor is blinking in the functions
+    panel (lower part of the screen).
+    Each row represents one function. The first column is the function name,
+    the second is the number of arguments and the third is the definition
+    itself. Use the arrow keys to move the cursor and edit the contents by
+    typing. These are the keys with special meaning:
+      Arrows  . . . . . .  Move cursor
+      Ctrl Left / Right .  Jump to next previous cell
+      Enter . . . . . . .  Jump to next cell
+      Page Up / Down  . .  Show next / previous page
+      Home / End  . . . .  Jump to beginning / end of cell
+      Ctrl Home / End . .  Jump to first / last cell in the line
+      Ctrl Page Up / Down  Jump to beginning / end of table
+      BackSpace . . . . .  Erase previous character
+      Del . . . . . . . .  Erase the character under the cursor
+      Ins . . . . . . . .  Change Insert / Overwrite mode
+      Alt R . . . . . . .  Clear cell
+      Alt S . . . . . . .  Clear line
+      Alt Y . . . . . . .  Delete line (extract from table)
+      Alt T . . . . . . .  Delete table
+      Alt N . . . . . . .  Insert empty line
+      Alt M . . . . . . .  Copy the cell above to this cell
+      Alt W . . . . . . .  Copy line - specify source line
+      Alt V . . . . . . .  Copy line - specify target line
+
+    To add your own function:
+    - Move the cursor to an empty line (to the end of the list)
+    - Enter the name of the function in the first column
+    - Enter the number of arguments in the second column (1 can be omitted)
+    - Enter the defining formula in the third column as a regular expression
+        - Argument names are X1, X2, ... X9
+            (At functions with one argument, X can be used.)
+        - You can call any built-in or user-defined functions, but avoid
+             recursive calls. (It causes endless loop.)
+    The names of constants and functions must start with a letter.
+    The program doesn't check for multiple used names.
+
+  5. Editing and Viewing the Constant List
+  ----------------------------------------
+    The constants panel works very similar to the functions panel. Use the
+    same keys to move the cursor or to edit the cells.
+    Each row represents one constant. The first column is the constant name,
+    the second is its value in scientific notation.
+
+    To add your own constant:
+    - Enter the name of the constant in the first column, its value in the
+      second
+    - If the value is a result of computing:
+        - Enter the appropriate expression in the Expression cell
+        - Press the Alt K
+           (The result appears at the end of the constants list)
+        - Give a name to the new constant
+
+  6. Saving, Loading and Appending Definitions
+  --------------------------------------------
+    Press the F2 key in any panel to save all constant and function definitions
+    in panels. When prompted, give a valid filename and press Enter.
+    The suggested extension is .DEF but it is not mandatory and will not
+    added if no extension is given. The definitions will be saved in a special
+    ASCII file under the given name. The filename STARTUP.DEF is somewhat
+    special: This file is automatically loaded when FORMULA starts. So save
+    your frequently used definitions with this name.
+    With the F3 key you can load the your previously saved definitions or any
+    of the predefined standard libraries.
+    Answer Yes with Y to the confirmation question, give the filename
+    (with the full path if not in the default directory) and press Enter.
+    Warning! All unsaved definitions in the editor will be lost.
+    With F4 you can append the contents of a definition file to the list
+    of definitions currently in the editor. The program doesn't check for
+    multiple used names.
+
+  7. The Available Standard Definition Libraries
+  ---------------------------------------------
+    Many constants and function are in definition libraries. These libraries
+    can be edited. The standard libraries are:
+     MATH    .DEF     Mathemathical constants and functions
+     PHYSICS .DEF     Physical and SI constants and functions
+     MEASURE .DEF     Non-SI units of measurement - constants and functions
+    All constants and functions in these libraries are described in the online
+    help. Just press Alt-F1 and then Page Up/Down to browse.
+    To use any of these constants or functions, load the appropriate library
+    with F3 or F4.
+
+  8. Getting Online Help
+  ----------------------
+    Press F1 in any panel to get online help. The help is several pages
+    in length, so use the Page Up/Down keys to browse. At the end of the
+    help there is a short description of every functions and constants in
+    the standard definition libraries. Press Alt-F1 instead of F1 to jump
+    directly to them. Press Esc to exit help.
+    The help text is in a special ASCII file called FORMULA.HLP. You can edit
+    this file to add descriptions of your own functions. See FORMULA.HLP for
+    details.
+
+  9. Other Programs Available from the Same Author
+  ------------------------------------------------
+    There are some other freeware programs available from the same author:
+      - BALI'S CALC  - a Simple Scientific Calculator Program with
+                        ( ) x^y x! Pi Deg Rad Sin & Arcs, Ln Exp Mem
+                        Ran SCI BackSpace & more. DOS text mode,
+                        keyboard and/or mouse control (FREEWARE).
+      - STEFI v1.0c  - a Graph Editor and Analyser Program
+                        where you can edit mathemathical graphs and analyse
+                        them in detail: matrices, components, Prufer code,
+                        minimal cost path and tree, excentricity, center,
+                        topologic order, strong components & more. (FREEWARE)
+      - C64ASM v1.1a - a Commodore 64 (6510) Assembler Package for PC
+                        C64ASM is an assembler for 6510 CPU, but runs on PC
+                        Supports local & global symbols, math.expressions,
+                        .IF, .GOTO, .INCLUDE, .INCBIN, detailed report & more.
+                        C64DISA is a disassembler with hexa/ascii dumps.
+                        BAS2TXT converts a tokenized CBM file to textfile.
+                        PRG, T64 and P00 file format support. (FREEWARE)
+      - C64PROGS     - Two Commodore 64 programs written in pure assembly.
+                         - Bali's Sprite Designer 4.0
+                         - Bali's Character Editor 2.0
+                        In T64 tape file format. A C64 emulator (or a real C64)
+                        is required. (FREEWARE)
+      - C64SRC       - The assembly source files of C64PROGS in T64 tape file
+                        format. C64ASM v1.1 (or PROFI-ASS 64 on a real or
+                        emulated C64) is needed to compile them. (FREEWARE)
+      - DOSINFO v1.3 - Information about dos, disks and more (FREEWARE)
+      - PRIMES       - List of prime numbers and prime factorization (FREEWARE)
+      - ASCII TEXTFILE MASTER  - A commandline-driven ascii textfile processor
+                        with margins, automatic page breaks, header & footer,
+                        justify, include files, symbolic defines, print merge
+                        and more. Manual only in Hungarian. (FREEWARE)
+
+    These programs are available on the World Wide Web at
+      http://members.chello.hu/toth.balint/software
+
+  10. Contacting the Author
+  ------------------------
+    I am always glad when receiving any feedbacks about my programs.
+    If you are satisfied :-), please let me know.
+    If you find it useless :-(, poor or disappointing, or just made a
+    much better one, please don't hesitate to write me that, too.
+    If you find any bugs :-(, please report them to me.
+    If you have any suggestions for further improvements, I will
+    appreciate them as well.
+    If you are interested in getting the source code of this or other
+    programs made by me, contact me for details.
+
+    Contact me at:
+
+            B lint T¢th
+
+    Mail:   Galopp u. 12. VIII. 22.
+            H-1046 Budapest
+            HUNGARY
+            Europe
+
+    Phone:  (+36)-1-2300551 (This is a Hungarian call (GMT+0100) )
+
+    E-mail: toth.balint@chello.hu
+
+    Don't forget to visit my personal home page at:
+      http://members.chello.hu/toth.balint/bali

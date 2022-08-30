@@ -1,0 +1,65 @@
+
+ TOVBBI INFORMCI¢K A DARABJ.EXE PROGRAMHOZ
+---------------------------------------------
+
+  A program elind¡t sa:
+    (felt‚telezve, hogy el‚rhet“ az aktu lis k”nyvt rban vagy a PATH-ban) 
+
+        DARABJ     [ ENTER ]
+
+  Lehet“s‚g van a meghajt¢ illetve k”nyvt rkijel”l‚s m¢dos¡t s ra a program
+fut sa k”zben is a f“men U menpontj nak kiv laszt s val, vagy a darab-
+jegyz‚k szerkeszt“n bell az F8 billenty– lenyom s val.
+Mindk‚t esetben a program k‚ri az £j meghajt¢ ‚s k”nyvt r kijel”l‚s‚t.
+Ha nem akarunk v ltoztatni, akkor csak ssnk ENTER-t.
+
+  A darabjegyz‚k szerkeszt“ funkci¢ir¢l r‚szletes le¡r st kapunk az F1
+billenty–re.
+
+  Az anyagn‚v be¡r sakor gyeljnk a k”t“jelek, pontok, stb. helyes
+be¡r s ra. A kis- ‚s nagybetk kevered‚se, illetve a sz¢k”z”k nem sz m¡-
+tanak. A program  ltal ismert anyagok helyes ¡r sm¢dja SHIFT F1-re
+megtekinthet“.
+
+  Az ismert szabv nyok list ja ALT F1-gyel n‚zhet“ meg. Ezek k”zl a program
+csak a t‚nyleges szabv nysz mokat, illetve az £j k¢dokat tnteti fel az
+anyagjegyz‚kben. ( De sz mol a t”bbivel is.)
+Ez a lista anyagjegyz‚k k‚sz¡t‚sekor az ismeretlen szabv nyk¢dokkal
+automatikusan b“vl, de a programb¢l val¢ kil‚p‚skor az £j elemek elvesznek.
+A lista darabjegyz‚k szerkeszt‚se k”zben is b“v¡thet“ az F7 illetve ALT B
+billenty–vel.
+
+  A program a darabjegyz‚keket k¢dolt f jln‚vvel, .DJF kiterjeszt‚ssel
+t rolja. A program  ltal ismeretlen t”r‚sek azonban mint 000 t”r‚scsoport
+kerlnek kiment‚sre, ez‚rt a program nem tud kl”nbs‚get tenni k”ztk.
+Teh t gyeljnk arra, hogy egy lemezre ne akarjunk k‚t kl”nb”z“ ismeretlen
+t”r‚scsoport£ darabjegyz‚ket felvenni.
+
+  Az anyagjegyz‚kben a program az ”sszes¡tett t‚teleket anyagf‚les‚g (MSZ),
+anyagmin“s‚g ‚s jellemz“ m‚ret szerint rendezi, fontoss gi sorrendben.
+A programnak ismeretlen szabv nyok ‚s anyagok az anyagjegyz‚k v‚g‚re
+kerlnek.
+
+£jdons gok az 1.1 verzi¢ban:
+-----------------------------
+  - Az 1.1 verzi¢ kijav¡totta az 1.0 v ltozat apr¢bb hib it:
+    - a darabjegyz‚k-szerkeszt“ olykori rendellenes m–k”d‚s‚t
+    - anyagjegyz‚k fejl‚c‚ben l‚v“ sz‚ps‚ghib kat
+  - Az £j v ltozat a szerkeszt“ben az utols¢ sorba be¡rt t‚telsz mot elfogadja
+    hivatkoz si alapnak, ¡gy ezut n ett“l kezdve aj nlja fel az £j
+    t‚telsz mokat.
+  - Az anyag- ‚s rajzjegyz‚ket m r nem csak nyomtat¢ra lehet
+    kldeni, hanem k‚perny“re ‚s lemezes ASCII sz”vegf jlba is. 
+    Ekkor ideiglenesen l‚trehoz a lemezen egy ANYAGJ.$$$ vagy RAJZJ.$$$ nev–
+    f jlt. Ha azonban a programb¢l nem "rendes" £ton l‚pnk ki (p‚ld ul
+    lekapcsoljuk a g‚pet), akkor ezek a f jlok nem t”rl“dnek.
+    šgyeljnk arra, hogy a lemezen legyen el‚g hely ezeknek a munkaf jloknak a
+    sz m ra. ( 10 oldalas anyagjegyz‚kn‚l kb. 40 Kbyte el‚g.)
+  - Megszntek a parancssor param‚terek a program ind¡t sakor, mivel
+    a directory kijel”l‚s-t £gy is be lehet  llitani a programban.
+
+  Ha a program haszn lata sor n probl‚ma merl fel, vagy egy‚b k‚rd‚sei,
+‚szrev‚telei, esetleg a j”v“ verzi¢kkal kapcsolatos ig‚nyei vannak, vegye fel
+velem a kapcsolatot!
+
+  T¢th B lint, 1039 Budapest, Kabar u. 7. V. 27.  ( Tel.: 187-3943 )

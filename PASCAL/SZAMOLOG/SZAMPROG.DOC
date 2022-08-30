@@ -1,0 +1,142 @@
+                         Sz m¡t¢g‚p labor - h zi feladat
+
+                                   T¢th B lint
+   B M E Villamosm‚rn”ki ‚s Inform. Kar, M–szaki Informatika Szak, 3. tank”r
+                              I. ‚vfolyam, 1. f‚l‚v
+                                      1992
+
+
+                   SZMOL¢GP c¡m– program programoz¢i le¡r sa
+
+
+  1. Bevezet‚s
+  ------------
+      A program egy egyszer–bb tudom nyos zsebkalkul tor szimul ci¢ja.
+    Turbo Pascal nyelven, annak 6.0 verzi¢j ban ¡r¢dott, b r az 5.0 verzi¢n l
+    £jabb lehet“s‚geket nem haszn lja.
+      A forr sprogram a SZAMOLOG.PAS nev– f jl. Kezel‚si £tmutat¢ a
+    SZAMOLOG.DOC nev– sz”vegf jlban van. (rdemes azt elolvasni el“bb.)
+
+  2. A sz mol st elv‚gz“ algoritmus
+  ---------------------------------
+      A program a matematikai precedenciaszab lyok szerint m–k”dik, ez‚rt a
+    beadott m–veleteket nem mindig lehet azonnal elv‚gezni. A t rol sra egy
+    l ncolt lista adatszerkezet (ElemT t¡pus) szolg l, melynek egy eleme a
+    k”vetkez“:
+      PElemT = ^ElemT;
+      ElemT = Record
+        ZJel: Byte;         { nyit¢ z r¢jelek }
+        Szam: Real;         { operandus (a m–velet el“tti) }
+        Muv: Byte;          { m–velet k¢dja ( 1=+, 2=-, 3=*, 4=/, 5=^, 6=üû ) }
+        Prev: PElemT;       { el“z“ elemre mutat }
+      end;
+
+    ¡gy a nyit¢ z r¢jel megnyom sakor, illetve sz m bevitelekor csak t rol s
+    t”rt‚nik. A fggv‚nyek param‚tere mindig a kijelz“n l‚v“ sz m, ¡gy ezek
+    v‚grehajt sa a gomb megnyom sakor azonnal elv‚gezhet“. Mveleti jelek
+    eset‚n az £j m–veletet csak elt roljuk (hiszen hi nyzik a m sodik
+    operandus), de ha az el“z“ m–velet precedenci ja nagyobb, mint az £j‚,
+    akkor azt v‚grehajthatjuk. (¡gy a l ncolt lista egy elemmel r”videbb lesz.
+    A legfels“ elemben az elv‚gzett m–velet eredm‚nye ‚s az £j m–velet lesz
+    t rolva.) De nem csak k‚t precedenciaszint van, ¡gy az egyszer–s¡t‚st
+    addig kell visszafel‚ elv‚gezni, am¡g csak lehet. (Az, hogy visszafel‚
+    haladunk, nem okoz bajt, mert a list ban £gyis csak n”vekv“ precedencia
+    szerinti rendben lehetnek m–veletek.) A m–veleti gombok ki‚rt‚kel‚s‚hez
+    hasonl¢ a csuk¢ z r¢jel ‚s az egyenl“s‚gjel kezel‚se.
+    Megjegyz‚s: ki‚rt‚kel‚s k”zben a precedencia mellett term‚szetesen a nyit¢
+    z r¢jeleket is figyelembe kell venni.
+
+  3. Hibakezel‚s
+  --------------
+      Sz mok bevitelekor a program nem fogadja el a sz m br zol si tartom nyon
+    k¡vl es“ sz mokat. (Tov bb szerkeszthetnk.) Ha egy fggv‚ny ‚rtelmez‚si
+    tartom ny t l‚pjk t£l, vagy t£lcsordul s van az eredm‚nyben (ez
+    k”zvetlenl a m–velet elv‚gz‚se el“tt, az argumentum vizsg lat val sz–rhet“
+    ki), akkor a Hiba elj r s h¡v¢dik meg. Ez hibazenetet rak a kijelz“-
+    sztringbe ‚s True-ra  ll¡tja a VoltHiba v ltoz¢t, ¡gy k”vetkez“re csak az
+    AC ‚s ESC gombok megengedettek.
+      ™sszead s ‚s kivon s eset‚n a t£lcsordul s kiv‚d‚se t£l k”rlm‚nyes lenne
+    (p‚ld ul Extended t¡pus£ seg‚dv ltoz¢), ¡gy ink bb nem foglalkoztam vele.
+    De a System unit ExitProc pointer‚t az Init elj r s  t ll¡tja a Done
+    elj r s c¡m‚re, ¡gy Runtime error eset‚n is kapunk magyar hibazenetet.
+    A Done elj r s megh¡v¢dik a program rendes befejez‚sekor is, ennek az
+    esetnek az elkl”n¡t‚s‚re szolg l a RendesBef v ltoz¢, mely inicialic l s-
+    kor False lesz, csak az utols¢ sorban v lt True-ra (ha eljutunk oda ig).
+
+  4. Glob lis deklar ci¢k
+  -----------------------
+    konstansok:
+      kbXXXX : A ReadKey  ltal visszaadott k¢dok. (Ezek egy r‚sze a
+                #0-t k”vet“ m sodik ReadKey eredm‚nye.)
+      Beep   :  hangjelz‚s ASCII k¢dja
+      SzamSzel = 21;        { sz mkijelz“ sz‚less‚ge }
+      MaxBill = 48;         { gombok sz ma }
+      RajzSor = 8;          { h ny sor gomb van }
+      RajzOszlop = 6;       { h ny gomb van egy sorban }
+      biXXXX : A sz mol¢g‚p-gombok k¢djai (Csak az olvashat¢s got jav¡tj k.)
+      HotKey : Az egyes sz mol¢g‚p-gomboknak megfelel“ r”vid¡t“ billenty–k.
+                 (Sz¢k”z, ha nincs)
+      SzamBevBill, MuvBill, FuggvBill : kl”nb”z“ gombcsoportok k¢djait
+                                        tartalmaz¢ halmazok (szelekci¢hoz)
+      SPC : csupa-sz¢k”z sztring a kijelz“ t”rl‚s‚hez;
+
+    v ltoz¢k:
+      KS: String[SzamSzel]; { kijelz“ }
+      Mem: Real;            { mem¢ria }
+      VanMem,               { van-e a mem¢ri ban valami }
+      VanEger,              { haszn lhat¢-e az eg‚r }
+      NormKMod,             { norm l kijelz“ m¢dban vagyunk-e }
+      TorolKep, { t”r”lni kell-e a kijelz“t a k”vetkez“ sz mszerk. gombra }
+      VoltMuv,              { el“z“ billenty– m–velet volt-e }
+      VoltHiba,             { aritmetikai hiba ki‚rt‚kel‚s k”zben }
+      RendesBef: Boolean;   { ha kil‚p‚skor False, akkor Runtime error }
+      OldExitProc: Pointer; { eredeti kil‚p‚si elj r s }
+      Regs: Registers;      { regiszterek az eg‚rkezel“ megszak. h¡v s hoz }
+      P: PElemT;            { legfels“ elem a l ncolt list ban }
+
+  5. A program fel‚p¡t‚se, a haszn lt elj r sok
+  ---------------------------------------------
+       A program el“sz”r az Init elj r st h¡vja meg, mely inicializ lja a
+     v ltoz¢kat, kirajzolja a k‚perny“t (a BillRajz elj r ssal), l‚trehozza
+     a l ncolt lista els“ elem‚t (az UjElem elj r ssal), ‚s inicializ lja
+     az egeret (ha van). (Eg‚r kezel‚s‚re a program a $33-as Dos megszak¡t s
+     funkci¢it haszn lja.) Az ExitProc v ltoz¢ba a Done elj r s c¡m‚t ¡rjuk,
+     ¡gy az nemcsak rendes kil‚p‚skor, hanem Runtime error (t£lcsordul s)
+     eset‚n is megh¡v¢dik. (Magyar hibazenet)
+       Ezut n a KezelBill elj r s h¡v¢dik, mely a f“ programciklust tartalmaz-
+     za. Ez ki¡rja a kijelz“ tartalm t (a Kijelz“ elj r ssal), poz¡cion lja a
+     kurzort (az ABill v ltoz¢ban van az aktu lis gomb sorsz ma), ‚s lekezeli
+     a kurzormozgat¢ billenty–ket. Eg‚rgomb, Enter vagy egy r”vid¡t“ billenty–
+     hat s ra a VegreHajtB elj r s h¡v¢dik meg, mely param‚terk‚nt a megfelel“
+     gomb k¢dj t kapja (biXXXX konstansok). A f“ ciklusb¢l az Esc, AltX, AltQ
+     billenty–kre vagy az ESC gombra l‚pnk ki.
+       A VegreHajtB elj r s szelekt lja a param‚terk‚nt kapott gombk¢dot, ez
+     alapj n megh¡vja a SzamBev, MuvBev, FuggvBev, Egyenlo, CsZaroJel,
+     Ellentett, Reset elj r sokat, melyek a val¢di v‚grehajt st v‚gzik.
+     (A real t¡pus£ R v ltoz¢ban van a kijelz“n l‚v“ sz m, ehhez minden
+     al rendelt elj r s hozz f‚r.) N‚h ny egyszer–bb gombot (SCI, Mem, M+)
+     k”zvetlenl a VegreHajtB elj r s kezel le. A TorolKep ‚s VoltMuv v ltoz¢k
+     a gombnak megfelel“en  ll¡t¢dnak be.
+       A SzamBev elj r s a sz mbeviteli ‚s szerkeszt“gombokat kezeli.
+     A MuvBev, FuggvBev, stb. elj r sok m–k”d‚si elv‚t az algoritmust le¡r¢
+     r‚szben ismertettem.
+       Egy‚b elj r sok:
+         SzamKep : a param‚terk‚nt kapott val¢s sz mot berakja a kijelz“t
+                   reprezent l¢ KS sztringbe. Ha NormKMod = True, akkor a f”l”s
+		   null kat lev gja, illetve ha a sz m a megfelel“
+		   intervallumba esik, akkor kitev“ n‚lkli alakba konvert lja.
+         Felszab : A l ncolt lista felszabad¡t sa a heap-b“l
+         Reset   : mindent alaphelyzetbe  ll¡t a mem¢ria ‚s a kijelz“ m¢d
+                   kiv‚tel‚vel
+         Hiba    : Akkor h¡v¢dik meg, ha sz mol s sor n hiba l‚p fel (null val
+                   val¢ oszt s, fggv‚ny ‚rtelmez‚si tartom ny t£ll‚p‚se,
+                   t£lcsordul s)
+         VegreHajtOp : V‚grehajtja a param‚terk‚nt kapott m–veletet a k‚t
+                       operendus k”z”tt ‚s az eredm‚nnyel t‚r vissza
+         NagyobbPrec : True, ha az els“ param‚ter (m–veletk¢d) el”bb elv‚gez-
+                       het“, mint a m sodik, False egy‚bk‚nt.
+         Done : Rendes programlez r skor, vagy Runtime error eset‚n h¡v¢dik
+                meg (automatikusan). Felszabad¡tja a l ncolt list nak lefoglalt
+                mem¢ri t, kikapcsolja az eg‚rkurzort ‚s t”rli a k‚perny“t.
+                Ha RendesBef = False (Runtime error), akkor magyar hibazenetet
+                is ki¡r.

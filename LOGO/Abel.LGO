@@ -1,0 +1,275 @@
+to csodakarika :m :a
+	; :m méret, :a darab küllõ
+
+	pd
+	repeat :a [
+		fd :m
+		rt 180
+		pu
+		fd :m
+		rt 180 + (360.0 / :a)
+		pd
+	]
+	circle :m
+end
+
+to emberke :m
+	; kockaemberke
+	; indulaskor a rajz bal also sarkaban felfele nez a toll
+	; :m parameter a méret. Teljes magasságs ennek 17-szerese.
+
+
+	; bal lábfej
+	pd
+	teglalap :m :m * 2
+	pu
+	fd :m
+	rt 90
+	fd :m * 2
+	lt 90
+	pd
+	; bal láb
+	fd :m * 5
+	lt 90
+	fd :m * 2
+	rt 90
+	; test
+	teglalap :m * 7 :m * 5
+	rt 90
+	fd :m * 3
+	rt 90
+	; jobb láb
+	fd :m * 6
+	rt 180
+	; jobb lábfej
+	teglalap :m :m * 2
+	pu
+	fd :m * 13
+	lt 90
+	fd :m
+	rt 90
+	pd
+	; nyak
+	teglalap :m :m
+	fd :m
+	lt 90
+	fd :m
+	rt 90
+	; fej
+	teglalap :m * 3 :m * 3
+	pu
+	fd :m
+	rt 90
+	fd :m
+	pd
+	; szaj
+	fd :m
+	pu
+	lt 90
+	fd :m
+	pd
+	; jobb szem
+	circle :m / 5
+	pu
+	lt 90
+	fd :m
+	pd
+	; bal szem
+	circle :m /5
+	pu
+	fd :m * 2
+	lt 90
+	fd :m * 4
+	pd
+	rt 30
+	; bal kéz
+	fd :m * 4
+	pu
+	rt 180
+	fd :m * 4
+	rt 60
+	fd :m * 5
+	rt 60
+	pd
+	; jobb kéz
+	fd :m * 4
+	pu
+	; vissza a kezdõpontba
+	rt 180
+	fd :m * 4
+	lt 150
+	fd :m * 12
+	rt 90
+	fd :m * 5
+	rt 90
+	pd
+end
+
+to hangman :m
+	; akasztott emberke
+	; indulaskor talapzat jobb szelen, felfele nez a toll
+	; :m parameter a fej sugara. Teljes meret ennek 10-szerese.
+
+	; akasztofa
+	pd
+	lt 90
+	fd :m * 5
+	rt 90
+	fd :m * 10
+	rt 90
+	fd :m * 3
+	rt 90
+	fd :m
+
+	; fej
+	pu
+	fd :m
+	pd 
+	circle :m
+	pu 
+	fd :m
+	pd
+
+	; test
+	fd :m * 3
+
+	; labak
+	rt 30
+	fd :m * 3
+	lt 180
+	fd :m * 3
+	rt 120
+	fd :m * 3
+	rt 180
+	fd :m * 3
+	rt 30 
+	fd :m * 3
+
+	; kezek
+	rt 120
+	fd :m * 3
+	rt 180
+	fd :m * 3
+	lt 60
+	fd :m * 3
+
+	; visza a kezdopontba
+	pu
+	lt 180
+	fd :m * 3
+	rt 120
+	fd :m * 7
+	lt 90
+	fd :m * 2
+	lt 90
+	pd
+
+end
+
+to haz :m
+	pd
+	polygon :m 4
+	pu
+	fd :m
+	rt 30
+	pd
+	polygon :m 3
+	rt 150
+	pu
+	fd :m / 4
+	lt 90
+	fd :m / 4
+	pd
+	polygon :m / 2 4
+	pu
+	fd :m / 4
+	rt 90
+	fd :m * 3 / 8
+	pd
+	circle :m / 8
+
+	pu
+	fd :m * 3 / 8
+	rt 90
+	fd :m/2
+	rt 90
+	pd
+end
+
+to ikrek :m :db
+
+	repeat :db [
+		emberke :m
+		pu
+		rt 90
+		fd :m * 9
+		lt 90
+		pd
+	]
+	pu
+	lt 90
+	fd (:m * 9) * :db
+	rt 90
+	pd
+end
+
+to krixkrax :h :m
+	pu
+	lt 90
+	fd 250
+	rt 90
+	fd 100
+	pd
+
+	repeat :h [
+		polygon :h :m/2
+		rt 360 / :h
+		pu fd :m pd
+	]
+end
+
+to polygon :length :n
+	repeat :n [ fd :length rt 360.0 / :n ]
+end
+
+to square
+	repeat 4 [ fd 100 rt 90 ]
+end
+
+to teglalap :n :m
+	pd
+	fd :n
+	rt 90
+	fd :m
+	rt 90
+	fd :n
+	rt 90
+	fd :m
+	rt 90
+end
+
+to triangle
+	repeat 3 [ fd 100 rt 120 ]
+end
+
+to virag :h 
+	circle :h
+	pu
+	fd :h
+	pd
+	rt 60
+	repeat 6 [
+		circle :h
+		rt 60
+		pu
+		fd :h
+		pd
+	]
+	rt 120
+	pu
+	fd :h
+	pd
+	rt 180
+
+end
+

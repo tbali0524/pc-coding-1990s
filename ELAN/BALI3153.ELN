@@ -1,0 +1,89 @@
+
+program:
+  INT VAR eredmeny :: 0;
+  INT VAR j :: 1;
+  BOOL VAR egyetlenazaban, egyetlenabeben;
+  amegadas;
+  bmegadas;
+  FOR i FROM 1 UPTO n
+  REP
+    vizsgalja a iedik elemet;
+    IF egyetlenazaban
+    THEN
+      vizsgaljabben;
+      IF egyetlenabeben
+      THEN eredmeny INCR 1
+      FI
+    FI
+  ENDREP;
+  kiireredmenyt.
+
+  amegadas:
+    LET n = 7;
+    ROW n INT VAR a;
+    INT VAR i :: 1;
+    put ("Adja meg az A vektort!");
+    line;
+    bekeri a iedik elemet;
+    FOR i FROM 2 UPTO n
+    REP
+      REP bekeri a iedik elemet
+      UNTIL a [i] >= a [i - 1]
+      ENDREP
+    ENDREP.
+  
+    bekeri a iedik elemet:
+      put (i);
+      put (". elem: ");
+      get (a [i]).
+    
+  bmegadas:
+    LET m = 9;
+    ROW m INT VAR b;
+    line;
+    put ("Adja meg a B vektort!");
+    i := 1;
+    line;
+    bekeri b iedik elemet;
+    FOR i FROM 2 UPTO m
+    REP
+      REP bekeri b iedik elemet
+      UNTIL b [i] >= b [i - 1]
+      ENDREP
+    ENDREP.
+  
+    bekeri b iedik elemet:
+      put (i);
+      put (". elem: ");
+      get (b [i]).
+    
+  vizsgalja a iedik elemet:
+    IF i = 1
+    THEN egyetlenazaban := a [1] < a [2]
+    ELIF i = n
+    THEN egyetlenazaban := a [n] > a [n - 1]
+    ELSE egyetlenazaban := a [i - 1] < a [i] AND a [i] < a [i + 1]
+    FI.
+  
+  vizsgaljabben:
+    WHILE b [j] < a [i] AND j < m
+    REP j INCR 1
+    ENDREP;
+    IF b [j] = a [i]
+    THEN vizsgalja b jedik elemet
+    ELSE egyetlenabeben := false
+    FI.
+  
+    vizsgalja b jedik elemet:
+      IF j = m
+      THEN egyetlenabeben := true
+      ELSE egyetlenabeben := b [j] < b [j + 1]
+      FI.
+    
+  kiireredmenyt:
+    line;
+    put ("Azon elemek szama, melyek mindket vektorban csak egyszer fordulnak elo:");
+    line;
+    put (eredmeny).
+  
+
