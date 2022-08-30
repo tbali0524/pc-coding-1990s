@@ -4,3 +4,4 @@
 **/*.PRJ binary
 **/*.TVH binary
 **/*.zip binary
+**/*.exe binary
